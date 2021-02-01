@@ -16,7 +16,7 @@
         android:layout_margin="10dp"
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/signup_phone"
+            android:id="@+id/signup_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="60dp"
@@ -25,8 +25,25 @@
             android:inputType="phone"
             android:outlineSpotShadowColor="@color/colorAccent"
             android:fontFamily="@font/sen_bold"
-            android:hint="मोबाइल नंबर" />
+            android:hint="अपना नाम दर्ज करें" />
     </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signup_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="60dp"
+                android:textColor="@android:color/black"
+                android:textAllCaps="true"
+                android:inputType="phone"
+                android:outlineSpotShadowColor="@color/colorAccent"
+                android:fontFamily="@font/sen_bold"
+                android:hint="मोबाइल नंबर" />
+        </com.google.android.material.textfield.TextInputLayout>
     <Button
         android:id="@+id/signup_submit"
         android:layout_width="match_parent"
