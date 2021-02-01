@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.MaterialComponents.Light"
+    tools:context=".SignupActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/signup_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="60dp"
+            android:textColor="@android:color/black"
+            android:textAllCaps="true"
+            android:inputType="phone"
+            android:outlineSpotShadowColor="@color/colorAccent"
+            android:fontFamily="@font/sen_bold"
+            android:hint="मोबाइल नंबर" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <Button
+        android:id="@+id/signup_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="60dp"
+        android:layout_margin="10dp"
+        android:padding="6dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/sen_bold"
+        android:background="@drawable/solid__red_round_border"
+        android:text="शायरी ऐप में रजिस्टर करें"/>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

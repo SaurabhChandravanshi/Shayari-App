@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "122431590819",
+    "firebase_url": "https://shayari-5b5f4-default-rtdb.firebaseio.com",
+    "project_id": "shayari-5b5f4",
+    "storage_bucket": "shayari-5b5f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:122431590819:android:2cff1dbdfc260f213dca16",
+        "android_client_info": {
+          "package_name": "com.i3developer.shayari"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "122431590819-12fkaqemfihu4dnoqungi91ue9eue7vt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGeZotacaIb3TxYCXYDrptSp5bIZS8fwE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "122431590819-12fkaqemfihu4dnoqungi91ue9eue7vt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
