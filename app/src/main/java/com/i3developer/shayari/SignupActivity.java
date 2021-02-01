@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SignupActivity extends AppCompatActivity {
 
-    private TextInputEditText phoneEdt;
+    private TextInputEditText phoneEdt,nameEdt;
     private Button submitBtn;
     private FirebaseAuth mAuth;
     @Override
@@ -21,6 +21,19 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         // To Display custom Action Bar
+        setUpAppBar();
+
+        allInitializations();
+
+        submitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+    }
+
+    private void setUpAppBar() {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.app_bar_layout);
@@ -39,20 +52,14 @@ public class SignupActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-        allInitializations();
-
-        submitBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
     }
 
     private void allInitializations() {
         phoneEdt = findViewById(R.id.signup_phone);
+        nameEdt = findViewById(R.id.signup_name);
         submitBtn = findViewById(R.id.signup_submit);
         mAuth = FirebaseAuth.getInstance();
     }
+
+
 }
