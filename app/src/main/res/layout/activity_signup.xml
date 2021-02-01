@@ -55,5 +55,17 @@
         android:fontFamily="@font/sen_bold"
         android:background="@drawable/solid__red_round_border"
         android:text="शायरी ऐप में रजिस्टर करें"/>
+
+        <Button
+            android:id="@+id/signup_login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@android:color/transparent"
+            android:textStyle="bold"
+            android:textColor="@color/colorRed"
+            android:textAlignment="viewStart"
+            android:gravity="start"
+            android:text="यदि आपके पास पहले से ही खाता है तो कृपया लॉगिन करने के लिए यहां क्लिक करें ।"/>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
