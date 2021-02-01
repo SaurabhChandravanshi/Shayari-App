@@ -47,7 +47,7 @@ public class SignupActivity extends AppCompatActivity {
                     showToast(getApplicationContext(),"नाम आवश्यक है");
                 }
                 else if(TextUtils.isEmpty(phoneEdt.getText()) || phoneEdt.length() != 10) {
-                    showToast(getApplicationContext(),"मोबाइल नंबर आवश्यक है");
+                    showToast(getApplicationContext(),"10 अंकों का मोबाइल नंबर आवश्यक है");
                 } else {
                     sendVerificationCode("+91"+phoneEdt.getText());
                 }

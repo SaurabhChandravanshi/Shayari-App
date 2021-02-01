@@ -21,7 +21,7 @@
             android:minHeight="60dp"
             android:textColor="@android:color/black"
             android:textAllCaps="true"
-            android:inputType="phone"
+            android:inputType="textCapWords"
             android:outlineSpotShadowColor="@color/colorAccent"
             android:fontFamily="@font/sen_bold"
             android:hint="अपना नाम दर्ज करें" />
