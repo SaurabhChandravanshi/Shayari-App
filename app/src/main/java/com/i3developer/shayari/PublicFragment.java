@@ -8,6 +8,7 @@ import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class PublicFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FloatingActionButton fab;
+    private FrameLayout loginRequiredFrame;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -32,10 +34,9 @@ public class PublicFragment extends Fragment {
         allInitializations();
 
         if(mAuth.getCurrentUser() == null) {
-            Toast.makeText(getActivity(), "Not logged in", Toast.LENGTH_SHORT).show();
+            loginRequiredFrame.setVisibility(View.VISIBLE);
         } else {
-            Toast.makeText(getActivity(), "Logged in", Toast.LENGTH_SHORT).show();
-            Toast.makeText(getActivity(), mAuth.getUid(), Toast.LENGTH_LONG).show();
+
         }
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +45,9 @@ public class PublicFragment extends Fragment {
                 if(mAuth.getCurrentUser() == null) {
                     startActivity(new Intent(getActivity(),SignupActivity.class));
                 }
+                else {
+                    startActivity(new Intent(getActivity(),CreatePostActivity.class));
+                }
             }
         });
     }
@@ -51,6 +55,7 @@ public class PublicFragment extends Fragment {
     private void allInitializations() {
         mAuth = FirebaseAuth.getInstance();
         fab = getActivity().findViewById(R.id.public_fab);
+        loginRequiredFrame = getActivity().findViewById(R.id.public_login_require_frame);
     }
     private void showAuthRequiredDialog(String message) {
         ContextThemeWrapper themeWrapper = new ContextThemeWrapper(getActivity(),R.style.CustomAlertTheme);

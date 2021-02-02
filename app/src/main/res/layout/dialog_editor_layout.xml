@@ -25,6 +25,7 @@
             android:textColor="@android:color/white"
             android:fontFamily="@font/sen_bold"
             android:maxLines="15"
+            android:inputType="textCapSentences"
             android:lineSpacingExtra="6dp"
             android:background="@android:color/transparent"
             android:layout_centerInParent="true"
@@ -57,7 +58,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:drawableTop="@drawable/ic_color_palette_24"
+        android:drawableTop="@drawable/ic_color_palette_black_24"
         android:background="@android:color/transparent"
         android:text="BACKGROUND"
         android:fontFamily="@font/sen_bold"
@@ -70,7 +71,6 @@
         android:drawableTop="@drawable/ic_share_24"
         android:background="@android:color/transparent"
         android:text="SHARE"
-        android:clickable="true"
         android:fontFamily="@font/sen_bold"
         android:textSize="10sp"/>
 </LinearLayout>

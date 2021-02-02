@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity  {
         TextView appBarRight = getSupportActionBar().getCustomView()
                 .findViewById(R.id.app_bar_right);
         appBarTitle.setText("शायरी ऐप");
-        appBarLeft.setText("Exit");
-        appBarRight.setText("Share");
+        appBarLeft.setText("EXIT");
+        appBarRight.setText("SHARE");
         appBarLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

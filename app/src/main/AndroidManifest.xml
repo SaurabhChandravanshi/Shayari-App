@@ -11,8 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SignupActivity"
+        <activity android:name=".CreatePostActivity"
             android:theme="@style/CustomAppTheme"/>
+        <activity
+            android:name=".SignupActivity"
+            android:theme="@style/CustomAppTheme" />
         <activity
             android:name=".ShayariActivity"
             android:theme="@style/CustomAppTheme" />

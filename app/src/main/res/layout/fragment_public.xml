@@ -11,4 +11,57 @@
         android:src="@drawable/ic_edit_24"
         android:contentDescription="Write Shayari"
         android:layout_margin="16dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/public_login_require_frame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_centerInParent="true">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="20dp"
+                    android:src="@drawable/ic_lock_60"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sen_bold"
+                    android:textColor="@color/colorRed"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:gravity="center_horizontal"
+                    android:text="साइन इन आवश्यक"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sen_bold"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:lineSpacingExtra="6dp"
+                    android:layout_margin="15dp"
+                    android:gravity="center_horizontal"
+                    android:text="इस टैब को देखने के लिए कृपया एप्लिकेशन में साइन इन करें।\nनिराश न हों, साइन इन में एक मिनट से भी कम समय लगेगा।"/>
+                <Button
+                    android:id="@+id/signup_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="60dp"
+                    android:layout_margin="10dp"
+                    android:padding="6dp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:onClick="signIn"
+                    android:fontFamily="@font/sen_bold"
+                    android:background="@drawable/solid__red_round_border"
+                    android:text="शायरी ऐप में साइन इन करें"/>
+            </LinearLayout>
+        </FrameLayout>
+        </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

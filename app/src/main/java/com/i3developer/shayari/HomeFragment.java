@@ -35,4 +35,7 @@ public class HomeFragment extends Fragment {
     private void allInitializations() {
         categoryCard = getActivity().findViewById(R.id.home_category);
     }
+    public void signIn(View view) {
+        startActivity(new Intent(getActivity(),SignupActivity.class));
+    }
 }
