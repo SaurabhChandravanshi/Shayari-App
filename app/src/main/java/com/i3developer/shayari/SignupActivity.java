@@ -37,6 +37,7 @@ public class SignupActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private String mVerificationId;
     private FrameLayout otpFrame,credentialFrame;
+    private BSFProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +55,6 @@ public class SignupActivity extends AppCompatActivity {
                 else if(TextUtils.isEmpty(phoneEdt.getText()) || phoneEdt.length() != 10) {
                     showToast(getApplicationContext(),"10 अंकों का मोबाइल नंबर आवश्यक है");
                 } else {
-                    submitBtn.setText("कृपया प्रतीक्षा करें ...");
                     sendVerificationCode("+91"+phoneEdt.getText());
                 }
             }
@@ -101,9 +101,11 @@ public class SignupActivity extends AppCompatActivity {
         credentialFrame = findViewById(R.id.signup_credential_frame);
         otpSubmitBtn = findViewById(R.id.signup_submit_otp);
         otpEdt = findViewById(R.id.signup_otp_field);
+        progressDialog = new BSFProgressDialog();
     }
 
     private void sendVerificationCode(String phoneNumber) {
+        progressDialog.show(getSupportFragmentManager(),progressDialog.getTag());
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
                         .setPhoneNumber(phoneNumber)       // Phone number to verify
@@ -114,6 +116,7 @@ public class SignupActivity extends AppCompatActivity {
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
     private void verifyCode(String otp) {
+        progressDialog.show(getSupportFragmentManager(),progressDialog.getTag());
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId,otp);
         signInWithPhoneCredential(credential);
     }
@@ -122,11 +125,11 @@ public class SignupActivity extends AppCompatActivity {
         mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                progressDialog.dismiss();
                 if(task.isSuccessful()) {
                     Toast.makeText(SignupActivity.this, mAuth.getUid(), Toast.LENGTH_LONG).show();
-
                 } else {
-                    showToast(getApplicationContext(),"प्रवेश विफल कृपया दोबारा प्रयास करें");
+                    showToast(getApplicationContext(),"विफल कृपया दोबारा प्रयास करें");
                 }
             }
         });
@@ -138,20 +141,20 @@ public class SignupActivity extends AppCompatActivity {
             if(code != null) {
                 otpEdt.setText(code);
             }
-            submitBtn.setText("शायरी ऐप में साइन इन करें");
+            progressDialog.dismiss();
 
         }
         @Override
         public void onVerificationFailed(@NonNull FirebaseException e) {
-            showToast(getApplicationContext(),"ओटीपी सत्यापन विफल हो गया है");
-            submitBtn.setText("शायरी ऐप में साइन इन करें");
+            showToast(getApplicationContext(),"ओटीपी सत्यापन विफल हो गया है"+e.getLocalizedMessage());
+            progressDialog.dismiss();
         }
 
         @Override
         public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);
             mVerificationId = s;
-            submitBtn.setText("शायरी ऐप में साइन इन करें");
+            progressDialog.dismiss();
             credentialFrame.setVisibility(View.GONE);
             otpFrame.setVisibility(View.VISIBLE);
         }
