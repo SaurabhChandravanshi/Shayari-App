@@ -85,8 +85,8 @@ public class SignupActivity extends AppCompatActivity {
                 .findViewById(R.id.app_bar_left);
         TextView appBarRight = getSupportActionBar().getCustomView()
                 .findViewById(R.id.app_bar_right);
-        appBarTitle.setText("रजिस्टर करें");
-        appBarLeft.setText("Back");
+        appBarTitle.setText("साइन इन");
+        appBarLeft.setText("BACK");
         appBarLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,7 +136,7 @@ public class SignupActivity extends AppCompatActivity {
                     String UId = mAuth.getUid();
                     if(UId != null) {
                         referenceDb.child(UId).setValue(user);
-                        Toast.makeText(SignupActivity.this, "सत्यापन सफल रहा", Toast.LENGTH_LONG).show();
+                        showToast(getApplicationContext(), "सत्यापन सफल रहा");
                         finish();
                     }
                 } else {

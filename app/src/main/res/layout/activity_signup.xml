@@ -62,7 +62,7 @@
         android:textColor="@android:color/white"
         android:fontFamily="@font/sen_bold"
         android:background="@drawable/solid__red_round_border"
-        android:text="शायरी ऐप में साइन इन करें"/>
+        android:text="एप्लिकेशन में साइन इन करें"/>
             </LinearLayout>
         </FrameLayout>
 
