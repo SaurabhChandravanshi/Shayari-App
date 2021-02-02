@@ -26,6 +26,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 import java.util.zip.Inflater;
@@ -38,6 +40,7 @@ public class SignupActivity extends AppCompatActivity {
     private String mVerificationId;
     private FrameLayout otpFrame,credentialFrame;
     private BSFProgressDialog progressDialog;
+    private DatabaseReference referenceDb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +105,7 @@ public class SignupActivity extends AppCompatActivity {
         otpSubmitBtn = findViewById(R.id.signup_submit_otp);
         otpEdt = findViewById(R.id.signup_otp_field);
         progressDialog = new BSFProgressDialog();
+        referenceDb = FirebaseDatabase.getInstance().getReference("Users");
     }
 
     private void sendVerificationCode(String phoneNumber) {
@@ -127,7 +131,10 @@ public class SignupActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressDialog.dismiss();
                 if(task.isSuccessful()) {
-                    Toast.makeText(SignupActivity.this, mAuth.getUid(), Toast.LENGTH_LONG).show();
+                    // add name to firebase database
+                    String UId = mAuth.getUid();
+                    referenceDb.child(UId).child("name").setValue(nameEdt.getText());
+                    Toast.makeText(SignupActivity.this, "सत्यापन सफल रहा", Toast.LENGTH_LONG).show();
                 } else {
                     showToast(getApplicationContext(),"विफल कृपया दोबारा प्रयास करें");
                 }
