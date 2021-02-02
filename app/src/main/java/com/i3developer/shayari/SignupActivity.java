@@ -143,6 +143,7 @@ public class SignupActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 showToast(getApplicationContext(), "सत्यापन सफल रहा");
+                                finish();
                             }
                         })
                                 .addOnFailureListener(new OnFailureListener() {
@@ -151,7 +152,6 @@ public class SignupActivity extends AppCompatActivity {
                                         showToast(getApplicationContext(),"सत्यापन विफल हो गया है कृपया पुनः प्रयास करें");
                                     }
                                 });
-                        finish();
                     }
                 } else {
                     showToast(getApplicationContext(),"विफल कृपया दोबारा प्रयास करें");
