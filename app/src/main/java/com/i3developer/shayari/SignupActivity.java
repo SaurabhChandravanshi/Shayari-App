@@ -131,10 +131,14 @@ public class SignupActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressDialog.dismiss();
                 if(task.isSuccessful()) {
+                    User user = new User(nameEdt.getText().toString());
                     // add name to firebase database
                     String UId = mAuth.getUid();
-                    referenceDb.child(UId).child("name").setValue(nameEdt.getText());
-                    Toast.makeText(SignupActivity.this, "सत्यापन सफल रहा", Toast.LENGTH_LONG).show();
+                    if(UId != null) {
+                        referenceDb.child(UId).setValue(user);
+                        Toast.makeText(SignupActivity.this, "सत्यापन सफल रहा", Toast.LENGTH_LONG).show();
+                        finish();
+                    }
                 } else {
                     showToast(getApplicationContext(),"विफल कृपया दोबारा प्रयास करें");
                 }
