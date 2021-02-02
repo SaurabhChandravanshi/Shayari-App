@@ -57,22 +57,4 @@ public class PublicFragment extends Fragment {
         fab = getActivity().findViewById(R.id.public_fab);
         loginRequiredFrame = getActivity().findViewById(R.id.public_login_require_frame);
     }
-    private void showAuthRequiredDialog(String message) {
-        ContextThemeWrapper themeWrapper = new ContextThemeWrapper(getActivity(),R.style.CustomAlertTheme);
-        AlertDialog.Builder builder = new AlertDialog.Builder(themeWrapper);
-        builder.setMessage(message);
-        builder.setPositiveButton("REGISTER", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
-        });
-        builder.setNegativeButton("LOGIN", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
-        });
-        builder.create().show();
-    }
 }

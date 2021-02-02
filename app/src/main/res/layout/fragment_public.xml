@@ -57,7 +57,7 @@
                     android:padding="6dp"
                     android:textStyle="bold"
                     android:textColor="@android:color/white"
-                    android:onClick="signIn"
+                    android:onClick="openSignIn"
                     android:fontFamily="@font/sen_bold"
                     android:background="@drawable/solid__red_round_border"
                     android:text="शायरी ऐप में साइन इन करें"/>

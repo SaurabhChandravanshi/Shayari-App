@@ -93,4 +93,7 @@ public class MainActivity extends AppCompatActivity  {
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.main_frame, fragment).commit();
     }
+    public void openSignIn(View view) {
+        startActivity(new Intent(MainActivity.this,SignupActivity.class));
+    }
 }
