@@ -18,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.FirebaseException;
@@ -137,8 +139,18 @@ public class SignupActivity extends AppCompatActivity {
                     // add name to firebase database
                     String UId = mAuth.getUid();
                     if(UId != null) {
-                        referenceDb.child(UId).setValue(user);
-                        showToast(getApplicationContext(), "सत्यापन सफल रहा");
+                        referenceDb.child(UId).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                showToast(getApplicationContext(), "सत्यापन सफल रहा");
+                            }
+                        })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        showToast(getApplicationContext(),"सत्यापन विफल हो गया है कृपया पुनः प्रयास करें");
+                                    }
+                                });
                         finish();
                     }
                 } else {
