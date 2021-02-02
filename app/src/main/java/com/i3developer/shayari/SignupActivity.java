@@ -2,6 +2,7 @@ package com.i3developer.shayari;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ContextThemeWrapper;
 
@@ -9,8 +10,10 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,13 +28,15 @@ import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
+import java.util.zip.Inflater;
 
 public class SignupActivity extends AppCompatActivity {
 
-    private TextInputEditText phoneEdt,nameEdt;
-    private Button submitBtn;
+    private TextInputEditText phoneEdt,nameEdt,otpEdt;
+    private Button submitBtn,otpSubmitBtn;
     private FirebaseAuth mAuth;
     private String mVerificationId;
+    private FrameLayout otpFrame,credentialFrame;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +54,18 @@ public class SignupActivity extends AppCompatActivity {
                 else if(TextUtils.isEmpty(phoneEdt.getText()) || phoneEdt.length() != 10) {
                     showToast(getApplicationContext(),"10 अंकों का मोबाइल नंबर आवश्यक है");
                 } else {
+                    submitBtn.setText("कृपया प्रतीक्षा करें ...");
                     sendVerificationCode("+91"+phoneEdt.getText());
+                }
+            }
+        });
+        otpSubmitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (TextUtils.isEmpty(otpEdt.getText())) {
+                    showToast(getApplicationContext(),"कृपया ओटीपी दर्ज करें");
+                } else {
+                    verifyCode(otpEdt.getText().toString());
                 }
             }
         });
@@ -81,6 +97,10 @@ public class SignupActivity extends AppCompatActivity {
         nameEdt = findViewById(R.id.signup_name);
         submitBtn = findViewById(R.id.signup_submit);
         mAuth = FirebaseAuth.getInstance();
+        otpFrame = findViewById(R.id.signup_otp_frame);
+        credentialFrame = findViewById(R.id.signup_credential_frame);
+        otpSubmitBtn = findViewById(R.id.signup_submit_otp);
+        otpEdt = findViewById(R.id.signup_otp_field);
     }
 
     private void sendVerificationCode(String phoneNumber) {
@@ -104,8 +124,9 @@ public class SignupActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
                     Toast.makeText(SignupActivity.this, mAuth.getUid(), Toast.LENGTH_LONG).show();
+
                 } else {
-                    Toast.makeText(SignupActivity.this, "Failed to login", Toast.LENGTH_SHORT).show();
+                    showToast(getApplicationContext(),"प्रवेश विफल कृपया दोबारा प्रयास करें");
                 }
             }
         });
@@ -115,18 +136,24 @@ public class SignupActivity extends AppCompatActivity {
         public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
             String code = phoneAuthCredential.getSmsCode();
             if(code != null) {
-                verifyCode(code);
+                otpEdt.setText(code);
             }
+            submitBtn.setText("शायरी ऐप में साइन इन करें");
+
         }
         @Override
         public void onVerificationFailed(@NonNull FirebaseException e) {
-            Toast.makeText(SignupActivity.this, "Verification Failed", Toast.LENGTH_SHORT).show();
+            showToast(getApplicationContext(),"ओटीपी सत्यापन विफल हो गया है");
+            submitBtn.setText("शायरी ऐप में साइन इन करें");
         }
 
         @Override
         public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);
             mVerificationId = s;
+            submitBtn.setText("शायरी ऐप में साइन इन करें");
+            credentialFrame.setVisibility(View.GONE);
+            otpFrame.setVisibility(View.VISIBLE);
         }
     };
     private void showToast(Context context, String text) {
@@ -136,4 +163,5 @@ public class SignupActivity extends AppCompatActivity {
         toast.setGravity(Gravity.CENTER,0,0);
         toast.show();
     }
+
 }

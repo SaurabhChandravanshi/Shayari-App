@@ -3,12 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/Theme.MaterialComponents.Light"
     tools:context=".SignupActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:theme="@style/Theme.MaterialComponents.Light"
         android:orientation="vertical">
+        <FrameLayout
+            android:id="@+id/signup_credential_frame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
@@ -54,18 +62,50 @@
         android:textColor="@android:color/white"
         android:fontFamily="@font/sen_bold"
         android:background="@drawable/solid__red_round_border"
-        android:text="शायरी ऐप में रजिस्टर करें"/>
+        android:text="शायरी ऐप में साइन इन करें"/>
+            </LinearLayout>
+        </FrameLayout>
 
-        <Button
-            android:id="@+id/signup_login_btn"
+        <FrameLayout
+            android:id="@+id/signup_otp_frame"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@android:color/transparent"
-            android:textStyle="bold"
-            android:textColor="@color/colorRed"
-            android:textAlignment="viewStart"
-            android:gravity="start"
-            android:text="यदि आपके पास पहले से ही खाता है तो कृपया लॉगिन करने के लिए यहां क्लिक करें ।"/>
+            android:visibility="gone">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/signup_otp_field"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="60dp"
+                        android:textColor="@android:color/black"
+                        android:textAllCaps="true"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:outlineSpotShadowColor="@color/colorAccent"
+                        android:fontFamily="@font/sen_bold"
+                        android:hint="ओटीपी दर्ज करें" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <Button
+                    android:id="@+id/signup_submit_otp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="60dp"
+                    android:layout_margin="10dp"
+                    android:padding="6dp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/sen_bold"
+                    android:background="@drawable/solid__red_round_border"
+                    android:text="ओटीपी सत्यापित करेंं"/>
+            </LinearLayout>
+        </FrameLayout>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
