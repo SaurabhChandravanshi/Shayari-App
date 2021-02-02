@@ -41,6 +41,7 @@ public class SignupActivity extends AppCompatActivity {
     private FrameLayout otpFrame,credentialFrame;
     private BSFProgressDialog progressDialog;
     private DatabaseReference referenceDb;
+    private TextView otpMessage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,6 +107,7 @@ public class SignupActivity extends AppCompatActivity {
         otpEdt = findViewById(R.id.signup_otp_field);
         progressDialog = new BSFProgressDialog();
         referenceDb = FirebaseDatabase.getInstance().getReference("Users");
+        otpMessage = findViewById(R.id.signup_otp_msg);
     }
 
     private void sendVerificationCode(String phoneNumber) {
@@ -157,7 +159,7 @@ public class SignupActivity extends AppCompatActivity {
         }
         @Override
         public void onVerificationFailed(@NonNull FirebaseException e) {
-            showToast(getApplicationContext(),"ओटीपी सत्यापन विफल हो गया है"+e.getLocalizedMessage());
+            showToast(getApplicationContext(),"ओटीपी सत्यापन विफल हो गया है");
             progressDialog.dismiss();
         }
 
@@ -168,6 +170,7 @@ public class SignupActivity extends AppCompatActivity {
             progressDialog.dismiss();
             credentialFrame.setVisibility(View.GONE);
             otpFrame.setVisibility(View.VISIBLE);
+            otpMessage.setText("+91"+phoneEdt.getText().toString()+" पर प्राप्त ओटीपी दर्ज करें");
         }
     };
     private void showToast(Context context, String text) {
