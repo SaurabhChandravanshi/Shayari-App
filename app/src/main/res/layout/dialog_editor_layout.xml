@@ -25,7 +25,7 @@
             android:textColor="@android:color/white"
             android:fontFamily="@font/sen_bold"
             android:maxLines="15"
-            android:inputType="textCapSentences"
+            android:inputType="textMultiLine"
             android:lineSpacingExtra="6dp"
             android:background="@android:color/transparent"
             android:layout_centerInParent="true"
