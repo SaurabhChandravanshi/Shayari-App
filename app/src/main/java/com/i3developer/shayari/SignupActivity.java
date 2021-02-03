@@ -9,6 +9,7 @@ import androidx.appcompat.view.ContextThemeWrapper;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -47,6 +48,7 @@ import java.util.zip.Inflater;
 
 public class SignupActivity extends AppCompatActivity {
 
+
     private TextInputEditText phoneEdt,nameEdt,otpEdt;
     private Button submitBtn,otpSubmitBtn;
     private FirebaseAuth mAuth;
@@ -58,6 +60,10 @@ public class SignupActivity extends AppCompatActivity {
     private SignInButton googleSignInBtn;
     private GoogleSignInClient googleSignInClient;
     private int RC_SIGN_IN = 2323;
+    long millisInFuture= 60000;// 60 sec
+    long countDownInterval = 1000;// 1 sec
+    public TextView textViewTimer;
+    private PhoneAuthProvider.ForceResendingToken mResendToken; //resend token
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +102,13 @@ public class SignupActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent signInIntent = googleSignInClient.getSignInIntent();
                 startActivityForResult(signInIntent, RC_SIGN_IN);
+            }
+        });
+        //textViewTimer click for sending resend otp.
+        textViewTimer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendVerificationCodeAgian("+91"+phoneEdt.getText());
             }
         });
     }
@@ -185,6 +198,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void allInitializations() {
+        textViewTimer = findViewById(R.id.textView_timer);//textView for countdown and resend otp
         phoneEdt = findViewById(R.id.signup_phone);
         nameEdt = findViewById(R.id.signup_name);
         submitBtn = findViewById(R.id.signup_submit);
@@ -206,6 +220,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void sendVerificationCode(String phoneNumber) {
+        startCountDownTimer();
         progressDialog.show(getSupportFragmentManager(),progressDialog.getTag());
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
@@ -216,6 +231,20 @@ public class SignupActivity extends AppCompatActivity {
                         .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
+    // sending otp again
+    private void sendVerificationCodeAgian(String phoneNubmber){
+        startCountDownTimer();
+        startCountDownTimer();
+        PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth).
+                setPhoneNumber(phoneNubmber)
+                .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                .setActivity(this)               // Activity (for callback binding)
+                .setCallbacks(mCallbacks)   // OnVerificationStateChangedCallbacks
+                .setForceResendingToken(mResendToken) //resend otp
+                .build();
+        PhoneAuthProvider.verifyPhoneNumber(options);
+    }
+
     private void verifyCode(String otp) {
         progressDialog.show(getSupportFragmentManager(),progressDialog.getTag());
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId,otp);
@@ -257,12 +286,35 @@ public class SignupActivity extends AppCompatActivity {
         public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);
             mVerificationId = s;
+            mResendToken = forceResendingToken;
             progressDialog.dismiss();
             credentialFrame.setVisibility(View.GONE);
             otpFrame.setVisibility(View.VISIBLE);
             otpMessage.setText("+91"+phoneEdt.getText().toString()+" पर प्राप्त ओटीपी दर्ज करें");
         }
     };
+    // startCountDownTimer() for countDown
+    private void startCountDownTimer(){
+        textViewTimer.setClickable(false);
+        CountDownTimer countDownTimer = new CountDownTimer(millisInFuture,countDownInterval)
+        {
+            @Override
+            public void onTick(long l) {
+                if((l/1000)<10){
+                    textViewTimer.setText("बचा हुआ समय: " +"00:0"+ l / 1000);
+                }else {
+                    textViewTimer.setText("बचा हुआ समय: " +"00:"+ l / 1000);
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                textViewTimer.setText("ओटीपी पुनः भेजें");
+                textViewTimer.setClickable(true);
+            }
+        }.start();
+    }
+
     private void showToast(Context context, String text) {
         ContextThemeWrapper themeWrapper = new ContextThemeWrapper(context,R.style.CustomAlertTheme);
         Toast toast = Toast.makeText(themeWrapper,"",Toast.LENGTH_SHORT);
