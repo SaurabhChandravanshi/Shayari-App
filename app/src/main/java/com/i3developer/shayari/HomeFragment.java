@@ -35,5 +35,4 @@ public class HomeFragment extends Fragment {
     private void allInitializations() {
         categoryCard = getActivity().findViewById(R.id.home_category);
     }
-
 }

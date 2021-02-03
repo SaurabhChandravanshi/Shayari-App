@@ -7,8 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ContextThemeWrapper;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,14 +19,23 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -44,6 +55,10 @@ public class SignupActivity extends AppCompatActivity {
     private BSFProgressDialog progressDialog;
     private DatabaseReference referenceDb;
     private TextView otpMessage;
+    private SignInButton googleSignInBtn;
+    private GoogleSignInClient googleSignInClient;
+    private int RC_SIGN_IN = 2323;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +90,77 @@ public class SignupActivity extends AppCompatActivity {
                 }
             }
         });
+
+        googleSignInBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent signInIntent = googleSignInClient.getSignInIntent();
+                startActivityForResult(signInIntent, RC_SIGN_IN);
+            }
+        });
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                Log.d("Google SignIn ", "firebaseAuthWithGoogle:" + account.getId());
+                firebaseAuthWithGoogle(account.getIdToken(),task);
+            } catch (ApiException e) {
+                // Google Sign In failed, update UI appropriately
+                Log.w("Google SignIn Failed", "Google sign in failed", e);
+                // ...
+            }
+        }
+    }
+    private void firebaseAuthWithGoogle(String idToken,Task<GoogleSignInAccount> googleSignInAccountTask) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("Google SignIn Success", "signInWithCredential:success");
+                            try {
+                                GoogleSignInAccount account = googleSignInAccountTask.getResult(ApiException.class);
+                                User user = new User(account.getDisplayName());
+                                updateSignedInUser(user);
+                            } catch (ApiException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("Google SignIn Failed", "signInWithCredential:failure", task.getException());
+                        }
+
+                        // ...
+                    }
+                });
+    }
+
+    private void updateSignedInUser(User user) {
+        String UId = mAuth.getUid();
+        if(UId != null) {
+            referenceDb.child(UId).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    showToast(getApplicationContext(), "सत्यापन सफल रहा");
+                    finish();
+                }
+            })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            showToast(getApplicationContext(),"सत्यापन विफल हो गया है कृपया पुनः प्रयास करें");
+                        }
+                    });
+        }
     }
 
     private void setUpAppBar() {
@@ -110,6 +196,13 @@ public class SignupActivity extends AppCompatActivity {
         progressDialog = new BSFProgressDialog();
         referenceDb = FirebaseDatabase.getInstance().getReference("Users");
         otpMessage = findViewById(R.id.signup_otp_msg);
+        googleSignInBtn = findViewById(R.id.signup_google_sign_in_button);
+        // Configure Google Sign In
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        googleSignInClient = GoogleSignIn.getClient(getApplicationContext(),gso);
     }
 
     private void sendVerificationCode(String phoneNumber) {
@@ -135,24 +228,9 @@ public class SignupActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressDialog.dismiss();
                 if(task.isSuccessful()) {
-                    User user = new User(nameEdt.getText().toString());
                     // add name to firebase database
-                    String UId = mAuth.getUid();
-                    if(UId != null) {
-                        referenceDb.child(UId).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                showToast(getApplicationContext(), "सत्यापन सफल रहा");
-                                finish();
-                            }
-                        })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        showToast(getApplicationContext(),"सत्यापन विफल हो गया है कृपया पुनः प्रयास करें");
-                                    }
-                                });
-                    }
+                    User user = new User(nameEdt.getText().toString());
+                    updateSignedInUser(user);
                 } else {
                     showToast(getApplicationContext(),"विफल कृपया दोबारा प्रयास करें");
                 }
@@ -192,5 +270,4 @@ public class SignupActivity extends AppCompatActivity {
         toast.setGravity(Gravity.CENTER,0,0);
         toast.show();
     }
-
 }

@@ -1,7 +1,10 @@
 package com.i3developer.shayari;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.cardview.widget.CardView;
 
 import android.app.Activity;
@@ -9,13 +12,21 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.mlkit.nl.languageid.LanguageIdentification;
+import com.google.mlkit.nl.languageid.LanguageIdentifier;
 
 public class CreatePostActivity extends AppCompatActivity {
 
@@ -23,7 +34,7 @@ public class CreatePostActivity extends AppCompatActivity {
     private int MAX_COLOR = 10;
     private FloatingActionButton bgFab;
     private CardView cardView;
-
+    private EditText cardContent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +52,7 @@ public class CreatePostActivity extends AppCompatActivity {
     private void allInitializations() {
         bgFab = findViewById(R.id.create_post_bg_fab);
         cardView = findViewById(R.id.create_post_card);
+        cardContent = findViewById(R.id.create_post_content);
     }
 
     private void setUpAppBar() {
@@ -65,6 +77,44 @@ public class CreatePostActivity extends AppCompatActivity {
                 finish();
             }
         });
+        appBarRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (TextUtils.isEmpty(cardContent.getText())) {
+                    showToast(getApplicationContext(),"कृपया कुछ टेक्स्ट बॉक्स में दर्ज करें");
+                } else {
+                    identifyLanguage(cardContent.getText().toString());
+                }
+            }
+        });
+    }
+
+    private void identifyLanguage(String text) {
+        LanguageIdentifier language = LanguageIdentification.getClient();
+        language.identifyLanguage(text).addOnSuccessListener(new OnSuccessListener<String>() {
+            @Override
+            public void onSuccess(@Nullable String languageCode) {
+                if (languageCode.equals("und")) {
+                    Log.i("Language Unidentified", "Can't identify language.");
+                } else {
+                    Log.i("Language Identify", "Language is : " + languageCode);
+                }
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+    }
+
+    private void showToast(Context context, String text) {
+        ContextThemeWrapper themeWrapper = new ContextThemeWrapper(context,R.style.CustomAlertTheme);
+        Toast toast = Toast.makeText(themeWrapper,"",Toast.LENGTH_SHORT);
+        toast.setText(text);
+        toast.setGravity(Gravity.CENTER,0,0);
+        toast.show();
     }
     private void changeBackground(Context context, CardView view) {
         if(CURRENT_BACKGROUND == MAX_COLOR) {

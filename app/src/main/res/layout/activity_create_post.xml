@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".CreatePostActivity"
     android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <androidx.cardview.widget.CardView
         android:id="@+id/create_post_card"
         android:layout_width="match_parent"
@@ -27,6 +31,8 @@
                 android:textColor="@android:color/white"
                 android:fontFamily="@font/sen_bold"
                 android:maxLines="15"
+                android:focusable="true"
+                android:focusedByDefault="true"
                 android:lineSpacingExtra="6dp"
                 android:background="@android:color/transparent"
                 android:layout_centerInParent="true"
@@ -34,6 +40,7 @@
                 android:gravity="center_horizontal" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
+    </LinearLayout>
 <com.google.android.material.floatingactionbutton.FloatingActionButton
     android:id="@+id/create_post_bg_fab"
     android:layout_width="wrap_content"
