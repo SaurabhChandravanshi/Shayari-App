@@ -130,7 +130,7 @@ public class ShayariAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         View dialogView = inflater.inflate(R.layout.dialog_editor_layout,null);
                         Button closeBtn = dialogView.findViewById(R.id.editor_close_btn);
                         EditText content = dialogView.findViewById(R.id.editor_content);
-                        content.setText(data.getQ());
+                        content.setText(data.getQ().trim());
                         CardView cardView = dialogView.findViewById(R.id.editor_card);
                         changeBackground(viewHolder.itemView.getContext(),cardView);
                         builder.setView(dialogView);

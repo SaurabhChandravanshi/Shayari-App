@@ -197,6 +197,7 @@ public class SignupActivity extends AppCompatActivity {
         referenceDb = FirebaseDatabase.getInstance().getReference("Users");
         otpMessage = findViewById(R.id.signup_otp_msg);
         googleSignInBtn = findViewById(R.id.signup_google_sign_in_button);
+        googleSignInBtn.setSize(SignInButton.SIZE_WIDE);
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
