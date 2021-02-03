@@ -198,7 +198,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void allInitializations() {
-        textViewTimer = findViewById(R.id.textView_timer);//textView for countdown and resend otp
+        textViewTimer = findViewById(R.id.signup_textView_timer);//textView for countdown and resend otp
         phoneEdt = findViewById(R.id.signup_phone);
         nameEdt = findViewById(R.id.signup_name);
         submitBtn = findViewById(R.id.signup_submit);
@@ -233,7 +233,6 @@ public class SignupActivity extends AppCompatActivity {
     }
     // sending otp again
     private void sendVerificationCodeAgian(String phoneNubmber){
-        startCountDownTimer();
         startCountDownTimer();
         PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth).
                 setPhoneNumber(phoneNubmber)
