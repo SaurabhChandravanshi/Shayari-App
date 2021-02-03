@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity  {
                 .findViewById(R.id.app_bar_left);
         TextView appBarRight = getSupportActionBar().getCustomView()
                 .findViewById(R.id.app_bar_right);
-        appBarTitle.setText("शायरी ऐप");
+        appBarTitle.setText("Shayari Book");
         appBarLeft.setText("EXIT");
         appBarRight.setText("SHARE");
         appBarLeft.setOnClickListener(new View.OnClickListener() {
