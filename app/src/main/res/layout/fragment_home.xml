@@ -60,7 +60,7 @@
                             android:layout_height="80dp"
                             android:layout_gravity="center"
                             android:layout_margin="6dp"
-                            android:background="@drawable/ic_new_shayari_60"/>
+                            android:background="@drawable/ic_create_post_60"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
                             android:layout_marginTop="4dp"
                             android:layout_marginBottom="10dp"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:text="नया जोड़ा गया"
+                            android:text="अपना जोड़े"
                             android:gravity="center_horizontal" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

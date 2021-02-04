@@ -163,8 +163,10 @@ public class SignupActivity extends AppCompatActivity {
             referenceDb.child(UId).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    showToast(getApplicationContext(), "सत्यापन सफल रहा");
-                    finish();
+                    showToast(getApplicationContext(), "साइन इन सफल रहा");
+                    Intent intent = new Intent(SignupActivity.this,MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {

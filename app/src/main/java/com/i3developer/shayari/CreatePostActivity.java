@@ -160,7 +160,6 @@ public class CreatePostActivity extends AppCompatActivity {
                 notification.showLocalNotification();
             }
         });
-        firestoreRef.collection("postOwners").document(mAuth.getUid()).update("postArray",FieldValue.arrayUnion(postId));
     }
 
     private void uploadImageToCloud(View view) {
