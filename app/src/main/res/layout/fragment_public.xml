@@ -59,7 +59,7 @@
                     android:textColor="@android:color/white"
                     android:onClick="openSignIn"
                     android:fontFamily="@font/sen_bold"
-                    android:background="@drawable/solid__red_round_border"
+                    android:background="@drawable/solid__round_border"
                     android:text="एप्लिकेशन में साइन इन करें"/>
             </LinearLayout>
         </FrameLayout>
