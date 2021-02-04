@@ -31,6 +31,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -45,6 +46,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class CreatePostActivity extends AppCompatActivity {
 
@@ -103,12 +105,7 @@ public class CreatePostActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(cardContent.getText())) {
                     showToast(getApplicationContext(),"कृपया कुछ टेक्स्ट बॉक्स में दर्ज करें");
                 } else {
-                    LocalNotification notification = new LocalNotification(getApplicationContext());
-                    notification.setTitle("Uploading Post...");
-                    notification.setMessage("We will notify when uploading completed");
-                    notification.showLocalNotification();
                     identifyLanguage(cardContent.getText().toString());
-                    finish();
                 }
             }
         });
@@ -120,7 +117,12 @@ public class CreatePostActivity extends AppCompatActivity {
             @Override
             public void onSuccess(@Nullable String languageCode) {
                 if(languageCode.equals("hi") || languageCode.equals("hi-Latn")) {
+                    LocalNotification notification = new LocalNotification(getApplicationContext());
+                    notification.setTitle("Uploading Post...");
+                    notification.setMessage("We will notify when uploading completed");
+                    notification.showLocalNotification();
                     uploadImageToCloud(cardView);
+                    finish();
                 } else {
                     showToast(getApplicationContext(),"कृपया हिंदी में लिखें");
                 }
@@ -138,26 +140,27 @@ public class CreatePostActivity extends AppCompatActivity {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseFirestore firestoreRef = FirebaseFirestore.getInstance();
         PublicPost post = new PublicPost(mAuth.getUid(),imagePath,new HashMap<>(),new HashMap<>());
-        firestoreRef.collection("posts").add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        String postId = UUID.randomUUID().toString();
+        firestoreRef.collection("posts").document(postId).set(post).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
-            public void onSuccess(DocumentReference documentReference) {
+            public void onSuccess(Void aVoid) {
                 Log.d("Firestore Success","Post added to Firestore");
                 LocalNotification notification = new LocalNotification(getApplicationContext());
                 notification.setTitle("Posted Successfully");
                 notification.setMessage("Congratulations!! your Post was Posted Successfully.");
                 notification.showLocalNotification();
             }
-        })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d("Firestore error","Error adding post",e);
-                        LocalNotification notification = new LocalNotification(getApplicationContext());
-                        notification.setTitle("Failed to Upload");
-                        notification.setMessage("Upload Failed Please Try Again Later or Contact Us in case of Multiple failure.");
-                        notification.showLocalNotification();
-                    }
-                });
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("Firestore error","Error adding post",e);
+                LocalNotification notification = new LocalNotification(getApplicationContext());
+                notification.setTitle("Failed to Upload");
+                notification.setMessage("Upload Failed Please Try Again Later or Contact Us in case of Multiple failure.");
+                notification.showLocalNotification();
+            }
+        });
+        firestoreRef.collection("postOwners").document(mAuth.getUid()).update("postArray",FieldValue.arrayUnion(postId));
     }
 
     private void uploadImageToCloud(View view) {
