@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity  {
                 displayHomeFragment();
             else if (item.getItemId() == R.id.main_bottom_nav_public)
                 displayPublicFragment();
+            else if (item.getItemId()==R.id.main_bottom_nav_menu)
+                displayMenuFragment();
             return true;
         }
     };
@@ -90,6 +92,11 @@ public class MainActivity extends AppCompatActivity  {
     }
     private void displayPublicFragment() {
         PublicFragment fragment = new PublicFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.main_frame, fragment).commit();
+    }
+    private void displayMenuFragment() {
+        MenuFragment fragment = new MenuFragment();
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.main_frame, fragment).commit();
     }
