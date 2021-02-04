@@ -10,6 +10,10 @@ import androidx.cardview.widget.CardView;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -25,8 +29,22 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.google.mlkit.nl.languageid.LanguageIdentification;
 import com.google.mlkit.nl.languageid.LanguageIdentifier;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CreatePostActivity extends AppCompatActivity {
 
@@ -41,12 +59,14 @@ public class CreatePostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_post);
         setUpAppBar();
         allInitializations();
+        cardContent.requestFocus();
         bgFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 changeBackground(getApplicationContext(),cardView);
             }
         });
+
     }
 
     private void allInitializations() {
@@ -83,7 +103,12 @@ public class CreatePostActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(cardContent.getText())) {
                     showToast(getApplicationContext(),"कृपया कुछ टेक्स्ट बॉक्स में दर्ज करें");
                 } else {
+                    LocalNotification notification = new LocalNotification(getApplicationContext());
+                    notification.setTitle("Uploading Post...");
+                    notification.setMessage("We will notify when uploading completed");
+                    notification.showLocalNotification();
                     identifyLanguage(cardContent.getText().toString());
+                    finish();
                 }
             }
         });
@@ -94,10 +119,10 @@ public class CreatePostActivity extends AppCompatActivity {
         language.identifyLanguage(text).addOnSuccessListener(new OnSuccessListener<String>() {
             @Override
             public void onSuccess(@Nullable String languageCode) {
-                if (languageCode.equals("und")) {
-                    Log.i("Language Unidentified", "Can't identify language.");
+                if(languageCode.equals("hi") || languageCode.equals("hi-Latn")) {
+                    uploadImageToCloud(cardView);
                 } else {
-                    Log.i("Language Identify", "Language is : " + languageCode);
+                    showToast(getApplicationContext(),"कृपया हिंदी में लिखें");
                 }
             }
         })
@@ -107,6 +132,59 @@ public class CreatePostActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    private void insertToFirestore(String imagePath) {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseFirestore firestoreRef = FirebaseFirestore.getInstance();
+        PublicPost post = new PublicPost(mAuth.getUid(),imagePath,new HashMap<>(),new HashMap<>());
+        firestoreRef.collection("posts").add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Log.d("Firestore Success","Post added to Firestore");
+                LocalNotification notification = new LocalNotification(getApplicationContext());
+                notification.setTitle("Posted Successfully");
+                notification.setMessage("Congratulations!! your Post was Posted Successfully.");
+                notification.showLocalNotification();
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("Firestore error","Error adding post",e);
+                        LocalNotification notification = new LocalNotification(getApplicationContext());
+                        notification.setTitle("Failed to Upload");
+                        notification.setMessage("Upload Failed Please Try Again Later or Contact Us in case of Multiple failure.");
+                        notification.showLocalNotification();
+                    }
+                });
+    }
+
+    private void uploadImageToCloud(View view) {
+        FirebaseStorage reference = FirebaseStorage.getInstance();
+        StorageReference storageRef = reference.getReference().child("posts").child("image.png");
+        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        view.draw(canvas);
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, output);
+        byte[] data = output.toByteArray();
+        // Upload Image Image.
+        UploadTask uploadTask = storageRef.putBytes(data);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                LocalNotification notification = new LocalNotification(getApplicationContext());
+                notification.setTitle("Failed to Upload");
+                notification.setMessage("Upload Failed Please Try Again Later or Contact Us in case of Multiple failure.");
+                notification.showLocalNotification();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                insertToFirestore(taskSnapshot.getMetadata().getPath());
+            }
+        });
     }
 
     private void showToast(Context context, String text) {

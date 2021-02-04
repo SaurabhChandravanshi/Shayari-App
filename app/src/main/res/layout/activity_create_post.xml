@@ -17,7 +17,7 @@
         android:minHeight="200dp"
         app:cardUseCompatPadding="true"
         android:layout_margin="10dp"
-        app:cardBackgroundColor="@color/color7">
+        app:cardBackgroundColor="@color/colorIndigo">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

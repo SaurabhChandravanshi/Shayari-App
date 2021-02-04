@@ -3,4 +3,6 @@
     <string name="shayari_recycler_banner">ca-app-pub-9546107720770258/7413308164</string>
     <string name="facebook_app_id">446230723079036</string>
     <string name="fb_login_protocol_scheme">fb446230723079036</string>
+    <string name="channel_name">Shayari Book Notification</string>
+    <string name="channel_description">Shayari Book Local Notification</string>
 </resources>
