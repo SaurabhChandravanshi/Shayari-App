@@ -1,9 +1,10 @@
 package com.i3developer.shayari;
 
 public class User {
-    public String name;
-    public String email;
-    public String dob;
+    private String name;
+    private String email;
+    private String dob;
+    private String picUrl;
 
     public User(){
 
@@ -13,6 +14,10 @@ public class User {
         this.name = name;
     }
 
+    public User(String name,String picUrl) {
+        this.name = name;
+        this.picUrl = picUrl;
+    }
     public User(String name, String email, String dob) {
         this.name = name;
         this.email = email;
