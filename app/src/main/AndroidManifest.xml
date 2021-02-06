@@ -13,6 +13,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".CreatePostActivity"
             android:theme="@style/CustomAppTheme"/>
+        <activity android:name=".EditProfileActivity"
+            android:theme="@style/CustomAppTheme"/>
         <activity
             android:name=".SignupActivity"
             android:theme="@style/CustomAppTheme" />
