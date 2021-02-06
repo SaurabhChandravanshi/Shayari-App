@@ -122,7 +122,7 @@ public class CreatePostActivity extends AppCompatActivity {
                 if(languageCode.equals("hi") || languageCode.equals("hi-Latn")) {
                     LocalNotification notification = new LocalNotification(getApplicationContext());
                     notification.setTitle("Uploading Post...");
-                    notification.setMessage("We will notify when uploading completed");
+                    notification.setMessage("We will notify when uploading complete.");
                     notification.showLocalNotification();
                     cardContent.setCursorVisible(false);
                     uploadImageToCloud(cardView);
@@ -143,8 +143,8 @@ public class CreatePostActivity extends AppCompatActivity {
     private void insertToFirestore(String imagePath) {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseFirestore firestoreRef = FirebaseFirestore.getInstance();
-        PublicPost post = new PublicPost(mAuth.getUid(),imagePath,new HashMap<>(),new HashMap<>());
         String postId = UUID.randomUUID().toString();
+        PublicPost post = new PublicPost(postId,mAuth.getUid(),imagePath,new HashMap<>(),new ArrayList<>());
         firestoreRef.collection("posts").document(postId).set(post).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {

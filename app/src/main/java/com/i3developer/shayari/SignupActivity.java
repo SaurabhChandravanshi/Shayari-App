@@ -142,7 +142,7 @@ public class SignupActivity extends AppCompatActivity {
                             Log.d("Google SignIn Success", "signInWithCredential:success");
                             try {
                                 GoogleSignInAccount account = googleSignInAccountTask.getResult(ApiException.class);
-                                User user = new User(account.getDisplayName());
+                                User user = new User(account.getDisplayName(),account.getPhotoUrl().toString());
                                 updateSignedInUser(user);
                             } catch (ApiException e) {
                                 e.printStackTrace();
