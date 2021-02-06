@@ -1,29 +1,42 @@
 package com.i3developer.shayari;
 
+import android.util.ArrayMap;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PublicPost {
-    private String ownerUID,imagePath;
+    private String postId,ownerUID,imagePath;
     private Map<String,String> commentMap = new HashMap<>();
-    private Map<String,String> clapsMap = new HashMap<>();
+    private List<String> likes = new ArrayList<>();
 
-    public PublicPost(String ownerUID, String imagePath, Map<String, String> commentMap, Map<String, String> clapsMap) {
+    public PublicPost(String postId, String ownerUID, String imagePath, Map<String, String> commentMap, List<String> likes) {
+        this.postId = postId;
         this.ownerUID = ownerUID;
         this.imagePath = imagePath;
         this.commentMap = commentMap;
-        this.clapsMap = clapsMap;
+        this.likes = likes;
+    }
+
+    public String getPostId() {
+        return postId;
+    }
+
+    public void setPostId(String postId) {
+        this.postId = postId;
     }
 
     public PublicPost() {
     }
 
-    public Map<String, String> getClapsMap() {
-        return clapsMap;
+    public List<String> getLikes() {
+        return likes;
     }
 
-    public void setClapsMap(Map<String, String> clapsMap) {
-        this.clapsMap = clapsMap;
+    public void setLikes(List<String> likes) {
+        this.likes = likes;
     }
 
     public Map<String, String> getCommentMap() {

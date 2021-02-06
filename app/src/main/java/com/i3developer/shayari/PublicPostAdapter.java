@@ -38,6 +38,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -52,8 +56,10 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private List<Object> dataList;
     private static final int AD_VIEW = 0;
     private static final int RECYCLER_VIEW = 1;
+    private FirebaseAuth mAuth;
     public PublicPostAdapter(List<Object> dataList) {
         this.dataList = dataList;
+        mAuth = FirebaseAuth.getInstance();
     }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -87,13 +93,78 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         } else {
             MyViewHolder myViewHolder = (MyViewHolder)holder;
             PublicPost data = (PublicPost)dataList.get(position);
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
             //Get Firebase Storage Reference to load Image
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference reference = storage.getReferenceFromUrl("gs://shayari-5b5f4.appspot.com/"+data.getImagePath());
             // Load image into ImageView
             GlideApp.with(myViewHolder.itemView.getContext()).load(reference).centerCrop().into(myViewHolder.imageView);
+            updateLikeCount(data.getLikes(),myViewHolder);
+            updateLikeBtn(data.getLikes(),myViewHolder,myViewHolder.likeBtn);
+
+            myViewHolder.likeBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(data.getLikes().contains(mAuth.getUid())) {
+                        data.getLikes().remove(mAuth.getUid());
+                    } else {
+                        data.getLikes().add(mAuth.getUid());
+                    }
+                    updateLikeBtn(data.getLikes(),myViewHolder,myViewHolder.likeBtn);
+                    updateLikeCount(data.getLikes(),myViewHolder);
+                    updateLikeToFireStore(data.getLikes(),data.getPostId());
+                }
+            });
+            myViewHolder.shareBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(myViewHolder.itemView.getContext());
+                    Activity activity = (Activity)myViewHolder.itemView.getContext();
+                    View dialogView = activity.getLayoutInflater().inflate(R.layout.dialog_share_post,null);
+                    builder.setView(dialogView);
+                    AlertDialog alertDialog = builder.create();
+                    Button shareBtn = dialogView.findViewById(R.id.share_post_share_btn);
+                    Button closeBtn = dialogView.findViewById(R.id.share_post_close_btn);
+                    closeBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            alertDialog.dismiss();
+                        }
+                    });
+                    ImageView imageView = dialogView.findViewById(R.id.share_post_image);
+                    GlideApp.with(myViewHolder.itemView.getContext()).load(reference).centerCrop().into(imageView);
+                    shareBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            saveAndShareImage(myViewHolder.itemView.getContext(),viewToBitmap(imageView));
+                        }
+                    });
+                    alertDialog.show();
+                }
+            });
         }
+    }
+
+    private void updateLikeCount(List<String> likes,MyViewHolder myViewHolder) {
+        if(likes.size() == 0) {
+            myViewHolder.likeCountTttv.setText("Be the first to like this post ❤");
+        } else {
+            myViewHolder.likeCountTttv.setText(likes.size()+" people like this post ❤");
+        }
+    }
+
+    private void updateLikeBtn(List<String> list,MyViewHolder viewHolder,Button likeBtn) {
+        if(list.contains(mAuth.getUid())) {
+            likeBtn.setCompoundDrawablesWithIntrinsicBounds(null,
+                    viewHolder.itemView.getContext().getResources().getDrawable(R.drawable.ic_heart_filled_24),null,null);
+        } else {likeBtn.setCompoundDrawablesWithIntrinsicBounds(null,
+                viewHolder.itemView.getContext().getResources().getDrawable(R.drawable.ic_heart_24),null,null);
+        }
+    }
+    private void updateLikeToFireStore(List<String> list,String document) {
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+        firestore.collection("posts").document(document).update("likes",list);
     }
 
     @Override
@@ -103,12 +174,14 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     class MyViewHolder extends RecyclerView.ViewHolder {
         private ImageView imageView;
         private Button shareBtn,likeBtn,commentBtn;
+        private TextView likeCountTttv;
         public MyViewHolder(View itemView) {
             super(itemView);
             shareBtn = itemView.findViewById(R.id.public_post_list_share);
             likeBtn = itemView.findViewById(R.id.public_post_list_like);
             commentBtn = itemView.findViewById(R.id.public_post_list_comment);
             imageView = itemView.findViewById(R.id.public_post_list_image);
+            likeCountTttv = itemView.findViewById(R.id.public_post_list_like_count);
         }
     }
     class MyAdViewHolder extends RecyclerView.ViewHolder {
