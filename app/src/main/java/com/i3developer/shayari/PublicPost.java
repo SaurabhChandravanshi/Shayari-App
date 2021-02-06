@@ -15,6 +15,9 @@ public class PublicPost {
         this.clapsMap = clapsMap;
     }
 
+    public PublicPost() {
+    }
+
     public Map<String, String> getClapsMap() {
         return clapsMap;
     }

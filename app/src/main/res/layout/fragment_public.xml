@@ -63,5 +63,15 @@
                     android:text="एप्लिकेशन में साइन इन करें"/>
             </LinearLayout>
         </FrameLayout>
+            <ProgressBar
+                android:id="@+id/public_pBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone"/>
         </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/public_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

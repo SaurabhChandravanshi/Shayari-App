@@ -33,6 +33,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -44,7 +45,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -121,6 +124,7 @@ public class CreatePostActivity extends AppCompatActivity {
                     notification.setTitle("Uploading Post...");
                     notification.setMessage("We will notify when uploading completed");
                     notification.showLocalNotification();
+                    cardContent.setCursorVisible(false);
                     uploadImageToCloud(cardView);
                     finish();
                 } else {
@@ -164,7 +168,8 @@ public class CreatePostActivity extends AppCompatActivity {
 
     private void uploadImageToCloud(View view) {
         FirebaseStorage reference = FirebaseStorage.getInstance();
-        StorageReference storageRef = reference.getReference().child("posts").child("image.png");
+        String randomImageName = UUID.randomUUID().toString()+".png";
+        StorageReference storageRef = reference.getReference().child("posts").child(randomImageName);
         Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         view.draw(canvas);
