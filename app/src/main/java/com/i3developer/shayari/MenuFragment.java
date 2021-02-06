@@ -18,7 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MenuFragment extends Fragment {
-    private CardView logoutCard;
+    private CardView logoutCard,editProfileCard;
     private FirebaseAuth mAuth;
     private FrameLayout loginFrame,mainFrame;
     @Nullable
@@ -32,6 +32,15 @@ public class MenuFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         allInitializations(view);
         updateUI(); // This method check if user Signed in or not and update UI accordingly
+
+        // go to editProfile activity
+        editProfileCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),EditProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
         logoutCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +77,7 @@ public class MenuFragment extends Fragment {
     }
 
     private void allInitializations(View view) {
+        editProfileCard = view.findViewById(R.id.menu_edit_profile);
         logoutCard = view.findViewById(R.id.menu_logout);
         mAuth = FirebaseAuth.getInstance();
         loginFrame = view.findViewById(R.id.menu_login_require_frame);

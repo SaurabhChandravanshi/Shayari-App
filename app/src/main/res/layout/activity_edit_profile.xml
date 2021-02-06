@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:theme="@style/Theme.MaterialComponents.Light"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        >
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content"
+       >
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/editProfile_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="60dp"
+        android:textColor="@android:color/black"
+        android:textAllCaps="true"
+        android:inputType="textCapWords"
+        android:outlineSpotShadowColor="@color/colorAccent"
+        android:fontFamily="@font/sen_bold"
+        android:hint="अपना नाम दर्ज करें"
+        />
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editProfile_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="60dp"
+                android:textColor="@android:color/black"
+                android:textAllCaps="true"
+                android:inputType="textEmailAddress"
+                android:outlineSpotShadowColor="@color/colorAccent"
+                android:fontFamily="@font/sen_bold"
+                android:hint="ईमेल(optional)"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editProfile_dob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="60dp"
+                android:textColor="@android:color/black"
+                android:textAllCaps="true"
+                android:inputType="none"
+                android:outlineSpotShadowColor="@color/colorAccent"
+                android:fontFamily="@font/sen_bold"
+                android:hint="जन्म तिथि(optional)"
+                android:clickable="true"
+                android:focusable="false"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/editProfile_updateButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="60dp"
+            android:layout_margin="10dp"
+            android:padding="6dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/sen_bold"
+            android:background="@drawable/solid__round_border"
+            android:text="प्रोफाइल अपडेट करे"/>
+
+    </LinearLayout>
+</RelativeLayout>
