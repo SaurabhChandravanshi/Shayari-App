@@ -75,15 +75,15 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
     protected void onStart() {
         super.onStart();
     // fetching user data for showing in editText.
-        referenceDb.addValueEventListener(new ValueEventListener() {
+        referenceDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
-
                 assert user != null;
                 editTextName.setText(user.getName());
+                editTextEmail.setText(user.getEmail());
+                editTextDob.setText(user.getDob());
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -95,7 +95,7 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
     private void updateProfileData(String name,String email,String dob) {
         User user = new User(name,email,dob);
         referenceDb.setValue(user);
-        showToast(getApplicationContext(),"updated successfully");
+        showToast(getApplicationContext(),"Updated successfully");
     }
 
     private void setUpAppBar() {
@@ -140,7 +140,6 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
     // override method for date set in editText
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int date) {
-
         String DateString = date+"/"+(month+1)+"/"+year;
         editTextDob.setText(DateString);
     }

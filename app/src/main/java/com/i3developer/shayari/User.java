@@ -14,10 +14,18 @@ public class User {
         this.name = name;
     }
 
-    public User(String name,String picUrl) {
+    public User(String name, String email, String dob, String picUrl) {
+        this.name = name;
+        this.email = email;
+        this.dob = dob;
+        this.picUrl = picUrl;
+    }
+
+    public User(String name, String picUrl) {
         this.name = name;
         this.picUrl = picUrl;
     }
+
     public User(String name, String email, String dob) {
         this.name = name;
         this.email = email;
@@ -34,5 +42,9 @@ public class User {
 
     public String getDob() {
         return dob;
+    }
+
+    public String getPicUrl() {
+        return picUrl;
     }
 }
