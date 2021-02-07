@@ -9,10 +9,10 @@ import java.util.Map;
 
 public class PublicPost {
     private String postId,ownerUID,imagePath;
-    private Map<String,String> commentMap = new HashMap<>();
+    private Map<String,List<String>> commentMap = new HashMap<>();
     private List<String> likes = new ArrayList<>();
 
-    public PublicPost(String postId, String ownerUID, String imagePath, Map<String, String> commentMap, List<String> likes) {
+    public PublicPost(String postId, String ownerUID, String imagePath, Map<String, List<String>> commentMap, List<String> likes) {
         this.postId = postId;
         this.ownerUID = ownerUID;
         this.imagePath = imagePath;
@@ -39,11 +39,11 @@ public class PublicPost {
         this.likes = likes;
     }
 
-    public Map<String, String> getCommentMap() {
+    public Map<String, List<String>> getCommentMap() {
         return commentMap;
     }
 
-    public void setCommentMap(Map<String, String> commentMap) {
+    public void setCommentMap(Map<String, List<String>> commentMap) {
         this.commentMap = commentMap;
     }
 

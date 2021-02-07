@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.util.Util;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,8 +31,12 @@ import com.google.firebase.firestore.model.Document;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 public class PublicFragment extends Fragment {
     private FirebaseAuth mAuth;
@@ -82,6 +87,7 @@ public class PublicFragment extends Fragment {
                 for (DocumentSnapshot snapshot:queryDocumentSnapshots) {
                     publicPosts.add(snapshot.toObject(PublicPost.class));
                 }
+                Collections.shuffle(publicPosts);
                 addBannersToRecycler();
                 loadRecyclerView();
             }
@@ -105,7 +111,7 @@ public class PublicFragment extends Fragment {
         loginRequiredFrame = getActivity().findViewById(R.id.public_login_require_frame);
         recyclerView = getActivity().findViewById(R.id.public_recycler);
         firestoreRef = FirebaseFirestore.getInstance();
-        adapter = new PublicPostAdapter(publicPosts);
+        adapter = new PublicPostAdapter(publicPosts,getFragmentManager());
         layoutManager = new LinearLayoutManager(getActivity());
         progressBar = getActivity().findViewById(R.id.public_pBar);
     }

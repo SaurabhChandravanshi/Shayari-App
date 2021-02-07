@@ -32,6 +32,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.FileProvider;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -57,8 +58,10 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private static final int AD_VIEW = 0;
     private static final int RECYCLER_VIEW = 1;
     private FirebaseAuth mAuth;
-    public PublicPostAdapter(List<Object> dataList) {
+    private FragmentManager fragmentManager;
+    public PublicPostAdapter(List<Object> dataList, FragmentManager fragmentManager) {
         this.dataList = dataList;
+        this.fragmentManager = fragmentManager;
         mAuth = FirebaseAuth.getInstance();
     }
     @Override
@@ -113,7 +116,7 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     }
                     updateLikeBtn(data.getLikes(),myViewHolder,myViewHolder.likeBtn);
                     updateLikeCount(data.getLikes(),myViewHolder);
-                    updateLikeToFireStore(data.getLikes(),data.getPostId());
+                    updateLikeToFireStore(data.getLikes(),data.getPostId(),data.getOwnerUID());
                 }
             });
             myViewHolder.shareBtn.setOnClickListener(new View.OnClickListener() {
@@ -143,6 +146,13 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     alertDialog.show();
                 }
             });
+            myViewHolder.commentBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    CommentFragment commentFragment = new CommentFragment(data.getCommentMap(),data.getPostId(),data.getOwnerUID());
+                    commentFragment.show(fragmentManager,commentFragment.getTag());
+                }
+            });
         }
     }
 
@@ -162,9 +172,9 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 viewHolder.itemView.getContext().getResources().getDrawable(R.drawable.ic_heart_24),null,null);
         }
     }
-    private void updateLikeToFireStore(List<String> list,String document) {
+    private void updateLikeToFireStore(List<String> list,String postId,String ownerId) {
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-        firestore.collection("posts").document(document).update("likes",list);
+        firestore.collection("posts").document(postId).update("likes",list);
     }
 
     @Override
