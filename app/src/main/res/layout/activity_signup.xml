@@ -71,9 +71,9 @@
                     android:layout_marginTop="15dp">
                     <View
                         android:layout_width="80dp"
-                        android:layout_height="2dp"
+                        android:layout_height="1dp"
                         android:layout_toLeftOf="@+id/signup_hor_line_text"
-                        android:background="@android:color/black"
+                        android:background="@color/colorLightGray"
                         android:layout_weight="1"
                         android:layout_margin="10dp"/>
                     <TextView
@@ -89,8 +89,8 @@
                         android:text="OR"/>
                     <View
                         android:layout_width="80dp"
-                        android:layout_height="2dp"
-                        android:background="@android:color/black"
+                        android:layout_height="1dp"
+                        android:background="@color/colorLightGray"
                         android:layout_weight="1"
                         android:layout_toRightOf="@+id/signup_hor_line_text"
                         android:layout_margin="10dp"/>
