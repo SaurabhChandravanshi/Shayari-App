@@ -18,7 +18,8 @@ import androidx.fragment.app.Fragment;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MenuFragment extends Fragment {
-    private CardView logoutCard,editProfileCard;
+    private CardView logoutCard,editProfileCard,helpCard;
+    private CardView viewPostCard;
     private FirebaseAuth mAuth;
     private FrameLayout loginFrame,mainFrame;
     @Nullable
@@ -47,8 +48,8 @@ public class MenuFragment extends Fragment {
             public void onClick(View view) {
                 ContextThemeWrapper themeWrapper = new ContextThemeWrapper(getActivity(),R.style.CustomAlertTheme);
                 AlertDialog.Builder builder = new AlertDialog.Builder(themeWrapper);
-                builder.setMessage("Do you really wants to Logout?");
-                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                builder.setMessage("क्या आप लॉगआउट करना चाहते हैं?");
+                builder.setPositiveButton("हां लॉगआउट करें", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         mAuth.signOut();
@@ -56,8 +57,21 @@ public class MenuFragment extends Fragment {
                         getActivity().finish();
                     }
                 });
-                builder.setNegativeButton("CANCEL",null);
+                builder.setNegativeButton("रद्द करें",null);
                 builder.create().show();
+            }
+        });
+
+        viewPostCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(),ViewPostsActivity.class));
+            }
+        });
+        helpCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(),HelpActivity.class));
             }
         });
     }
@@ -82,5 +96,7 @@ public class MenuFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         loginFrame = view.findViewById(R.id.menu_login_require_frame);
         mainFrame = view.findViewById(R.id.menu_main_frame);
+        viewPostCard = view.findViewById(R.id.menu_view_posts);
+        helpCard = view.findViewById(R.id.menu_help_centre);
     }
 }

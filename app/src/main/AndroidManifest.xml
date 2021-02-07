@@ -11,10 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CreatePostActivity"
+        <activity android:name=".HelpActivity"
             android:theme="@style/CustomAppTheme"/>
-        <activity android:name=".EditProfileActivity"
-            android:theme="@style/CustomAppTheme"/>
+        <activity
+            android:name=".ViewPostsActivity"
+            android:theme="@style/CustomAppTheme" />
+        <activity
+            android:name=".CreatePostActivity"
+            android:theme="@style/CustomAppTheme" />
+        <activity
+            android:name=".EditProfileActivity"
+            android:theme="@style/CustomAppTheme" />
         <activity
             android:name=".SignupActivity"
             android:theme="@style/CustomAppTheme" />
@@ -33,6 +40,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-9546107720770258~2464233814" />
@@ -46,8 +54,10 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
     </application>
 
 </manifest>

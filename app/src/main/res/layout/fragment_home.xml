@@ -46,7 +46,7 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/main_new_shayari"
+                    android:id="@+id/home_add_new_shayari"
                     android:layout_width="0dp"
                     app:cardUseCompatPadding="true"
                     android:layout_height="wrap_content"
