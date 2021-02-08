@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -65,7 +66,12 @@ public class ShayariActivity extends AppCompatActivity {
         appBarRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_SUBJECT,"Download Shayari Book App");
+                intent.putExtra(Intent.EXTRA_TEXT,"Download Shayari Book App\n"+
+                        "https://play.google.com/store/apps/details?id=com.i3developer.shayari");
+                startActivity(intent);
             }
         });
     }

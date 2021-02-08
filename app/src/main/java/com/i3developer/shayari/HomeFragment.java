@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeFragment extends Fragment {
     private CardView categoryCard,addNewCard;
+    private CardView gmShayariCard,gnShayariCard;
     private FirebaseAuth mAuth;
     @Nullable
     @Override
@@ -43,11 +44,31 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+        gmShayariCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),ShayariActivity.class);
+                intent.putExtra("category","good_morning_shayari");
+                intent.putExtra("name","Good Morning");
+                startActivity(intent);
+            }
+        });
+        gnShayariCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),ShayariActivity.class);
+                intent.putExtra("category","good_night_shayari");
+                intent.putExtra("name","Good Night");
+                startActivity(intent);
+            }
+        });
     }
 
     private void allInitializations() {
         categoryCard = getActivity().findViewById(R.id.home_category);
         addNewCard = getActivity().findViewById(R.id.home_add_new_shayari);
+        gmShayariCard = getActivity().findViewById(R.id.home_gm_shayari);
+        gnShayariCard = getActivity().findViewById(R.id.home_gn_shayari);
         mAuth = FirebaseAuth.getInstance();
     }
 }

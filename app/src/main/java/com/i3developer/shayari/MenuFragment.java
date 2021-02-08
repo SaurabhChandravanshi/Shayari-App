@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MenuFragment extends Fragment {
     private CardView logoutCard,editProfileCard,helpCard;
-    private CardView viewPostCard;
+    private CardView viewPostCard,referCard;
     private FirebaseAuth mAuth;
     private FrameLayout loginFrame,mainFrame;
     @Nullable
@@ -74,6 +74,18 @@ public class MenuFragment extends Fragment {
                 startActivity(new Intent(getActivity(),HelpActivity.class));
             }
         });
+
+        referCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_SUBJECT,"Download Shayari Book App");
+                intent.putExtra(Intent.EXTRA_TEXT,"Download Shayari Book App\n"+
+                        "https://play.google.com/store/apps/details?id=com.i3developer.shayari");
+                startActivity(intent);
+            }
+        });
     }
 
     // Update UI Frame according to User login status
@@ -98,5 +110,6 @@ public class MenuFragment extends Fragment {
         mainFrame = view.findViewById(R.id.menu_main_frame);
         viewPostCard = view.findViewById(R.id.menu_view_posts);
         helpCard = view.findViewById(R.id.menu_help_centre);
+        referCard = view.findViewById(R.id.menu_refer);
     }
 }

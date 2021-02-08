@@ -45,7 +45,12 @@ public class CategoryActivity extends AppCompatActivity {
         appBarRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_SUBJECT,"Download Shayari Book App");
+                intent.putExtra(Intent.EXTRA_TEXT,"Download Shayari Book App\n"+
+                        "https://play.google.com/store/apps/details?id=com.i3developer.shayari");
+                startActivity(intent);
             }
         });
         loveShayari.setOnClickListener(new View.OnClickListener() {

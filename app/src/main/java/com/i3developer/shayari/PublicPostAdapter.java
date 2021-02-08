@@ -247,12 +247,6 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         toast.setGravity(Gravity.CENTER,0,0);
         toast.show();
     }
-    private void copyToClipboard(Context context,String label,String text) {
-        ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clip = ClipData.newPlainText(label, text);
-        clipboard.setPrimaryClip(clip);
-        showToast(context,"Copied to Clipboard");
-    }
     public Bitmap viewToBitmap(View view) {
         Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
@@ -275,7 +269,6 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             e.printStackTrace();
         }
     }
-
     private void shareImage(Context context) {
         File imagePath = new File(context.getCacheDir(), "images");
         File newFile = new File(imagePath, "image.png");
