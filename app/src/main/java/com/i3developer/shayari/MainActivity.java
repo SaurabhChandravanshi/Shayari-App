@@ -92,6 +92,9 @@ public class MainActivity extends AppCompatActivity  {
     }
     private void displayPublicFragment() {
         PublicFragment fragment = new PublicFragment();
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("single_post",false);
+        fragment.setArguments(bundle);
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.main_frame, fragment).commit();
     }

@@ -42,6 +42,7 @@ import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.concurrent.TimeUnit;
 import java.util.zip.Inflater;
@@ -64,6 +65,7 @@ public class SignupActivity extends AppCompatActivity {
     long countDownInterval = 1000;// 1 sec
     public TextView textViewTimer;
     private PhoneAuthProvider.ForceResendingToken mResendToken; //resend token
+    FirebaseMessaging firebaseMessaging = FirebaseMessaging.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,7 +146,15 @@ public class SignupActivity extends AppCompatActivity {
                             try {
                                 GoogleSignInAccount account = googleSignInAccountTask.getResult(ApiException.class);
                                 User user = new User(account.getDisplayName(), account.getEmail(),"",account.getPhotoUrl().toString());
-                                updateSignedInUser(user);
+                                firebaseMessaging.getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<String> task) {
+                                        if(task.isSuccessful()) {
+                                            user.setFcmToken(task.getResult());
+                                        }
+                                        updateSignedInUser(user);
+                                    }
+                                });
                             } catch (ApiException e) {
                                 e.printStackTrace();
                             }
@@ -263,7 +273,15 @@ public class SignupActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     // add name to firebase database
                     User user = new User(nameEdt.getText().toString());
-                    updateSignedInUser(user);
+                    firebaseMessaging.getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+                        @Override
+                        public void onComplete(@NonNull Task<String> task) {
+                            if(task.isSuccessful()) {
+                                user.setFcmToken(task.getResult());
+                            }
+                            updateSignedInUser(user);
+                        }
+                    });
                 } else {
                     showToast(getApplicationContext(), "विफल कृपया दोबारा प्रयास करें");
                 }

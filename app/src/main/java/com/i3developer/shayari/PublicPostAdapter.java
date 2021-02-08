@@ -39,9 +39,13 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
+import com.google.firebase.dynamiclinks.ShortDynamicLink;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -129,6 +133,7 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     AlertDialog alertDialog = builder.create();
                     Button shareBtn = dialogView.findViewById(R.id.share_post_share_btn);
                     Button closeBtn = dialogView.findViewById(R.id.share_post_close_btn);
+                    Button shareLinkBtn = dialogView.findViewById(R.id.share_post_share_link_btn);
                     closeBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -143,6 +148,12 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                             saveAndShareImage(myViewHolder.itemView.getContext(),viewToBitmap(imageView));
                         }
                     });
+                    shareLinkBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            shortenLongLinkAndShare(myViewHolder.itemView.getContext(),data.getDynamicLink());
+                        }
+                    });
                     alertDialog.show();
                 }
             });
@@ -154,6 +165,33 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 }
             });
         }
+    }
+
+    public void shortenLongLinkAndShare(Context context,String longUrl) {
+        // [START shorten_long_link]
+        Task<ShortDynamicLink> shortLinkTask = FirebaseDynamicLinks.getInstance().createDynamicLink()
+                .setLongLink(Uri.parse(longUrl))
+                .buildShortDynamicLink()
+                .addOnCompleteListener((Activity) context, new OnCompleteListener<ShortDynamicLink>() {
+                    @Override
+                    public void onComplete(@NonNull Task<ShortDynamicLink> task) {
+                        if (task.isSuccessful()) {
+                            // Short link created
+                            Uri shortLink = task.getResult().getShortLink();
+                            Uri flowchartLink = task.getResult().getPreviewLink();
+                            Intent intent = new Intent(Intent.ACTION_SEND);
+                            intent.setType("text/plain");
+                            intent.putExtra(Intent.EXTRA_SUBJECT,"Shayari Book App Post");
+                            intent.putExtra(Intent.EXTRA_TEXT,"Like this Post on Shayari Book App\n"+shortLink);
+                            context.startActivity(Intent.createChooser(intent,"Share via"));
+                        } else {
+                            // Error
+                            // ...
+                            showToast(context,"Failed to Get Link, No Internet Connection");
+                        }
+                    }
+                });
+        // [END shorten_long_link]
     }
 
     private void updateLikeCount(List<String> likes,MyViewHolder myViewHolder) {

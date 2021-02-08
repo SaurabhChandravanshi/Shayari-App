@@ -14,6 +14,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -30,6 +31,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.dynamiclinks.DynamicLink;
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -144,7 +147,8 @@ public class CreatePostActivity extends AppCompatActivity {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseFirestore firestoreRef = FirebaseFirestore.getInstance();
         String postId = UUID.randomUUID().toString();
-        PublicPost post = new PublicPost(postId,mAuth.getUid(),imagePath,new HashMap<>(),new ArrayList<>());
+        String dynamicLink =  createDynamicLink(postId);
+        PublicPost post = new PublicPost(postId,mAuth.getUid(),imagePath,dynamicLink,new HashMap<>(),new ArrayList<>());
         firestoreRef.collection("posts").document(postId).set(post).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
@@ -164,6 +168,19 @@ public class CreatePostActivity extends AppCompatActivity {
                 notification.showLocalNotification();
             }
         });
+    }
+
+    private String createDynamicLink(String postId) {
+        DynamicLink dynamicLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
+                .setLink(Uri.parse("https://i3developer.com/sb/p?id="+postId))
+                .setDomainUriPrefix("https://shayariapp.page.link")
+                // Open links with this app on Android
+                .setAndroidParameters(new DynamicLink.AndroidParameters.Builder().build())
+                // Open links with com.example.ios on iOS
+                .setIosParameters(new DynamicLink.IosParameters.Builder("com.example.ios").build())
+                .buildDynamicLink();
+        Uri dynamicLinkUri = dynamicLink.getUri();
+        return dynamicLinkUri.toString();
     }
 
     private void uploadImageToCloud(View view) {

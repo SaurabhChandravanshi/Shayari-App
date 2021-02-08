@@ -1,10 +1,11 @@
 package com.i3developer.shayari;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ContextThemeWrapper;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,8 +24,10 @@ import com.bumptech.glide.util.Util;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -57,13 +61,20 @@ public class PublicFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Bundle args = getArguments();
         allInitializations();
+        assert args != null;
+        boolean onlySinglePost = args.getBoolean("single_post");
 
         if(mAuth.getCurrentUser() == null) {
             loginRequiredFrame.setVisibility(View.VISIBLE);
         } else {
             progressBar.setVisibility(View.VISIBLE);
-            getPublicPostFromFirestore();
+            if (onlySinglePost) {
+                getSinglePostFromFirestore(args.getString("post_id"));
+            } else {
+                getPublicPostFromFirestore();
+            }
         }
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +86,26 @@ public class PublicFragment extends Fragment {
                 else {
                     startActivity(new Intent(getActivity(),CreatePostActivity.class));
                 }
+            }
+        });
+    }
+
+    private void getSinglePostFromFirestore(String documentId) {
+        Task<DocumentSnapshot> task = firestoreRef.collection("posts").document(documentId).get();
+        task.addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                progressBar.setVisibility(View.GONE);
+                publicPosts.add(documentSnapshot.toObject(PublicPost.class));
+                Collections.shuffle(publicPosts);
+                addBannersToRecycler();
+                loadRecyclerView();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressBar.setVisibility(View.GONE);
+                showToast(getActivity(), "Failed to get data.");
             }
         });
     }
@@ -95,9 +126,16 @@ public class PublicFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Exception e) {
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(getActivity(), "Failed to get data.", Toast.LENGTH_SHORT).show();
+                showToast(getActivity(), "Failed to get data.");
             }
         });
+    }
+    private void showToast(Context context, String text) {
+        androidx.appcompat.view.ContextThemeWrapper themeWrapper = new ContextThemeWrapper(context,R.style.CustomAlertTheme);
+        Toast toast = Toast.makeText(themeWrapper,"",Toast.LENGTH_SHORT);
+        toast.setText(text);
+        toast.setGravity(Gravity.CENTER,0,0);
+        toast.show();
     }
 
     private void loadRecyclerView() {
@@ -117,7 +155,7 @@ public class PublicFragment extends Fragment {
     }
     private void addBannersToRecycler() {
         for(int i=3;i<publicPosts.size();i=i+3) {
-            AdView adView = new AdView(Objects.requireNonNull(getActivity()));
+            AdView adView = new AdView(getActivity());
             publicPosts.add(i,adView);
         }
     }

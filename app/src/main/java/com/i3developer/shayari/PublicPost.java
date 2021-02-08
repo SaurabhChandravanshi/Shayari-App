@@ -8,16 +8,25 @@ import java.util.List;
 import java.util.Map;
 
 public class PublicPost {
-    private String postId,ownerUID,imagePath;
+    private String postId,ownerUID,imagePath,dynamicLink;
     private Map<String,List<String>> commentMap = new HashMap<>();
     private List<String> likes = new ArrayList<>();
 
-    public PublicPost(String postId, String ownerUID, String imagePath, Map<String, List<String>> commentMap, List<String> likes) {
+    public PublicPost(String postId, String ownerUID, String imagePath, String dynamicLink, Map<String, List<String>> commentMap, List<String> likes) {
         this.postId = postId;
         this.ownerUID = ownerUID;
         this.imagePath = imagePath;
+        this.dynamicLink = dynamicLink;
         this.commentMap = commentMap;
         this.likes = likes;
+    }
+
+    public String getDynamicLink() {
+        return dynamicLink;
+    }
+
+    public void setDynamicLink(String dynamicLink) {
+        this.dynamicLink = dynamicLink;
     }
 
     public String getPostId() {

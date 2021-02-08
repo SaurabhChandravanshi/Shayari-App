@@ -5,6 +5,7 @@ public class User {
     private String email;
     private String dob;
     private String picUrl;
+    private String fcmToken;
 
     public User(){
 
@@ -21,6 +22,14 @@ public class User {
         this.picUrl = picUrl;
     }
 
+    public User(String name, String email, String dob, String picUrl, String fcmToken) {
+        this.name = name;
+        this.email = email;
+        this.dob = dob;
+        this.picUrl = picUrl;
+        this.fcmToken = fcmToken;
+    }
+
     public User(String name, String picUrl) {
         this.name = name;
         this.picUrl = picUrl;
@@ -30,6 +39,30 @@ public class User {
         this.name = name;
         this.email = email;
         this.dob = dob;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public String getFcmToken() {
+        return fcmToken;
+    }
+
+    public void setFcmToken(String fcmToken) {
+        this.fcmToken = fcmToken;
     }
 
     public String getName() {

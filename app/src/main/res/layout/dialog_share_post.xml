@@ -33,13 +33,13 @@
         android:textSize="10sp"
         android:focusable="true" />
     <Button
-        android:id="@+id/share_post_copy_btn"
+        android:id="@+id/share_post_share_link_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:drawableTop="@drawable/ic_copy_24"
+        android:drawableTop="@drawable/ic_share_link_24"
         android:background="@android:color/transparent"
-        android:text="COPY"
+        android:text="SHARE LINK"
         android:fontFamily="@font/sen_bold"
         android:textSize="10sp"/>
     <Button
