@@ -105,7 +105,7 @@ public class PublicFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Exception e) {
                 progressBar.setVisibility(View.GONE);
-                showToast(getActivity(), "Failed to get data.");
+                showToast(getActivity(), "Post Not Found.");
             }
         });
     }
