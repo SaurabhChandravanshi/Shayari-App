@@ -171,7 +171,7 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         // [START shorten_long_link]
         Task<ShortDynamicLink> shortLinkTask = FirebaseDynamicLinks.getInstance().createDynamicLink()
                 .setLongLink(Uri.parse(longUrl))
-                .buildShortDynamicLink()
+                .buildShortDynamicLink(ShortDynamicLink.Suffix.SHORT)
                 .addOnCompleteListener((Activity) context, new OnCompleteListener<ShortDynamicLink>() {
                     @Override
                     public void onComplete(@NonNull Task<ShortDynamicLink> task) {
