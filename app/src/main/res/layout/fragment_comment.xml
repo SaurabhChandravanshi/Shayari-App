@@ -59,6 +59,7 @@
             android:layout_weight="1"
             android:layout_marginTop="32dp"
             android:layout_marginRight="20dp"
+            android:elevation="15dp"
             android:src="@drawable/ic_send_circle_24"/>
     </LinearLayout>
 </RelativeLayout>

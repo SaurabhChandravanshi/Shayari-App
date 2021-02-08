@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeFragment extends Fragment {
     private CardView categoryCard,addNewCard;
-    private CardView gmShayariCard,gnShayariCard;
+    private CardView gmShayariCard,gnShayariCard,kumarVishwasShayari;
     private FirebaseAuth mAuth;
     @Nullable
     @Override
@@ -26,7 +26,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        allInitializations();
+        allInitializations(view);
 
         categoryCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,13 +62,23 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        kumarVishwasShayari.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),ShayariActivity.class);
+                intent.putExtra("category","kumar_vishwas_shayari");
+                intent.putExtra("name","Kumar Vishwas");
+                startActivity(intent);
+            }
+        });
     }
 
-    private void allInitializations() {
-        categoryCard = getActivity().findViewById(R.id.home_category);
-        addNewCard = getActivity().findViewById(R.id.home_add_new_shayari);
-        gmShayariCard = getActivity().findViewById(R.id.home_gm_shayari);
-        gnShayariCard = getActivity().findViewById(R.id.home_gn_shayari);
+    private void allInitializations(View view) {
+        categoryCard = view.findViewById(R.id.home_category);
+        addNewCard = view.findViewById(R.id.home_add_new_shayari);
+        gmShayariCard = view.findViewById(R.id.home_gm_shayari);
+        gnShayariCard = view.findViewById(R.id.home_gn_shayari);
         mAuth = FirebaseAuth.getInstance();
+        kumarVishwasShayari = view.findViewById(R.id.home_kumar_vishwas_shayari);
     }
 }

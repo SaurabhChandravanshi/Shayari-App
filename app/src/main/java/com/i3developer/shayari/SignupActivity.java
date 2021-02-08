@@ -5,12 +5,16 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.core.text.HtmlCompat;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.Html;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -48,8 +52,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.zip.Inflater;
 
 public class SignupActivity extends AppCompatActivity {
-
-
     private TextInputEditText phoneEdt, nameEdt, otpEdt;
     private Button submitBtn, otpSubmitBtn;
     private FirebaseAuth mAuth;
@@ -57,7 +59,7 @@ public class SignupActivity extends AppCompatActivity {
     private FrameLayout otpFrame, credentialFrame;
     private BSFProgressDialog progressDialog;
     private DatabaseReference referenceDb;
-    private TextView otpMessage;
+    private TextView otpMessage,privacyTtv;
     private SignInButton googleSignInBtn;
     private GoogleSignInClient googleSignInClient;
     private int RC_SIGN_IN = 2323;
@@ -224,6 +226,11 @@ public class SignupActivity extends AppCompatActivity {
         referenceDb = FirebaseDatabase.getInstance().getReference("Users");
         otpMessage = findViewById(R.id.signup_otp_msg);
         googleSignInBtn = findViewById(R.id.signup_google_sign_in_button);
+        privacyTtv = findViewById(R.id.signup_privacy);
+        String htmlPrivacy = "By proceeding to Create an Account and use Shayari Book, your are agree to our <a href='https://i3developer.com/sb/terms-and-conditions.html'>Terms & Conditions</a> and <a href='https://i3developer.com/sb/privacy-policy.html'>Privacy Policy</a>. If you do not agree, you cannot use Shayari Book. ";
+        Spanned spannedHtml = HtmlCompat.fromHtml(htmlPrivacy,HtmlCompat.FROM_HTML_MODE_LEGACY);
+        privacyTtv.setText(spannedHtml);
+        privacyTtv.setMovementMethod(LinkMovementMethod.getInstance());
         googleSignInBtn.setSize(SignInButton.SIZE_WIDE);
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

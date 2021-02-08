@@ -3,6 +3,7 @@ package com.i3developer.shayari;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -22,6 +23,8 @@ public class MenuFragment extends Fragment {
     private CardView viewPostCard,referCard;
     private FirebaseAuth mAuth;
     private FrameLayout loginFrame,mainFrame;
+    private CardView privacyCard;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -86,6 +89,13 @@ public class MenuFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        privacyCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://i3developer.com/sb/privacy-policy.html"));
+                startActivity(intent);
+            }
+        });
     }
 
     // Update UI Frame according to User login status
@@ -111,5 +121,6 @@ public class MenuFragment extends Fragment {
         viewPostCard = view.findViewById(R.id.menu_view_posts);
         helpCard = view.findViewById(R.id.menu_help_centre);
         referCard = view.findViewById(R.id.menu_refer);
+        privacyCard = view.findViewById(R.id.menu_privacy_policy);
     }
 }
