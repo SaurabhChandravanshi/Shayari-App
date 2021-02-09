@@ -16,6 +16,7 @@ public class CategoryActivity extends AppCompatActivity {
     private CardView birthdayWishes,twoLineShayari,boysAttitudeShayari;
     private CardView gmShayari,gnShayari,sherOShayari;
     private CardView kumarVishwasShayari;
+    private CardView gulzarShayari;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,6 +172,15 @@ public class CategoryActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        gulzarShayari.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CategoryActivity.this,ShayariActivity.class);
+                intent.putExtra("category","gulzar");
+                intent.putExtra("name","gulzar");
+                startActivity(intent);
+            }
+        });
     }
 
     private void allInitializations() {
@@ -187,5 +197,6 @@ public class CategoryActivity extends AppCompatActivity {
         gnShayari = findViewById(R.id.category_good_night);
         sherOShayari = findViewById(R.id.category_sher_o_shayari);
         kumarVishwasShayari = findViewById(R.id.category_kumar_vishwas_shayari);
+        gulzarShayari = findViewById(R.id.category_gulzar_shayari);
     }
 }

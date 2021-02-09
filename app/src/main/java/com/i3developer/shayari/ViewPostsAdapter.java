@@ -135,6 +135,7 @@ public class ViewPostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
+                                            storage.getReference(data.getImagePath()).delete();
                                             showToast(myViewHolder.imageView.getContext(),"डिलीट सफल रहा");
                                             dataList.remove(position);
                                             notifyDataSetChanged();
@@ -168,7 +169,7 @@ public class ViewPostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         }
                     });
                     ImageView imageView = dialogView.findViewById(R.id.share_post_image);
-                    GlideApp.with(myViewHolder.itemView.getContext()).load(reference).centerCrop().into(imageView);
+                    GlideApp.with(myViewHolder.itemView.getContext()).load(reference).into(imageView);
                     shareBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {

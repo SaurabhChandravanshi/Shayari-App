@@ -141,7 +141,7 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                         }
                     });
                     ImageView imageView = dialogView.findViewById(R.id.share_post_image);
-                    GlideApp.with(myViewHolder.itemView.getContext()).load(reference).centerCrop().into(imageView);
+                    GlideApp.with(myViewHolder.itemView.getContext()).load(reference).into(imageView);
                     shareBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {

@@ -227,7 +227,7 @@ public class SignupActivity extends AppCompatActivity {
         otpMessage = findViewById(R.id.signup_otp_msg);
         googleSignInBtn = findViewById(R.id.signup_google_sign_in_button);
         privacyTtv = findViewById(R.id.signup_privacy);
-        String htmlPrivacy = "By proceeding to Create an Account and use Shayari Book, your are agree to our <a href='https://i3developer.com/sb/terms-and-conditions.html'>Terms & Conditions</a> and <a href='https://i3developer.com/sb/privacy-policy.html'>Privacy Policy</a>. If you do not agree, you cannot use Shayari Book. ";
+        String htmlPrivacy = "By proceeding to Create an Account and use Shayari Book, you are agree to our <a href='https://i3developer.com/sb/terms-and-conditions.html'>Terms & Conditions</a> and <a href='https://i3developer.com/sb/privacy-policy.html'>Privacy Policy</a>. If you do not agree, you cannot use Shayari Book. ";
         Spanned spannedHtml = HtmlCompat.fromHtml(htmlPrivacy,HtmlCompat.FROM_HTML_MODE_LEGACY);
         privacyTtv.setText(spannedHtml);
         privacyTtv.setMovementMethod(LinkMovementMethod.getInstance());

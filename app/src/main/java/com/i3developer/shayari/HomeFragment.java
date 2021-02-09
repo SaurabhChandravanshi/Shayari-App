@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class HomeFragment extends Fragment {
     private CardView categoryCard,addNewCard;
     private CardView gmShayariCard,gnShayariCard,kumarVishwasShayari;
+    private CardView gulzarShayari;
     private FirebaseAuth mAuth;
     @Nullable
     @Override
@@ -71,6 +72,15 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        gulzarShayari.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),ShayariActivity.class);
+                intent.putExtra("category","gulzar");
+                intent.putExtra("name","Gulzar");
+                startActivity(intent);
+            }
+        });
     }
 
     private void allInitializations(View view) {
@@ -80,5 +90,6 @@ public class HomeFragment extends Fragment {
         gnShayariCard = view.findViewById(R.id.home_gn_shayari);
         mAuth = FirebaseAuth.getInstance();
         kumarVishwasShayari = view.findViewById(R.id.home_kumar_vishwas_shayari);
+        gulzarShayari = view.findViewById(R.id.home_gulzar_shayari);
     }
 }
