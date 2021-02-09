@@ -3,45 +3,29 @@ package com.i3developer.shayari;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.LinearGradient;
-import android.graphics.Shader;
-import android.graphics.Typeface;
 import android.net.Uri;
-import android.os.Build;
-import android.os.Environment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.view.ContextThemeWrapper;
-import androidx.cardview.widget.CardView;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.GlideBuilder;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
@@ -55,7 +39,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
-import java.util.zip.Inflater;
 
 public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Object> dataList;
@@ -72,7 +55,7 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
         if(viewType==AD_VIEW) {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_shayari_list,parent,false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_ad_post_list,parent,false);
             return new MyAdViewHolder(view);
         }
         else {
@@ -106,7 +89,7 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference reference = storage.getReferenceFromUrl("gs://shayari-5b5f4.appspot.com/"+data.getImagePath());
             // Load image into ImageView
-            GlideApp.with(myViewHolder.itemView.getContext()).load(reference).centerCrop().into(myViewHolder.imageView);
+            GlideApp.with(myViewHolder.itemView.getContext()).load(reference).into(myViewHolder.imageView);
             updateLikeCount(data.getLikes(),myViewHolder);
             updateLikeBtn(data.getLikes(),myViewHolder,myViewHolder.likeBtn);
 
@@ -237,7 +220,7 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         private AdView adView;
         public MyAdViewHolder(@NonNull View itemView) {
             super(itemView);
-            adView = itemView.findViewById(R.id.recycler_adview);
+            adView = itemView.findViewById(R.id.recycler_ad_post_list_adView);
         }
     }
     private void showToast(Context context, String text) {

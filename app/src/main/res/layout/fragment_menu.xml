@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <FrameLayout
@@ -291,6 +292,34 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:padding="6dp"
+                android:background="@android:color/transparent"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/sen_bold"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:text="from i3Developer"/>
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/menu_banner_ad1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                ads:adSize="BANNER"
+                ads:adUnitId="@string/menu_banner_ad1"/>
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/menu_banner_ad2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                ads:adSize="BANNER"
+                ads:adUnitId="@string/menu_banner_ad2"/>
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/menu_banner_ad3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                ads:adSize="BANNER"
+                ads:adUnitId="@string/menu_banner_ad3"/>
         </LinearLayout>
     </FrameLayout>
     </androidx.core.widget.NestedScrollView>

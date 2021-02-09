@@ -18,6 +18,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,12 +35,13 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
     Button buttonUpdate;
     DatabaseReference referenceDb;
     FirebaseAuth mAuth;
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-
+        loadInterstitialAd();
         allInitialization();
         setUpAppBar();
 
@@ -142,5 +147,26 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
     public void onDateSet(DatePicker datePicker, int year, int month, int date) {
         String DateString = date+"/"+(month+1)+"/"+year;
         editTextDob.setText(DateString);
+    }
+    private void loadInterstitialAd() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        InterstitialAd.load(this,getResources().getString(R.string.create_post_interstitial_ad),adRequest,new InterstitialAdLoadCallback(){
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                mInterstitialAd = interstitialAd;
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                mInterstitialAd  = null;
+            }
+        });
+    }
+    @Override
+    public void onBackPressed() {
+        if(mInterstitialAd != null) {
+            mInterstitialAd.show(EditProfileActivity.this);
+        }
+        super.onBackPressed();
     }
 }

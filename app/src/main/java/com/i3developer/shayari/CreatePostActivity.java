@@ -27,6 +27,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -61,10 +65,13 @@ public class CreatePostActivity extends AppCompatActivity {
     private FloatingActionButton bgFab;
     private CardView cardView;
     private EditText cardContent;
+    private InterstitialAd mInterstitialAd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_post);
+        loadInterstitialAd();
         setUpAppBar();
         allInitializations();
         cardContent.requestFocus();
@@ -129,6 +136,7 @@ public class CreatePostActivity extends AppCompatActivity {
                     notification.showLocalNotification();
                     cardContent.setCursorVisible(false);
                     uploadImageToCloud(cardView);
+                    showInterstitialAd();
                     finish();
                 } else {
                     showToast(getApplicationContext(),"कृपया हिंदी में लिखें");
@@ -141,6 +149,12 @@ public class CreatePostActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    private void showInterstitialAd() {
+        if(mInterstitialAd != null) {
+            mInterstitialAd.show(CreatePostActivity.this);
+        }
     }
 
     private void insertToFirestore(String imagePath) {
@@ -258,5 +272,27 @@ public class CreatePostActivity extends AppCompatActivity {
             default:
                 view.setCardBackgroundColor(context.getResources().getColor(R.color.colorRed));
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(mInterstitialAd != null) {
+            mInterstitialAd.show(CreatePostActivity.this);
+        }
+        super.onBackPressed();
+    }
+    private void loadInterstitialAd() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        InterstitialAd.load(this,getResources().getString(R.string.create_post_interstitial_ad),adRequest,new InterstitialAdLoadCallback(){
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                mInterstitialAd = interstitialAd;
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                mInterstitialAd  = null;
+            }
+        });
     }
 }

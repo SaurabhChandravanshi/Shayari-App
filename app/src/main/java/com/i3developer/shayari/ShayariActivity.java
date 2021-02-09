@@ -16,7 +16,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,11 +40,14 @@ public class ShayariActivity extends AppCompatActivity {
     private RecyclerView.Adapter<RecyclerView.ViewHolder> adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ProgressBar progressBar;
+    private InterstitialAd mInterstitialAd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shayari);
         allInitializations();
+        loadInterstitialAd();
         getShayariFromFirebase();
 
         // To Display custom Action Bar
@@ -76,6 +83,27 @@ public class ShayariActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        if(mInterstitialAd != null) {
+            mInterstitialAd.show(ShayariActivity.this);
+        }
+        super.onBackPressed();
+    }
+    private void loadInterstitialAd() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        InterstitialAd.load(this,getResources().getString(R.string.shayari_interstitial_ad),adRequest,new InterstitialAdLoadCallback(){
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                mInterstitialAd = interstitialAd;
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                mInterstitialAd  = null;
+            }
+        });
+    }
     private void allInitializations() {
         CATEGORY = getIntent().getStringExtra("category");
         NAME = getIntent().getStringExtra("name");

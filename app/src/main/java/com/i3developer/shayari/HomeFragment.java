@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeFragment extends Fragment {
@@ -18,6 +20,7 @@ public class HomeFragment extends Fragment {
     private CardView gmShayariCard,gnShayariCard,kumarVishwasShayari;
     private CardView gulzarShayari;
     private FirebaseAuth mAuth;
+    private AdView adView1,adView2,adView3,adView4;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -28,6 +31,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         allInitializations(view);
+        loadBannerAds();
 
         categoryCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +87,17 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    private void loadBannerAds() {
+        AdRequest adRequest1 = new AdRequest.Builder().build();
+        adView1.loadAd(adRequest1);
+        AdRequest adRequest2 = new AdRequest.Builder().build();
+        adView2.loadAd(adRequest2);
+        AdRequest adRequest3 = new AdRequest.Builder().build();
+        adView3.loadAd(adRequest3);
+        AdRequest adRequest4 = new AdRequest.Builder().build();
+        adView4.loadAd(adRequest4);
+    }
+
     private void allInitializations(View view) {
         categoryCard = view.findViewById(R.id.home_category);
         addNewCard = view.findViewById(R.id.home_add_new_shayari);
@@ -91,5 +106,9 @@ public class HomeFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         kumarVishwasShayari = view.findViewById(R.id.home_kumar_vishwas_shayari);
         gulzarShayari = view.findViewById(R.id.home_gulzar_shayari);
+        adView1 = view.findViewById(R.id.home_banner_ad1);
+        adView2 = view.findViewById(R.id.home_banner_ad2);
+        adView3 = view.findViewById(R.id.home_banner_ad3);
+        adView4 = view.findViewById(R.id.home_banner_ad4);
     }
 }

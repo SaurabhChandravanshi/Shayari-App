@@ -3,8 +3,6 @@ package com.i3developer.shayari;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -60,7 +58,7 @@ public class ViewPostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
         if(viewType==AD_VIEW) {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_shayari_list,parent,false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_ad_post_list,parent,false);
             return new MyAdViewHolder(view);
         }
         else {
@@ -94,7 +92,7 @@ public class ViewPostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference reference = storage.getReferenceFromUrl("gs://shayari-5b5f4.appspot.com/"+data.getImagePath());
             // Load image into ImageView
-            GlideApp.with(myViewHolder.itemView.getContext()).load(reference).centerCrop().into(myViewHolder.imageView);
+            GlideApp.with(myViewHolder.itemView.getContext()).load(reference).into(myViewHolder.imageView);
             updateLikeCount(data.getLikes(),myViewHolder);
             updateLikeBtn(data.getLikes(),myViewHolder,myViewHolder.likeBtn);
 
@@ -232,7 +230,7 @@ public class ViewPostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         private AdView adView;
         public MyAdViewHolder(@NonNull View itemView) {
             super(itemView);
-            adView = itemView.findViewById(R.id.recycler_adview);
+            adView = itemView.findViewById(R.id.recycler_ad_post_list_adView);
         }
     }
     private void showToast(Context context, String text) {

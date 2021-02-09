@@ -16,6 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MenuFragment extends Fragment {
@@ -24,6 +26,7 @@ public class MenuFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FrameLayout loginFrame,mainFrame;
     private CardView privacyCard;
+    private AdView adView1,adView2,adView3;
 
     @Nullable
     @Override
@@ -35,6 +38,7 @@ public class MenuFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         allInitializations(view);
+        loadBannerAds();
         updateUI(); // This method check if user Signed in or not and update UI accordingly
 
         // go to editProfile activity
@@ -98,6 +102,15 @@ public class MenuFragment extends Fragment {
         });
     }
 
+    private void loadBannerAds() {
+        AdRequest adRequest1 = new AdRequest.Builder().build();
+        adView1.loadAd(adRequest1);
+        AdRequest adRequest2 = new AdRequest.Builder().build();
+        adView2.loadAd(adRequest2);
+        AdRequest adRequest3 = new AdRequest.Builder().build();
+        adView3.loadAd(adRequest3);
+    }
+
     // Update UI Frame according to User login status
     private void updateUI() {
         if(mAuth.getCurrentUser() != null) {
@@ -122,5 +135,8 @@ public class MenuFragment extends Fragment {
         helpCard = view.findViewById(R.id.menu_help_centre);
         referCard = view.findViewById(R.id.menu_refer);
         privacyCard = view.findViewById(R.id.menu_privacy_policy);
+        adView1 = view.findViewById(R.id.menu_banner_ad1);
+        adView2 = view.findViewById(R.id.menu_banner_ad2);
+        adView3 = view.findViewById(R.id.menu_banner_ad3);
     }
 }

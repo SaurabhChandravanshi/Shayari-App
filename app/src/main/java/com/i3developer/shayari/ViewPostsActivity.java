@@ -15,7 +15,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,10 +41,13 @@ public class ViewPostsActivity extends AppCompatActivity {
     private List<Object> dataList = new ArrayList<>();
     private FirebaseFirestore firestoreRef;
     private ProgressBar progressBar;
+    private InterstitialAd mInterstitialAd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_posts);
+        loadInterstitialAd();
         setUpAppBar();
         allInitializations();
         getPostsFromFirestore();
@@ -116,5 +123,26 @@ public class ViewPostsActivity extends AppCompatActivity {
         toast.setText(text);
         toast.setGravity(Gravity.CENTER,0,0);
         toast.show();
+    }
+    private void loadInterstitialAd() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        InterstitialAd.load(this,getResources().getString(R.string.view_post_interstitial_ad),adRequest,new InterstitialAdLoadCallback(){
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                mInterstitialAd = interstitialAd;
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                mInterstitialAd  = null;
+            }
+        });
+    }
+    @Override
+    public void onBackPressed() {
+        if(mInterstitialAd != null) {
+            mInterstitialAd.show(ViewPostsActivity.this);
+        }
+        super.onBackPressed();
     }
 }

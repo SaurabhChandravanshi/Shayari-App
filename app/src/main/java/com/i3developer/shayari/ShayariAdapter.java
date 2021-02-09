@@ -7,17 +7,14 @@ import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,7 +38,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
-import java.util.zip.Inflater;
 
 public class ShayariAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static int TEXT_STYLE = 0;
@@ -57,7 +53,7 @@ public class ShayariAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
         if(viewType==AD_VIEW) {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_shayari_list,parent,false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_ad_shayari_list,parent,false);
             return new MyAdViewHolder(view);
         }
         else {
@@ -186,7 +182,7 @@ public class ShayariAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         private AdView adView;
         public MyAdViewHolder(@NonNull View itemView) {
             super(itemView);
-            adView = itemView.findViewById(R.id.recycler_adview);
+            adView = itemView.findViewById(R.id.recycler_ad_shayari_list_adView);
         }
     }
     private void showToast(Context context, String text) {

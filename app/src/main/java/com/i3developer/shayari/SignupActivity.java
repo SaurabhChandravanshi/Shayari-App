@@ -24,6 +24,10 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -68,6 +72,7 @@ public class SignupActivity extends AppCompatActivity {
     public TextView textViewTimer;
     private PhoneAuthProvider.ForceResendingToken mResendToken; //resend token
     FirebaseMessaging firebaseMessaging = FirebaseMessaging.getInstance();
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +81,7 @@ public class SignupActivity extends AppCompatActivity {
         // To Display custom Action Bar
         setUpAppBar();
         allInitializations(); // All Initialization should be placed inside this method
+        loadInterstitialAd();
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +120,29 @@ public class SignupActivity extends AppCompatActivity {
                 sendVerificationCodeAgian("+91" + phoneEdt.getText());
             }
         });
+    }
+
+    private void loadInterstitialAd() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        InterstitialAd.load(this,getResources().getString(R.string.signup_interstitial_ad),adRequest,new InterstitialAdLoadCallback(){
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                mInterstitialAd = interstitialAd;
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                mInterstitialAd  = null;
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(mInterstitialAd != null) {
+            mInterstitialAd.show(SignupActivity.this);
+        }
+        super.onBackPressed();
     }
 
     @Override

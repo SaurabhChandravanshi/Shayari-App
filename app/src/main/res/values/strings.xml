@@ -1,7 +1,23 @@
 <resources>
     <string name="app_name">Shayari Book</string>
-    <string name="shayari_recycler_banner">ca-app-pub-9546107720770258/7413308164</string>
     <string name="channel_name">Shayari Book Notification</string>
     <string name="channel_description">Shayari Book Local Notification</string>
     <string name="default_notification_channel_id">NOTIFICATION_CHANNEL_SHAYARI_APP</string>
+    <string name="post_list_recycler_banner">ca-app-pub-3940256099942544/6300978111</string>
+
+
+    <string name="shayari_recycler_banner">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="menu_banner_ad1">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="menu_banner_ad2">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="menu_banner_ad3">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="home_banner_ad1">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="home_banner_ad2">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="home_banner_ad3">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="home_banner_ad4">ca-app-pub-3940256099942544/6300978111</string>
+
+    <string name="signup_interstitial_ad">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="create_post_interstitial_ad">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="edit_profile_interstitial_ad">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="shayari_interstitial_ad">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="view_post_interstitial_ad">ca-app-pub-3940256099942544/1033173712</string>
 </resources>
