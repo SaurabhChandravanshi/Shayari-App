@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -31,6 +33,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         allInitializations(view);
+        loadPoetFragment();
         loadBannerAds();
 
         categoryCard.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +88,13 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+    }
+
+    private void loadPoetFragment() {
+        PoetFragment fragment = new PoetFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        assert fragmentManager != null;
+        fragmentManager.beginTransaction().replace(R.id.main_poet_frame,fragment).commit();
     }
 
     private void loadBannerAds() {

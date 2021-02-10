@@ -6,18 +6,18 @@
     <string name="post_list_recycler_banner">ca-app-pub-3940256099942544/6300978111</string>
 
 
-    <string name="shayari_recycler_banner">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="menu_banner_ad1">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="menu_banner_ad2">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="menu_banner_ad3">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="home_banner_ad1">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="home_banner_ad2">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="home_banner_ad3">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="home_banner_ad4">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="shayari_recycler_banner">ca-app-pub-9546107720770258/6537906851</string>
+    <string name="menu_banner_ad1">ca-app-pub-9546107720770258/5416396875</string>
+    <string name="menu_banner_ad2">ca-app-pub-9546107720770258/3911743513</string>
+    <string name="menu_banner_ad3">ca-app-pub-9546107720770258/2407090157</string>
+    <string name="home_banner_ad1">ca-app-pub-9546107720770258/9002619795</string>
+    <string name="home_banner_ad2">ca-app-pub-9546107720770258/9902436791</string>
+    <string name="home_banner_ad3">ca-app-pub-9546107720770258/7276273454</string>
+    <string name="home_banner_ad4">ca-app-pub-9546107720770258/2271999412</string>
 
-    <string name="signup_interstitial_ad">ca-app-pub-3940256099942544/1033173712</string>
-    <string name="create_post_interstitial_ad">ca-app-pub-3940256099942544/1033173712</string>
-    <string name="edit_profile_interstitial_ad">ca-app-pub-3940256099942544/1033173712</string>
-    <string name="shayari_interstitial_ad">ca-app-pub-3940256099942544/1033173712</string>
-    <string name="view_post_interstitial_ad">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="signup_interstitial_ad">ca-app-pub-9546107720770258/7084701764</string>
+    <string name="create_post_interstitial_ad">ca-app-pub-9546107720770258/7980455812</string>
+    <string name="edit_profile_interstitial_ad">ca-app-pub-9546107720770258/9519293411</string>
+    <string name="shayari_interstitial_ad">ca-app-pub-9546107720770258/7084701764</string>
+    <string name="view_post_interstitial_ad">ca-app-pub-9546107720770258/4266966739</string>
 </resources>
