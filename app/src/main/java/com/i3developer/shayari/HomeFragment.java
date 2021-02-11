@@ -19,8 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeFragment extends Fragment {
     private CardView categoryCard,addNewCard;
-    private CardView gmShayariCard,gnShayariCard,kumarVishwasShayari;
-    private CardView gulzarShayari;
+    private CardView gmShayariCard,gnShayariCard;
     private FirebaseAuth mAuth;
     private AdView adView1,adView2,adView3,adView4;
     @Nullable
@@ -70,24 +69,6 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        kumarVishwasShayari.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),ShayariActivity.class);
-                intent.putExtra("category","kumar_vishwas_shayari");
-                intent.putExtra("name","Kumar Vishwas");
-                startActivity(intent);
-            }
-        });
-        gulzarShayari.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),ShayariActivity.class);
-                intent.putExtra("category","gulzar");
-                intent.putExtra("name","Gulzar");
-                startActivity(intent);
-            }
-        });
     }
 
     private void loadPoetFragment() {
@@ -114,8 +95,6 @@ public class HomeFragment extends Fragment {
         gmShayariCard = view.findViewById(R.id.home_gm_shayari);
         gnShayariCard = view.findViewById(R.id.home_gn_shayari);
         mAuth = FirebaseAuth.getInstance();
-        kumarVishwasShayari = view.findViewById(R.id.home_kumar_vishwas_shayari);
-        gulzarShayari = view.findViewById(R.id.home_gulzar_shayari);
         adView1 = view.findViewById(R.id.home_banner_ad1);
         adView2 = view.findViewById(R.id.home_banner_ad2);
         adView3 = view.findViewById(R.id.home_banner_ad3);

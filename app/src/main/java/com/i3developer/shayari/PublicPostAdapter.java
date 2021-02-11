@@ -20,14 +20,21 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.core.content.FileProvider;
+import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.google.firebase.dynamiclinks.ShortDynamicLink;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -147,6 +154,23 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     commentFragment.show(fragmentManager,commentFragment.getTag());
                 }
             });
+            // display image of author (fetch image url from RT DB).
+            DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("Users").child(data.getOwnerUID());
+            databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    User user = snapshot.getValue(User.class);
+                    if(user.getPicUrl().length() > 2) {
+                        Glide.with(myViewHolder.itemView.getContext()).load(user.getPicUrl()).circleCrop().into(myViewHolder.authorImage);
+                    }
+                    myViewHolder.authorNameTtv.setText(HtmlCompat.fromHtml(user.getName()+"<br><small>A Shayari Book User</small>",HtmlCompat.FROM_HTML_MODE_COMPACT));
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
         }
     }
 
@@ -203,9 +227,9 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         return dataList.size();
     }
     class MyViewHolder extends RecyclerView.ViewHolder {
-        private ImageView imageView;
+        private ImageView imageView,authorImage;
         private Button shareBtn,likeBtn,commentBtn;
-        private TextView likeCountTttv;
+        private TextView likeCountTttv,authorNameTtv;
         public MyViewHolder(View itemView) {
             super(itemView);
             shareBtn = itemView.findViewById(R.id.public_post_list_share);
@@ -213,6 +237,8 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             commentBtn = itemView.findViewById(R.id.public_post_list_comment);
             imageView = itemView.findViewById(R.id.public_post_list_image);
             likeCountTttv = itemView.findViewById(R.id.public_post_list_like_count);
+            authorImage = itemView.findViewById(R.id.public_post_list_author_image);
+            authorNameTtv = itemView.findViewById(R.id.public_post_list_author_name);
         }
     }
     class MyAdViewHolder extends RecyclerView.ViewHolder {

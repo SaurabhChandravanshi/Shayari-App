@@ -1,6 +1,7 @@
 package com.i3developer.shayari;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,10 +69,10 @@ public class PoetFragment extends Fragment {
     }
 
     private void loadPoetImages() {
-        Glide.with(getActivity()).load(R.drawable.gulzar_image).circleCrop().into(gulzarImage);
-        Glide.with(getActivity()).load(R.drawable.ghalib_image).circleCrop().into(ghalibImage);
-        Glide.with(getActivity()).load(R.drawable.rahat_indori_image).circleCrop().into(rahatIndoriImage);
-        Glide.with(getActivity()).load(R.drawable.kumar_vishwash_image).circleCrop().into(kumarVishwasImage);
+        Glide.with(getActivity()).load(Uri.parse("file:///android_asset/gulzar_image.jpg")).circleCrop().into(gulzarImage);
+        Glide.with(getActivity()).load(Uri.parse("file:///android_asset/ghalib_image.png")).circleCrop().into(ghalibImage);
+        Glide.with(getActivity()).load(Uri.parse("file:///android_asset/rahat_indori_image.jpg")).circleCrop().into(rahatIndoriImage);
+        Glide.with(getActivity()).load(Uri.parse("file:///android_asset/kumar_vishwash_image.jpg")).circleCrop().into(kumarVishwasImage);
     }
 
     private void allInitialization(View view) {
