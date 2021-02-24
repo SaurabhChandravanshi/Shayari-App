@@ -239,9 +239,9 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     private void updateLikeCount(List<String> likes,MyViewHolder myViewHolder) {
         if(likes.size() == 0) {
-            myViewHolder.likeCountTttv.setText("Be the first to like this post ❤");
+            myViewHolder.likeCountTttv.setText("Be the first to like this post");
         } else {
-            myViewHolder.likeCountTttv.setText(likes.size()+" people like this post ❤");
+            myViewHolder.likeCountTttv.setText(likes.size()+" people like this post");
         }
     }
 
