@@ -3,7 +3,7 @@
     <string name="channel_name">Shayari Book Notification</string>
     <string name="channel_description">Shayari Book Local Notification</string>
     <string name="default_notification_channel_id">NOTIFICATION_CHANNEL_SHAYARI_APP</string>
-    <string name="post_list_recycler_banner">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="post_list_recycler_banner">ca-app-pub-9546107720770258/4266966739</string>
 
 
     <string name="shayari_recycler_banner">ca-app-pub-9546107720770258/6537906851</string>

@@ -26,12 +26,16 @@
                     android:textColor="@android:color/black"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="8dp"
+                    android:textStyle="bold"
+                    android:lineSpacingExtra="2dp"
                     android:fontFamily="@font/sen_bold"/>
             </LinearLayout>
+
     <ImageView
         android:id="@+id/public_post_list_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minWidth="200dp"
         android:scaleType="fitXY"/>
 
             <TextView

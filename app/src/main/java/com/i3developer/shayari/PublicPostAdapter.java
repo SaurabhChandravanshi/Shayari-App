@@ -24,6 +24,12 @@ import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -92,6 +98,23 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             PublicPost data = (PublicPost)dataList.get(position);
             FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
+            // display image of author (fetch image url from RT DB).
+            DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("Users").child(data.getOwnerUID());
+            databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    User user = snapshot.getValue(User.class);
+                    if(user != null && user.getPicUrl() != null) {
+                        Glide.with(myViewHolder.itemView.getContext()).load(user.getPicUrl()).circleCrop().into(myViewHolder.authorImage);
+                    }
+                    myViewHolder.authorNameTtv.setText(HtmlCompat.fromHtml(user.getName()+"<br><small>A Shayari Book User</small>",HtmlCompat.FROM_HTML_MODE_COMPACT));
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
             //Get Firebase Storage Reference to load Image
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference reference = storage.getReferenceFromUrl("gs://shayari-5b5f4.appspot.com/"+data.getImagePath());
@@ -107,6 +130,36 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                         data.getLikes().remove(mAuth.getUid());
                     } else {
                         data.getLikes().add(mAuth.getUid());
+                        databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                // Instantiate the RequestQueue.
+                                RequestQueue queue = Volley.newRequestQueue(myViewHolder.itemView.getContext());
+                                User user = snapshot.getValue(User.class);
+                                String param = "title=New like"+"&message=New like received for your post"+"&token="+user.getFcmToken();
+                                String url ="http://i3developer.in/SB/SendNotif.php?"+param;
+                                // Request a string response from the provided URL.
+                                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                                        new Response.Listener<String>() {
+                                            @Override
+                                            public void onResponse(String response) {
+                                                // Display the first 500 characters of the response string.
+                                            }
+                                        }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+
+                                    }
+                                });
+                                // Add the request to the RequestQueue.
+                                queue.add(stringRequest);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
                     }
                     updateLikeBtn(data.getLikes(),myViewHolder,myViewHolder.likeBtn);
                     updateLikeCount(data.getLikes(),myViewHolder);
@@ -152,23 +205,6 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 public void onClick(View view) {
                     CommentFragment commentFragment = new CommentFragment(data.getCommentMap(),data.getPostId(),data.getOwnerUID());
                     commentFragment.show(fragmentManager,commentFragment.getTag());
-                }
-            });
-            // display image of author (fetch image url from RT DB).
-            DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("Users").child(data.getOwnerUID());
-            databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    User user = snapshot.getValue(User.class);
-                    if(user.getPicUrl().length() > 2) {
-                        Glide.with(myViewHolder.itemView.getContext()).load(user.getPicUrl()).circleCrop().into(myViewHolder.authorImage);
-                    }
-                    myViewHolder.authorNameTtv.setText(HtmlCompat.fromHtml(user.getName()+"<br><small>A Shayari Book User</small>",HtmlCompat.FROM_HTML_MODE_COMPACT));
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
                 }
             });
         }

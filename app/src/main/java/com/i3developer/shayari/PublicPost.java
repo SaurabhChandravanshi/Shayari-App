@@ -1,7 +1,5 @@
 package com.i3developer.shayari;
 
-import android.util.ArrayMap;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
