@@ -57,7 +57,9 @@ public class MainActivity extends AppCompatActivity  {
                 .findViewById(R.id.app_bar_left);
         TextView appBarRight = getSupportActionBar().getCustomView()
                 .findViewById(R.id.app_bar_right);
-        appBarTitle.setText("शायरी बुक");
+        appBarTitle.setText("Shayari Book");
+        Typeface face = Typeface.createFromAsset(getAssets(),"berkshire_swash_regular.ttf");
+        appBarTitle.setTypeface(face);
         appBarLeft.setText("Exit");
         appBarRight.setText("Share");
         appBarLeft.setOnClickListener(new View.OnClickListener() {

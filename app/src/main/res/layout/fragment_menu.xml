@@ -97,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="6dp"
-                    android:background="@drawable/ic_pen_50"/>
+                    android:background="@drawable/ic_you_posts_50"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -169,7 +169,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"
-                        android:background="@drawable/ic_help_centre_50"/>
+                        android:background="@drawable/ic_help_chat_50"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -202,7 +202,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"
-                        android:background="@drawable/ic_refer_50"/>
+                        android:background="@drawable/ic_share_50"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

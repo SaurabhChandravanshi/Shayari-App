@@ -17,7 +17,6 @@
 
     <string name="signup_interstitial_ad">ca-app-pub-9546107720770258/7084701764</string>
     <string name="create_post_interstitial_ad">ca-app-pub-9546107720770258/7980455812</string>
-    <string name="edit_profile_interstitial_ad">ca-app-pub-9546107720770258/9519293411</string>
     <string name="shayari_interstitial_ad">ca-app-pub-9546107720770258/7084701764</string>
     <string name="view_post_interstitial_ad">ca-app-pub-9546107720770258/4266966739</string>
 </resources>
