@@ -12,8 +12,8 @@
         android:orientation="vertical">
     <androidx.cardview.widget.CardView
         android:id="@+id/create_post_card"
-        android:layout_width="1280px"
-        android:layout_height="720px"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         app:cardUseCompatPadding="true"
         android:layout_margin="10dp"
         android:layout_gravity="center"
@@ -24,7 +24,7 @@
             <EditText
                 android:id="@+id/create_post_content"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="30dp"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
@@ -35,7 +35,8 @@
                 android:lineSpacingExtra="6dp"
                 android:background="@android:color/transparent"
                 android:layout_centerInParent="true"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:gravity="center_horizontal" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 

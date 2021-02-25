@@ -202,10 +202,11 @@ public class CreatePostActivity extends AppCompatActivity {
         String randomImageName = UUID.randomUUID().toString()+".png";
         StorageReference storageRef = reference.getReference().child("posts").child(randomImageName);
         Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
+        Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap,view.getWidth(),view.getHeight(),true);
+        Canvas canvas = new Canvas(resizedBitmap);
         view.draw(canvas);
         ByteArrayOutputStream output = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, output);
+        resizedBitmap.compress(Bitmap.CompressFormat.PNG, 100, output);
         byte[] data = output.toByteArray();
         // Upload Image Image.
         UploadTask uploadTask = storageRef.putBytes(data);
