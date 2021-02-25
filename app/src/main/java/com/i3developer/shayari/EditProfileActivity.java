@@ -99,7 +99,9 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
     //update profile data
     private void updateProfileData(String name,String email,String dob) {
         User user = new User(name,email,dob);
-        referenceDb.setValue(user);
+        referenceDb.child("name").setValue(name);
+        referenceDb.child("email").setValue(email);
+        referenceDb.child("dob").setValue(dob);
         showToast(getApplicationContext(),"Updated successfully");
     }
 
