@@ -29,7 +29,7 @@
                             android:layout_height="80dp"
                             android:layout_gravity="center"
                             android:layout_margin="6dp"
-                            android:background="@drawable/ic_category_60"/>
+                            android:background="@drawable/ic_poetry_60"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
                             android:layout_marginTop="4dp"
                             android:layout_marginBottom="10dp"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:text="शायरी संग्रह"
+                            android:text="Shayari Collection"
                             android:gravity="center_horizontal" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -74,7 +74,7 @@
                             android:layout_marginTop="4dp"
                             android:layout_marginBottom="10dp"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:text="अपना नया जोड़े"
+                            android:text="Add your Own"
                             android:gravity="center_horizontal" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
