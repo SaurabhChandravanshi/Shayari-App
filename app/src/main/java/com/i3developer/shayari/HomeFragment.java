@@ -33,6 +33,7 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         allInitializations(view);
         loadPoetFragment();
+        loadPopularCatFragment();
         loadBannerAds();
 
         categoryCard.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +77,12 @@ public class HomeFragment extends Fragment {
         FragmentManager fragmentManager = getFragmentManager();
         assert fragmentManager != null;
         fragmentManager.beginTransaction().replace(R.id.main_poet_frame,fragment).commit();
+    }
+    private void loadPopularCatFragment() {
+        PopularCatFragment fragment = new PopularCatFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        assert fragmentManager != null;
+        fragmentManager.beginTransaction().replace(R.id.main_popular_categories_frame,fragment).commit();
     }
 
     private void loadBannerAds() {

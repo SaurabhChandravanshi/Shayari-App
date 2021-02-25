@@ -15,8 +15,20 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -71,7 +83,56 @@ public class CommentFragment extends BottomSheetDialogFragment {
                     }
                     comments.add(commentEdt.getText().toString());
                     commentMap.put(mAuth.getUid(),comments);
-                    firestore.collection("posts").document(postId).update("commentMap."+mAuth.getUid(),comments);
+                    firestore.collection("posts").document(postId).update("commentMap."+mAuth.getUid(),comments)
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            if(!ownerUID.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                database.getReference("Users").child(ownerUID).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        User user = snapshot.getValue(User.class);
+                                        // Instantiate the RequestQueue.
+                                        RequestQueue queue = Volley.newRequestQueue(getActivity());
+                                        String url ="http://i3developer.in/SB/SendNotif.php";
+                                        // Request a string response from the provided URL.
+                                        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                                            @Override
+                                            public void onResponse(String response) {
+
+                                            }
+                                        }, new Response.ErrorListener() {
+                                            @Override
+                                            public void onErrorResponse(VolleyError error) {
+
+                                            }
+                                        }) {
+                                            @Override
+                                            protected Map<String,String> getParams() {
+                                                Map<String,String> params = new HashMap<String, String>();
+                                                params.put("title","New Comment");
+                                                params.put("message","Someone commented on your post, go to your posts section to view");
+                                                params.put("token",user.getFcmToken());
+                                                return params;
+                                            }
+                                        };
+                                        // Add the request to the RequestQueue.
+                                        queue.add(stringRequest);
+                                    }
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+                            }
+                        }
+                    });
                     commentList.add(new Comment(mAuth.getUid(),commentEdt.getText().toString()));
                     adapter.notifyDataSetChanged();
                     commentEdt.setText("");

@@ -52,7 +52,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Object> dataList;
@@ -134,24 +136,31 @@ public class PublicPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                         databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                User user = snapshot.getValue(User.class);
                                 // Instantiate the RequestQueue.
                                 RequestQueue queue = Volley.newRequestQueue(myViewHolder.itemView.getContext());
-                                User user = snapshot.getValue(User.class);
-                                String param = "title=New like"+"&message=New like received for your post"+"&token="+user.getFcmToken();
-                                String url ="http://i3developer.in/SB/SendNotif.php?"+param;
+                                String url ="http://i3developer.in/SB/SendNotif.php";
                                 // Request a string response from the provided URL.
-                                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                                        new Response.Listener<String>() {
-                                            @Override
-                                            public void onResponse(String response) {
-                                                // Display the first 500 characters of the response string.
-                                            }
-                                        }, new Response.ErrorListener() {
+                                StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+
+                                    }
+                                }, new Response.ErrorListener() {
                                     @Override
                                     public void onErrorResponse(VolleyError error) {
 
                                     }
-                                });
+                                }) {
+                                  @Override
+                                    protected Map<String,String> getParams() {
+                                      Map<String,String> params = new HashMap<String, String>();
+                                      params.put("title","New Like");
+                                      params.put("message","New like received for your post");
+                                      params.put("token",user.getFcmToken());
+                                      return params;
+                                  }
+                                };
                                 // Add the request to the RequestQueue.
                                 queue.add(stringRequest);
                             }

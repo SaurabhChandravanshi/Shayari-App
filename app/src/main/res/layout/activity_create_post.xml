@@ -34,7 +34,7 @@
                 android:maxLines="15"
                 android:focusable="true"
                 android:focusedByDefault="true"
-                android:lineSpacingExtra="6dp"
+                android:lineSpacingExtra="8dp"
                 android:background="@android:color/transparent"
                 android:layout_centerInParent="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"

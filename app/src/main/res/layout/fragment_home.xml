@@ -154,6 +154,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"/>
+            <FrameLayout
+                android:id="@+id/main_popular_categories_frame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"/>
 
             <com.google.android.gms.ads.AdView
                 android:id="@+id/home_banner_ad1"
