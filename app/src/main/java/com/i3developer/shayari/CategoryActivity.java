@@ -15,8 +15,7 @@ public class CategoryActivity extends AppCompatActivity {
     private CardView friendShipShayari,sadShayari,funnyShayari;
     private CardView birthdayWishes,twoLineShayari,boysAttitudeShayari;
     private CardView gmShayari,gnShayari,sherOShayari;
-    private CardView kumarVishwasShayari;
-    private CardView gulzarShayari;
+    private CardView bewafaShayari,alfaazShayari;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,21 +162,21 @@ public class CategoryActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        kumarVishwasShayari.setOnClickListener(new View.OnClickListener() {
+        bewafaShayari.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CategoryActivity.this,ShayariActivity.class);
-                intent.putExtra("category","kumar_vishwas_shayari");
-                intent.putExtra("name","Kumar Vishwas");
+                intent.putExtra("category","bewafa_shayari");
+                intent.putExtra("name","Bewafa Shayari");
                 startActivity(intent);
             }
         });
-        gulzarShayari.setOnClickListener(new View.OnClickListener() {
+        alfaazShayari.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CategoryActivity.this,ShayariActivity.class);
-                intent.putExtra("category","gulzar");
-                intent.putExtra("name","gulzar");
+                intent.putExtra("category","alfaaz_shayari");
+                intent.putExtra("name","Alfaaz Shayari");
                 startActivity(intent);
             }
         });
@@ -196,7 +195,7 @@ public class CategoryActivity extends AppCompatActivity {
         gmShayari = findViewById(R.id.category_good_morning);
         gnShayari = findViewById(R.id.category_good_night);
         sherOShayari = findViewById(R.id.category_sher_o_shayari);
-        kumarVishwasShayari = findViewById(R.id.category_kumar_vishwas_shayari);
-        gulzarShayari = findViewById(R.id.category_gulzar_shayari);
+        bewafaShayari = findViewById(R.id.category_bewafa_shayari);
+        alfaazShayari = findViewById(R.id.category_alfaaz_shayari);
     }
 }

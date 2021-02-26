@@ -81,7 +81,7 @@ public class ShayariAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         } else {
             Shayari data = (Shayari)dataList.get(position);
             MyViewHolder viewHolder = (MyViewHolder)holder;
-            viewHolder.shayariTtv.setText(data.getQ());
+            viewHolder.shayariTtv.setText(data.getQ().replaceAll(","," ,\n").trim());
             Shader shader = new LinearGradient(0f, 0f, 0f, viewHolder.shayariTtv.getTextSize(),
                     Color.RED, Color.BLUE, Shader.TileMode.CLAMP);
             viewHolder.shayariTtv.getPaint().setShader(shader);
@@ -126,7 +126,7 @@ public class ShayariAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         View dialogView = inflater.inflate(R.layout.dialog_editor_layout,null);
                         Button closeBtn = dialogView.findViewById(R.id.editor_close_btn);
                         EditText content = dialogView.findViewById(R.id.editor_content);
-                        content.setText(data.getQ().trim());
+                        content.setText(data.getQ().trim().replaceAll(","," ,\n"));
                         CardView cardView = dialogView.findViewById(R.id.editor_card);
                         changeBackground(viewHolder.itemView.getContext(),cardView);
                         builder.setView(dialogView);
