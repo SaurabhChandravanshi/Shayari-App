@@ -81,7 +81,7 @@ public class ShayariAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         } else {
             Shayari data = (Shayari)dataList.get(position);
             MyViewHolder viewHolder = (MyViewHolder)holder;
-            viewHolder.shayariTtv.setText(data.getQ().replaceAll(","," ,\n").trim());
+            viewHolder.shayariTtv.setText(data.getQ());
             Shader shader = new LinearGradient(0f, 0f, 0f, viewHolder.shayariTtv.getTextSize(),
                     Color.RED, Color.BLUE, Shader.TileMode.CLAMP);
             viewHolder.shayariTtv.getPaint().setShader(shader);
@@ -126,7 +126,7 @@ public class ShayariAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         View dialogView = inflater.inflate(R.layout.dialog_editor_layout,null);
                         Button closeBtn = dialogView.findViewById(R.id.editor_close_btn);
                         EditText content = dialogView.findViewById(R.id.editor_content);
-                        content.setText(data.getQ().trim().replaceAll(","," ,\n"));
+                        content.setText(data.getQ());
                         CardView cardView = dialogView.findViewById(R.id.editor_card);
                         changeBackground(viewHolder.itemView.getContext(),cardView);
                         builder.setView(dialogView);
@@ -142,7 +142,8 @@ public class ShayariAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                             @Override
                             public void onClick(View view) {
                                 content.setCursorVisible(false);
-                                saveAndShareImage(viewHolder.itemView.getContext(),viewToBitmap(cardView));
+                                saveImageToCache(viewHolder.itemView.getContext(),viewToBitmap(cardView));
+                                shareImage(viewHolder.itemView.getContext());
                             }
                         });
                         Button bgBtn = dialogView.findViewById(R.id.editor_bg_btn);
@@ -204,23 +205,19 @@ public class ShayariAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         view.draw(canvas);
         return bitmap;
     }
-    private void saveAndShareImage(Context context,Bitmap bitmap) {
+    private void saveImageToCache(Context context,Bitmap bitmap) {
         try {
             File cacheFile = new File(context.getCacheDir(),"images");
             cacheFile.mkdir();
             FileOutputStream output = new FileOutputStream(cacheFile+"/image.png");
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, output);
             output.close();
-
-            // Share Image
-           shareImage(context);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
     private void shareImage(Context context) {
         File imagePath = new File(context.getCacheDir(), "images");
         File newFile = new File(imagePath, "image.png");
@@ -232,9 +229,12 @@ public class ShayariAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); // temp permission for receiving app to read this file
             shareIntent.setDataAndType(contentUri, context.getContentResolver().getType(contentUri));
             shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
+            shareIntent.putExtra(Intent.EXTRA_TEXT,"Download Shayari Book app for more\nhttps://shayariapp.page.link/install");
             context.startActivity(Intent.createChooser(shareIntent, "Choose an app"));
         }
     }
+
+
     private void changeBackground(Context context,CardView view) {
         if(CURRENT_BACKGROUND == MAX_COLOR) {
             CURRENT_BACKGROUND = 1;

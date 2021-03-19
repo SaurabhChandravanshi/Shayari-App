@@ -17,7 +17,9 @@ import com.bumptech.glide.Glide;
 
 public class PoetFragment extends Fragment {
     private ImageView gulzarImage,ghalibImage,rahatIndoriImage,kumarVishwasImage,faizAhmadFaizImage,bashirBadrImage,anamikaJainImage;
-    private CardView gulzar,ghalib,rahatIndori,kumarVishwas,faizAhmadFaiz,bashirBadr,anamikaJain;
+    private ImageView mirTaqiMirImage,bakshNasikhImage,allamaIqbalImage;
+    private ImageView akbarAllahabadiImage,parveenShakirImage;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,70 +31,6 @@ public class PoetFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         allInitialization(view);
         loadPoetImages();
-
-        gulzar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),ShayariActivity.class);
-                intent.putExtra("category","gulzar");
-                intent.putExtra("name","Gulzar");
-                startActivity(intent);
-            }
-        });
-        ghalib.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),ShayariActivity.class);
-                intent.putExtra("category","ghalib_shayari");
-                intent.putExtra("name","Ghalib");
-                startActivity(intent);
-            }
-        });
-        rahatIndori.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),ShayariActivity.class);
-                intent.putExtra("category","rahat_indori_shayari");
-                intent.putExtra("name","Rahat Indori");
-                startActivity(intent);
-            }
-        });
-        kumarVishwas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),ShayariActivity.class);
-                intent.putExtra("category","kumar_vishwas_shayari");
-                intent.putExtra("name","Kumar Vishwas");
-                startActivity(intent);
-            }
-        });
-        faizAhmadFaiz.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),ShayariActivity.class);
-                intent.putExtra("category","faiz_ahmad_faiz");
-                intent.putExtra("name","Faiz Ahmad Faiz");
-                startActivity(intent);
-            }
-        });
-        bashirBadr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),ShayariActivity.class);
-                intent.putExtra("category","bashir_badr");
-                intent.putExtra("name","Bashir Badr");
-                startActivity(intent);
-            }
-        });
-        anamikaJain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),ShayariActivity.class);
-                intent.putExtra("category","anamika_jain");
-                intent.putExtra("name","Anamika Jain");
-                startActivity(intent);
-            }
-        });
     }
 
     private void loadPoetImages() {
@@ -103,6 +41,11 @@ public class PoetFragment extends Fragment {
         Glide.with(getActivity()).load(Uri.parse("file:///android_asset/faiz-ahmad-faiz.png")).circleCrop().into(faizAhmadFaizImage);
         Glide.with(getActivity()).load(Uri.parse("file:///android_asset/bashir-badr-image.jpg")).circleCrop().into(bashirBadrImage);
         Glide.with(getActivity()).load(Uri.parse("file:///android_asset/anamika-jain.jpg")).circleCrop().into(anamikaJainImage);
+        Glide.with(getActivity()).load(Uri.parse("file:///android_asset/baksh_nasikh.jpg")).circleCrop().into(bakshNasikhImage);
+        Glide.with(getActivity()).load(Uri.parse("file:///android_asset/mir-taqi-mir.jpg")).circleCrop().into(mirTaqiMirImage);
+        Glide.with(getActivity()).load(Uri.parse("file:///android_asset/allama-iqbal.png")).circleCrop().into(allamaIqbalImage);
+        Glide.with(getActivity()).load(Uri.parse("file:///android_asset/akbar_allahabadi.jpg")).circleCrop().into(akbarAllahabadiImage);
+        Glide.with(getActivity()).load(Uri.parse("file:///android_asset/parveen_shakir.jpg")).circleCrop().into(parveenShakirImage);
     }
 
     private void allInitialization(View view) {
@@ -113,13 +56,10 @@ public class PoetFragment extends Fragment {
         faizAhmadFaizImage = view.findViewById(R.id.poet_faiz_ahmad_faiz_image);
         bashirBadrImage = view.findViewById(R.id.poet_bashir_badr_image);
         anamikaJainImage = view.findViewById(R.id.poet_anamika_jain_image);
-
-        gulzar = view.findViewById(R.id.poet_gulzar);
-        ghalib = view.findViewById(R.id.poet_ghalib);
-        rahatIndori = view.findViewById(R.id.poet_rahat_indori);
-        kumarVishwas = view.findViewById(R.id.poet_kumar_vishwas);
-        faizAhmadFaiz = view.findViewById(R.id.poet_faiz_ahmad_faiz);
-        bashirBadr = view.findViewById(R.id.poet_bashir_badr);
-        anamikaJain = view.findViewById(R.id.poet_anamika_jain);
+        bakshNasikhImage = view.findViewById(R.id.poet_baksh_nasikh_image);
+        mirTaqiMirImage = view.findViewById(R.id.poet_mir_taqi_mir_image);
+        allamaIqbalImage = view.findViewById(R.id.poet_allama_iqbal_image);
+        akbarAllahabadiImage = view.findViewById(R.id.poet_akbar_allahabadi_image);
+        parveenShakirImage = view.findViewById(R.id.poet_parveen_shakir_image);
     }
 }

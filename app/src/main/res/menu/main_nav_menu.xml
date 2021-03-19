@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/main_nav_share"
+        android:title="@string/share_app"
+        android:icon="@drawable/ic_share_24"/>
+    <item
+        android:id="@+id/main_nav_help"
+        android:title="@string/help_centre"
+        android:icon="@drawable/ic_baseline_help_outline_24"/>
+    <item
+        android:id="@+id/main_nav_app_lang"
+        android:title="@string/app_lang"
+        android:icon="@drawable/ic_baseline_language_24"/>
+    <item android:title="@string/support_us">
+        <menu>
+            <item
+                android:id="@+id/main_nav_rate"
+                android:title="@string/rate_app" />
+            <item
+                android:id="@+id/main_nav_more_apps"
+                android:title="@string/more_app" />
+        </menu>
+    </item>
+    <item android:title="@string/developer">
+        <menu>
+            <item
+                android:id="@+id/main_nav_fb"
+                android:title="@string/follow_fb" />
+            <item
+                android:id="@+id/main_nav_ig"
+                android:title="@string/follow_ig" />
+            <item
+                android:id="@+id/main_nav_twitter"
+                android:title="@string/follow_ttr" />
+        </menu>
+    </item>
+
+</menu>

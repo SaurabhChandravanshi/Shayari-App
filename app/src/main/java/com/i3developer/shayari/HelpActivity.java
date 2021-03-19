@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import im.crisp.sdk.Crisp;
@@ -28,15 +29,9 @@ public class HelpActivity extends AppCompatActivity {
         //Change the Title of Action Bar
         TextView appBarTitle = getSupportActionBar().getCustomView()
                 .findViewById(R.id.app_bar_title);
-        TextView appBarLeft = getSupportActionBar().getCustomView()
+        ImageView appBarLeft = getSupportActionBar().getCustomView()
                 .findViewById(R.id.app_bar_left);
-        TextView appBarRight = getSupportActionBar().getCustomView()
-                .findViewById(R.id.app_bar_right);
-        appBarTitle.setText("सहायता केंद्र");
-        appBarLeft.setText("Back");
-        appBarLeft.setTextColor(getResources().getColor(R.color.colorRed));
-        appBarRight.setText("");
-        appBarRight.setTextColor(getResources().getColor(R.color.color6));
+        appBarTitle.setText(R.string.help_centre);
         appBarLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

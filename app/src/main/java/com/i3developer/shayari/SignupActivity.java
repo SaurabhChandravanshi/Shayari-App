@@ -78,8 +78,6 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        // To Display custom Action Bar
-        setUpAppBar();
         allInitializations(); // All Initialization should be placed inside this method
         loadInterstitialAd();
 
@@ -220,26 +218,6 @@ public class SignupActivity extends AppCompatActivity {
         }
     }
 
-    private void setUpAppBar() {
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setDisplayShowCustomEnabled(true);
-        getSupportActionBar().setCustomView(R.layout.app_bar_layout);
-        //Change the Title of Action Bar
-        TextView appBarTitle = getSupportActionBar().getCustomView()
-                .findViewById(R.id.app_bar_title);
-        TextView appBarLeft = getSupportActionBar().getCustomView()
-                .findViewById(R.id.app_bar_left);
-        TextView appBarRight = getSupportActionBar().getCustomView()
-                .findViewById(R.id.app_bar_right);
-        appBarTitle.setText("साइन इन");
-        appBarLeft.setText("BACK");
-        appBarLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-    }
 
     private void allInitializations() {
         textViewTimer = findViewById(R.id.signup_textView_timer);//textView for countdown and resend otp

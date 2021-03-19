@@ -23,7 +23,7 @@
             android:layout_margin="30dp"
             android:textAlignment="center"
             android:textColor="@android:color/white"
-            android:fontFamily="@font/sen_bold"
+            android:fontFamily="@font/palanquin_dark_regular"
             android:maxLines="15"
             android:inputType="textMultiLine"
             android:lineSpacingExtra="6dp"
@@ -49,8 +49,8 @@
         android:clickable="true"
         android:drawableTop="@drawable/ic_baseline_close_24"
         android:background="@android:color/transparent"
-        android:text="CLOSE"
-        android:fontFamily="@font/sen_bold"
+        android:text="Close"
+        android:fontFamily="@font/sans_regular"
         android:textSize="10sp"
         android:focusable="true" />
     <Button
@@ -60,8 +60,8 @@
         android:layout_weight="1"
         android:drawableTop="@drawable/ic_color_palette_black_24"
         android:background="@android:color/transparent"
-        android:text="BACKGROUND"
-        android:fontFamily="@font/sen_bold"
+        android:text="Background"
+        android:fontFamily="@font/sans_regular"
         android:textSize="10sp"/>
     <Button
         android:id="@+id/editor_share_btn"
@@ -70,8 +70,8 @@
         android:layout_weight="1"
         android:drawableTop="@drawable/ic_share_24"
         android:background="@android:color/transparent"
-        android:text="SHARE"
-        android:fontFamily="@font/sen_bold"
+        android:text="Share"
+        android:fontFamily="@font/sans_regular"
         android:textSize="10sp"/>
 </LinearLayout>
 </LinearLayout>

@@ -16,20 +16,9 @@
     </style>
 
     <style name="CustomAlertTheme" parent="android:Theme.Holo.Light.Dialog.NoActionBar">
-        <item name="android:fontFamily">@font/sen_bold</item>
+        <item name="android:fontFamily">@font/sans_regular</item>
     </style>
 
     <!-- Style For BottomNavigation View -->
-    <style name="Widget.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
-        <item name="android:fontFamily">@font/sen_bold</item>
-        <item name="itemTextAppearanceActive">@style/Active</item>
-        <item name="itemTextAppearanceInactive">@style/Inactive</item>
-    </style>
-    <style name="Inactive">
-        <item name="android:textSize">12sp</item>
-    </style>
-    <style name="Active">
-        <item name="android:textSize">12sp</item>
-    </style>
 
 </resources>

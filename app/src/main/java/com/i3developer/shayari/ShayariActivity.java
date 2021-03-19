@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,37 +51,8 @@ public class ShayariActivity extends AppCompatActivity {
         loadInterstitialAd();
         getShayariFromFirebase();
 
-        // To Display custom Action Bar
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setDisplayShowCustomEnabled(true);
-        getSupportActionBar().setCustomView(R.layout.app_bar_layout);
-        //Change the Title of Action Bar
-        TextView appBarTitle = getSupportActionBar().getCustomView()
-                .findViewById(R.id.app_bar_title);
-        TextView appBarLeft = getSupportActionBar().getCustomView()
-                .findViewById(R.id.app_bar_left);
-        TextView appBarRight = getSupportActionBar().getCustomView()
-                .findViewById(R.id.app_bar_right);
-        appBarTitle.setText(NAME);
-        appBarLeft.setText("Back");
-        appBarRight.setText("Share");
-        appBarLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-        appBarRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_SUBJECT,"Download Shayari Book App");
-                intent.putExtra(Intent.EXTRA_TEXT,"Download Shayari Book App\n"+
-                        "https://play.google.com/store/apps/details?id=com.i3developer.shayari");
-                startActivity(intent);
-            }
-        });
+       TextView appBarTitle = findViewById(R.id.shayari_app_bar_title);
+       appBarTitle.setText(NAME);
     }
 
     @Override
@@ -89,6 +61,9 @@ public class ShayariActivity extends AppCompatActivity {
             mInterstitialAd.show(ShayariActivity.this);
         }
         super.onBackPressed();
+    }
+    public void back(View view) {
+        finish();
     }
     private void loadInterstitialAd() {
         AdRequest adRequest = new AdRequest.Builder().build();

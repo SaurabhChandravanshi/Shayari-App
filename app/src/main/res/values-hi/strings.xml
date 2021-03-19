@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name_nav">शायरी बुक</string>
+    <string name="shayari_coll">शायरी संग्रह</string>
+    <string name="invite_friends">दोस्तों के साथ साझा करें</string>
+    <string name="famous_poet">प्रसिद्ध कवि और शायर</string>
+    <string name="app_lang">ऐप भाषा</string>
+    <string name="lang_continue">हिंदी भाषा में जारी रखें</string>
+    <string name="poet_coll">कवि संग्रह</string>
+    <string name="shayari_image">शायरी इमेज</string>
+    <string name="dl_app">शायरी बुक का उपयोग करके भेजा गया, शायरी बुक ऐप डाउनलोड करें https://shayariapp.page.link/install</string>
+
+
+    <!-- Navigation View Texts -->
+    <string name="share_app">ऐप शेयर करें</string>
+    <string name="help_centre">सहायता केंद्र</string>
+    <string name="rate_app">प्ले स्टोर पर रेटिंग दे</string>
+    <string name="more_app">अन्य ऐप्स आज़माएं</string>
+    <string name="developer">डेवलपर</string>
+    <string name="follow_fb">फ़ेसबुक पर फ़ॉलो करें</string>
+    <string name="follow_ig">इंस्टाग्राम पर फॉलो करें</string>
+    <string name="follow_ttr">ट्विटर पर फॉलो करें</string>
+    <string name="support_us">हमें सहयोग दीजिये</string>
+
+    <!-- Strings for Poet -->
+    <string name="gulzar">गुलज़ार</string>
+    <string name="gulzar_tag">gulzar,गुलज़ार हिंदी शायरी</string>
+    <string name="ghalib">मिर्ज़ा ग़ालिब</string>
+    <string name="ghalib_tag">ghalib_shayari,मिर्ज़ा ग़ालिब हिंदी शायरी</string>
+    <string name="indori">राहत इंदौरी</string>
+    <string name="indori_tag">rahat_indori,राहत इंदौरी हिंदी शायरी</string>
+    <string name="kumar">कुमार विश्वास</string>
+    <string name="kumar_tag">kumar_vishwas_shayari,कुमार विश्वास हिंदी शायरी</string>
+    <string name="faiz_ahmad">फैज अहमद फैज</string>
+    <string name="faiz_ahmad_tag">faiz_ahmad_faiz,फैज अहमद फैज हिंदी शायरी</string>
+    <string name="bashir">बशीर बद्र</string>
+    <string name="bashir_tag">bashir_badr,बशीर बद्र हिंदी शायरी</string>
+    <string name="anamika">अनामिका जैन</string>
+    <string name="anamika_tag">anamika_jain,अनामिका जैन हिंदी शायरी</string>
+    <string name="baksh">बक्श नासिख</string>
+    <string name="baksh_tag">baksh_nasikh,बक्श नासिख हिंदी शायरी</string>
+    <string name="mir_taqi">मीर तकी मिर</string>
+    <string name="mir_taqi_tag">mir_taqi_mir,मीर तकी मिर हिंदी शायरी</string>
+    <string name="iqbal">अल्लामा इकबाल</string>
+    <string name="iqbal_tag">allama_iqbal,अल्लामा इकबाल हिंदी शायरी</string>
+    <string name="allahabadi">अकबर इलाहाबादी</string>
+    <string name="allahabadi_tag">akbar_allahabadi,अकबर इलाहाबादी हिंदी शायरी</string>
+    <string name="parveen">परवीन शकीर</string>
+    <string name="parveen_tag">parveen_shakir,परवीन शकीर हिंदी शायरी</string>
+
+    <!-- Strings for Categories -->
+    <string name="popular_cat">लोकप्रिय कैटेगरी</string>
+    <string name="two_line_shayari">दो लाइन शायरी</string>
+    <string name="love_shayari">लव शायरी</string>
+    <string name="sad_shayari">सैड शायरी</string>
+    <string name="bewafa_shayari">बेवफा शायरी</string>
+    <string name="friendship_shayari">दोस्ती शायरी</string>
+    <string name="motivational_shayari">प्रेरक शायरी</string>
+    <string name="attitude_shayari">रवैया शायरी</string>
+    <string name="romantic_shayari">रोमांटिक शायरी</string>
+    <string name="boy_att_shayari">लड़कों का रवैया शायरी</string>
+    <string name="funny_shayari">मजेदार शायरी</string>
+    <string name="sher_o_shayari">शेर-ओ-शायरी</string>
+    <string name="alfaaz_shayari">अलफ़ाज़ शायरी</string>
+    <string name="good_morning_shayari">शुभ प्रभात शायरी</string>
+    <string name="good_night_shayari">शुभ रात्रि शायरी</string>
+
+    <string name="two_line_shayari_tag">two_line_shayari,दो लाइन शायरी</string>
+    <string name="love_shayari_tag">love_shayari,लव शायरी</string>
+    <string name="sad_shayari_tag">sad_shayari,सैड शायरी</string>
+    <string name="bewafa_shayari_tag">bewafa_shayari,बेवफा शायरी</string>
+    <string name="friendship_shayari_tag">friendship_shayari,दोस्ती शायरी</string>
+    <string name="motivational_shayari_tag">motivational_shayari,प्रेरक शायरी</string>
+    <string name="attitude_shayari_tag">attitude_shayari,रवैया शायरी</string>
+    <string name="romantic_shayari_tag">romantic_shayari,रोमांटिक शायरी</string>
+    <string name="boy_att_shayari_tag">boys_attitude_shayari,लड़कों का रवैया शायरी</string>
+    <string name="sher_o_shayari_tag">sher_o_shayari,शेर-ओ-शायरी</string>
+    <string name="funny_shayari_tag">funny_shayari,मजेदार शायरी</string>
+    <string name="alfaaz_shayari_tag">alfaaz_shayari,अलफ़ाज़ शायरी</string>
+    <string name="good_morning_shayari_tag">good_morning_shayari,शुभ प्रभात शायरी</string>
+    <string name="good_night_shayari_tag">good_night_shayari,शुभ रात्रि शायरी</string>
+
+    <!-- String for Wishes Category-->
+    <string name="wishes_cat">शुभकामनाएँ श्रेणियाँ</string>
+    <string name="birthday_wishes">जन्मदिन की शुभकामनाएं</string>
+    <string name="holi_wishes">होली की शुभकामनाएं</string>
+
+    <string name="birthday_wishes_tag">birthday_wishes,जन्मदिन की शुभकामनाएं</string>
+    <string name="holi_wishes_tag">holi_wishes,होली की शुभकामनाएं</string>
+</resources>

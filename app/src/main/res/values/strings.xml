@@ -1,22 +1,105 @@
 <resources>
-    <string name="app_name">Shayari Book</string>
-    <string name="channel_name">Shayari Book Notification</string>
-    <string name="channel_description">Shayari Book Local Notification</string>
-    <string name="default_notification_channel_id">NOTIFICATION_CHANNEL_SHAYARI_APP</string>
-    <string name="post_list_recycler_banner">ca-app-pub-9546107720770258/4266966739</string>
+    <string name="app_name" translatable="false">Shayari Book</string>
+    <string name="app_name_nav">Shayari Book</string>
+    <string name="channel_name" translatable="false">Shayari Book Notification</string>
+    <string name="channel_description" translatable="false">Shayari Book Local Notification</string>
+    <string name="default_notification_channel_id" translatable="false">NOTIFICATION_CHANNEL_SHAYARI_APP</string>
+    <string name="shayari_image">Shayari Image</string>
+    <string name="dl_app">Sent using Shayari Book app Download the app https://shayariapp.page.link/install</string>
 
 
-    <string name="shayari_recycler_banner">ca-app-pub-9546107720770258/6537906851</string>
-    <string name="menu_banner_ad1">ca-app-pub-9546107720770258/5416396875</string>
-    <string name="menu_banner_ad2">ca-app-pub-9546107720770258/3911743513</string>
-    <string name="menu_banner_ad3">ca-app-pub-9546107720770258/2407090157</string>
-    <string name="home_banner_ad1">ca-app-pub-9546107720770258/9002619795</string>
-    <string name="home_banner_ad2">ca-app-pub-9546107720770258/9902436791</string>
-    <string name="home_banner_ad3">ca-app-pub-9546107720770258/7276273454</string>
-    <string name="home_banner_ad4">ca-app-pub-9546107720770258/2271999412</string>
+    <string name="shayari_recycler_banner" translatable="false">ca-app-pub-9546107720770258/6537906851</string>
+    <string name="home_banner_ad1" translatable="false">ca-app-pub-9546107720770258/9002619795</string>
+    <string name="home_banner_ad2" translatable="false">ca-app-pub-9546107720770258/9902436791</string>
+    <string name="home_banner_ad3" translatable="false">ca-app-pub-9546107720770258/7276273454</string>
+    <string name="home_banner_ad4" translatable="false">ca-app-pub-9546107720770258/2271999412</string>
 
-    <string name="signup_interstitial_ad">ca-app-pub-9546107720770258/7084701764</string>
-    <string name="create_post_interstitial_ad">ca-app-pub-9546107720770258/7980455812</string>
-    <string name="shayari_interstitial_ad">ca-app-pub-9546107720770258/7084701764</string>
-    <string name="view_post_interstitial_ad">ca-app-pub-9546107720770258/4266966739</string>
+    <string name="signup_interstitial_ad" translatable="false">ca-app-pub-9546107720770258/7084701764</string>
+    <string name="shayari_interstitial_ad" translatable="false">ca-app-pub-9546107720770258/5580048406</string>
+
+    <string name="shayari_coll">Shayari Collection</string>
+    <string name="invite_friends">Invite Friends</string>
+    <string name="famous_poet">Famous Poets</string>
+    <string name="app_lang">App Language</string>
+    <string name="lang_continue">Continue in English Language</string>
+    <string name="poet_coll">Poet Collection</string>
+
+
+    <!-- Navigation View Texts -->
+    <string name="share_app">Share App</string>
+    <string name="help_centre">Help Centre</string>
+    <string name="rate_app">Rate on Play Store</string>
+    <string name="more_app">Try more apps</string>
+    <string name="developer">Developer</string>
+    <string name="follow_fb">Follow on Facebook</string>
+    <string name="follow_ig">Follow on Instagram</string>
+    <string name="follow_ttr">Follow on Twitter</string>
+    <string name="support_us">Support us</string>
+
+    <!-- Strings for Poet -->
+    <string name="gulzar">Gulzar Shayari</string>
+    <string name="gulzar_tag">gulzar,Gulzar Shayari in Hindi</string>
+    <string name="ghalib">Ghalib</string>
+    <string name="ghalib_tag">ghalib_shayari,Ghalib Shayari in Hindi</string>
+    <string name="indori">Rahat Indori</string>
+    <string name="indori_tag">rahat_indori,Rahat Indori Shayari in Hindi</string>
+    <string name="kumar">Kumar Vishwas Shayari</string>
+    <string name="kumar_tag">kumar_vishwas_shayari,Kumar Vishwas Shayari in Hindi</string>
+    <string name="faiz_ahmad">Faiz Ahmad Faiz</string>
+    <string name="faiz_ahmad_tag">faiz_ahmad_faiz,Faiz Ahmad Faiz Shayari in Hindi</string>
+    <string name="bashir">Bashir Badr</string>
+    <string name="bashir_tag">bashir_badr,Bashir Badr Shayari in Hindi</string>
+    <string name="anamika">Anamika Jain</string>
+    <string name="anamika_tag">anamika_jain,Anamika Jain</string>
+    <string name="baksh">Baksh Nasikh</string>
+    <string name="baksh_tag">baksh_nasikh,Baksh Nasikh</string>
+    <string name="mir_taqi">Mir Taqi Mi</string>
+    <string name="mir_taqi_tag">mir_taqi_mir,Mir Taqi Mir Shayari in Hindi</string>
+    <string name="iqbal">Allama Iqbal</string>
+    <string name="iqbal_tag">allama_iqbal,Allama Iqbal Shayari in Hindi</string>
+    <string name="allahabadi">Akbar Allahabadi</string>
+    <string name="allahabadi_tag">akbar_allahabadi,Akbar Allabadi Shayari in Hindi</string>
+    <string name="parveen">Parveen Shakir</string>
+    <string name="parveen_tag">parveen_shakir,Parveen Shakir Shayari in Hindi</string>
+
+
+    <!-- Strings for Categories -->
+    <string name="popular_cat">Popular Categories</string>
+    <string name="two_line_shayari">Two Line Shayari</string>
+    <string name="love_shayari">Love Shayari</string>
+    <string name="sad_shayari">Sad Shayari</string>
+    <string name="bewafa_shayari">Bewafa Shayari</string>
+    <string name="friendship_shayari">Friendship Shayari</string>
+    <string name="motivational_shayari">Motivational Shayari</string>
+    <string name="attitude_shayari">Attitude Shayari</string>
+    <string name="romantic_shayari">Romantic Shayari</string>
+    <string name="boy_att_shayari">Boy\'s Attitude Shayari</string>
+    <string name="funny_shayari">Funny Shayari</string>
+    <string name="sher_o_shayari">Sher-o-Shayari</string>
+    <string name="alfaaz_shayari">Alfaaz Shayari</string>
+    <string name="good_morning_shayari">Good Morning Shayari</string>
+    <string name="good_night_shayari">Good Night Shayari</string>
+
+    <string name="two_line_shayari_tag">two_line_shayari,Two Line Shayari in Hindi</string>
+    <string name="love_shayari_tag">love_shayari,Love Shayari in Hindi</string>
+    <string name="sad_shayari_tag">sad_shayari,Sad Shayari in Hindi</string>
+    <string name="bewafa_shayari_tag">bewafa_shayari,Bewafa Shayari in Hindi</string>
+    <string name="friendship_shayari_tag">friendship_shayari,Friendship Shayari in Hindi</string>
+    <string name="motivational_shayari_tag">motivational_shayari,Motivational Shayari in Hindi</string>
+    <string name="attitude_shayari_tag">attitude_shayari,Attitude Shayari in Hindi</string>
+    <string name="romantic_shayari_tag">romantic_shayari,Romantic Shayari in Hindi</string>
+    <string name="boy_att_shayari_tag">boys_attitude_shayari,Boy\'s Attitude Shayari in Hindi</string>
+    <string name="sher_o_shayari_tag">sher_o_shayari,Sher-o-Shayari in Hindi</string>
+    <string name="funny_shayari_tag">funny_shayari,Funny Shayari in Hindi</string>
+    <string name="alfaaz_shayari_tag">alfaaz_shayari,Alfaaz Shayari in Hindi</string>
+    <string name="good_morning_shayari_tag">good_morning_shayari,Good Morning Shayari in Hindi</string>
+    <string name="good_night_shayari_tag">good_night_shayari,Good Night Shayari in Hindi</string>
+
+    <!-- String for Wishes Category-->
+    <string name="wishes_cat">Best Wishes Categories</string>
+    <string name="birthday_wishes">Birthday Wishes</string>
+    <string name="holi_wishes">Holi Wishes</string>
+
+    <string name="birthday_wishes_tag">birthday_wishes,Birthday Wishes in Hindi</string>
+    <string name="holi_wishes_tag">holi_wishes,Holi Wishes in Hindi</string>
 </resources>

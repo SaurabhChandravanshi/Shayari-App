@@ -5,46 +5,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CategoryActivity">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:weightSum="2">
             <androidx.cardview.widget.CardView
                 android:id="@+id/category_attitude"
                 android:layout_width="0dp"
                 app:cardUseCompatPadding="true"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:tag="@string/attitude_shayari_tag"
+                android:onClick="showShayari"
+                app:cardCornerRadius="10dp"
+                android:layout_marginRight="-2dp"
+                android:layout_marginEnd="-2dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"
                         android:background="@drawable/ic_attitude_60dp"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorRed"
-                        android:fontFamily="@font/sen_bold"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
                         android:textAlignment="center"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Attitude Shayari"
+                        android:text="@string/attitude_shayari"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -54,30 +66,39 @@
                 android:layout_width="0dp"
                 app:cardUseCompatPadding="true"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:tag="@string/love_shayari_tag"
+                android:onClick="showShayari"
+                app:cardCornerRadius="10dp"
+                android:layout_marginLeft="-2dp"
+                android:layout_marginStart="-2dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"
                         android:background="@drawable/ic_love_shayari_60"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorRed"
-                        android:fontFamily="@font/sen_bold"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
                         android:textAlignment="center"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Love Shayari"
+                        android:text="@string/love_shayari"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -87,36 +108,48 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="-8dp"
             android:weightSum="2">
             <androidx.cardview.widget.CardView
                 android:id="@+id/category_motivational"
                 android:layout_width="0dp"
                 app:cardUseCompatPadding="true"
                 android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:tag="@string/motivational_shayari_tag"
+                android:onClick="showShayari"
+                app:cardCornerRadius="10dp"
+                android:layout_marginRight="-2dp"
+                android:layout_marginEnd="-2dp"
                 android:layout_weight="1">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"
                         android:background="@drawable/ic_motivational_60"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorRed"
-                        android:fontFamily="@font/sen_bold"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
                         android:textAlignment="center"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Motivational Shayari"
+                        android:text="@string/motivational_shayari"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -125,30 +158,39 @@
                 android:layout_width="0dp"
                 app:cardUseCompatPadding="true"
                 android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:tag="@string/friendship_shayari_tag"
+                android:onClick="showShayari"
+                app:cardCornerRadius="10dp"
+                android:layout_marginLeft="-2dp"
+                android:layout_marginStart="-2dp"
                 android:layout_weight="1">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"
                         android:background="@drawable/ic_friendship_60"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorRed"
-                        android:fontFamily="@font/sen_bold"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
                         android:textAlignment="center"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Friendship Shayari"
+                        android:text="@string/friendship_shayari"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -158,36 +200,48 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="-8dp"
             android:weightSum="2">
             <androidx.cardview.widget.CardView
                 android:id="@+id/category_sad"
                 android:layout_width="0dp"
                 app:cardUseCompatPadding="true"
                 android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:onClick="showShayari"
+                android:tag="@string/sad_shayari_tag"
+                app:cardCornerRadius="10dp"
+                android:layout_marginRight="-2dp"
+                android:layout_marginEnd="-2dp"
                 android:layout_weight="1">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"
                         android:background="@drawable/ic_sad_60"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorRed"
-                        android:fontFamily="@font/sen_bold"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
                         android:textAlignment="center"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Sad Shayari"
+                        android:text="@string/sad_shayari"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -196,30 +250,39 @@
                 android:layout_width="0dp"
                 app:cardUseCompatPadding="true"
                 android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:tag="@string/funny_shayari_tag"
+                android:onClick="showShayari"
+                app:cardCornerRadius="10dp"
+                android:layout_marginLeft="-2dp"
+                android:layout_marginStart="-2dp"
                 android:layout_weight="1">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"
                         android:background="@drawable/ic_laughing_60"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorRed"
-                        android:fontFamily="@font/sen_bold"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
                         android:textAlignment="center"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Funny Shayari"
+                        android:text="@string/funny_shayari"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -229,36 +292,48 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="-8dp"
+            android:layout_marginEnd="10dp"
             android:weightSum="2">
             <androidx.cardview.widget.CardView
-                android:id="@+id/category_birthday_wishes"
+                android:id="@+id/category_romantic_shayari"
                 android:layout_width="0dp"
                 app:cardUseCompatPadding="true"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:tag="@string/romantic_shayari_tag"
+                android:onClick="showShayari"
+                app:cardCornerRadius="10dp"
+                android:layout_marginRight="-2dp"
+                android:layout_marginEnd="-2dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"
-                        android:background="@drawable/ic_birthday_cake_60"/>
+                        android:background="@drawable/ic_hearts_arrow_60"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorRed"
-                        android:fontFamily="@font/sen_bold"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
                         android:textAlignment="center"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Birthday Wishes"
+                        android:text="@string/romantic_shayari"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -267,30 +342,39 @@
                 android:layout_width="0dp"
                 app:cardUseCompatPadding="true"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:tag="@string/two_line_shayari_tag"
+                android:onClick="showShayari"
+                app:cardCornerRadius="10dp"
+                android:layout_marginStart="-2dp"
+                android:layout_marginLeft="-2dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"
                         android:background="@drawable/ic_quotation_60"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorRed"
-                        android:fontFamily="@font/sen_bold"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
                         android:textAlignment="center"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="2 Line Shayari"
+                        android:text="@string/two_line_shayari"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -300,36 +384,48 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="-8dp"
+            android:layout_marginEnd="10dp"
             android:weightSum="2">
             <androidx.cardview.widget.CardView
                 android:id="@+id/category_boys_attitude"
                 android:layout_width="0dp"
                 app:cardUseCompatPadding="true"
                 android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:tag="@string/boy_att_shayari_tag"
+                android:onClick="showShayari"
+                app:cardCornerRadius="10dp"
+                android:layout_marginRight="-2dp"
+                android:layout_marginEnd="-2dp"
                 android:layout_weight="1">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"
                         android:background="@drawable/ic_boys_attitude_60"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorRed"
-                        android:fontFamily="@font/sen_bold"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
                         android:textAlignment="center"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Boys' Attitude Shayari"
+                        android:text="@string/boy_att_shayari"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -339,30 +435,39 @@
                 android:layout_width="0dp"
                 app:cardUseCompatPadding="true"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:tag="@string/good_morning_shayari_tag"
+                android:onClick="showShayari"
+                app:cardCornerRadius="10dp"
+                android:layout_marginStart="-2dp"
+                android:layout_marginLeft="-2dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"
                         android:background="@drawable/ic_morning_60"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorRed"
-                        android:fontFamily="@font/sen_bold"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
                         android:textAlignment="center"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Good Morning Shayari"
+                        android:text="@string/good_morning_shayari"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -372,36 +477,48 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="-8dp"
+            android:layout_marginEnd="10dp"
             android:weightSum="2">
             <androidx.cardview.widget.CardView
                 android:id="@+id/category_good_night"
                 android:layout_width="0dp"
                 app:cardUseCompatPadding="true"
                 android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:tag="@string/good_night_shayari_tag"
+                app:cardCornerRadius="10dp"
+                android:onClick="showShayari"
+                android:layout_marginRight="-2dp"
+                android:layout_marginEnd="-2dp"
                 android:layout_weight="1">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"
                         android:background="@drawable/ic_sleeping_60"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorRed"
-                        android:fontFamily="@font/sen_bold"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
                         android:textAlignment="center"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Good Night Shayari"
+                        android:text="@string/good_night_shayari"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -411,30 +528,39 @@
                 android:layout_width="0dp"
                 app:cardUseCompatPadding="true"
                 android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:tag="@string/sher_o_shayari_tag"
+                android:onClick="showShayari"
+                app:cardCornerRadius="10dp"
+                android:layout_marginLeft="-2dp"
+                android:layout_marginStart="-2dp"
                 android:layout_weight="1">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"
                         android:background="@drawable/ic_sher_o_shayari_60"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorRed"
-                        android:fontFamily="@font/sen_bold"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
                         android:textAlignment="center"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Sher-o-Shayari"
+                        android:text="@string/sher_o_shayari"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -443,36 +569,48 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="-8dp"
+            android:layout_marginEnd="10dp"
             android:weightSum="2">
             <androidx.cardview.widget.CardView
                 android:id="@+id/category_bewafa_shayari"
                 android:layout_width="0dp"
                 app:cardUseCompatPadding="true"
                 android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:onClick="showShayari"
+                android:tag="@string/bewafa_shayari_tag"
+                app:cardCornerRadius="10dp"
+                android:layout_marginRight="-2dp"
+                android:layout_marginEnd="-2dp"
                 android:layout_weight="1">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"
                         android:background="@drawable/ic_broken_heart_60"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorRed"
-                        android:fontFamily="@font/sen_bold"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
                         android:textAlignment="center"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Bewafa Shayari"
+                        android:text="@string/bewafa_shayari"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -481,30 +619,39 @@
                 android:layout_width="0dp"
                 app:cardUseCompatPadding="true"
                 android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:onClick="showShayari"
+                android:tag="@string/alfaaz_shayari_tag"
+                app:cardCornerRadius="10dp"
+                android:layout_marginLeft="-2dp"
+                android:layout_marginStart="-2dp"
                 android:layout_weight="1">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"
                         android:background="@drawable/ic_kumar_vishwas_shayari_60"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorRed"
-                        android:fontFamily="@font/sen_bold"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
                         android:textAlignment="center"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Alfaaz Shayari"
+                        android:text="@string/alfaaz_shayari"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

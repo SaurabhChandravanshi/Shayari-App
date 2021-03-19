@@ -18,7 +18,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeFragment extends Fragment {
-    private CardView categoryCard,addNewCard;
+    private CardView categoryCard;
     private CardView gmShayariCard,gnShayariCard;
     private FirebaseAuth mAuth;
     private AdView adView1,adView2,adView3,adView4;
@@ -34,6 +34,7 @@ public class HomeFragment extends Fragment {
         allInitializations(view);
         loadPoetFragment();
         loadPopularCatFragment();
+        loadWishesCatFragment();
         loadBannerAds();
 
         categoryCard.setOnClickListener(new View.OnClickListener() {
@@ -42,22 +43,12 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent(getActivity(),CategoryActivity.class));
             }
         });
-        addNewCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(mAuth.getCurrentUser() == null) {
-                    startActivity(new Intent(getActivity(),SignupActivity.class));
-                } else {
-                    startActivity(new Intent(getActivity(),CreatePostActivity.class));
-                }
-            }
-        });
         gmShayariCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),ShayariActivity.class);
                 intent.putExtra("category","good_morning_shayari");
-                intent.putExtra("name","Good Morning");
+                intent.putExtra("name","Good Morning Shayari in Hindi");
                 startActivity(intent);
             }
         });
@@ -66,7 +57,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),ShayariActivity.class);
                 intent.putExtra("category","good_night_shayari");
-                intent.putExtra("name","Good Night");
+                intent.putExtra("name","Good Night Shayari in Hindi");
                 startActivity(intent);
             }
         });
@@ -84,6 +75,12 @@ public class HomeFragment extends Fragment {
         assert fragmentManager != null;
         fragmentManager.beginTransaction().replace(R.id.main_popular_categories_frame,fragment).commit();
     }
+    private void loadWishesCatFragment() {
+        WishesCatFragment fragment = new WishesCatFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        assert fragmentManager != null;
+        fragmentManager.beginTransaction().replace(R.id.main_wishes_categories_frame,fragment).commit();
+    }
 
     private void loadBannerAds() {
         AdRequest adRequest1 = new AdRequest.Builder().build();
@@ -98,7 +95,6 @@ public class HomeFragment extends Fragment {
 
     private void allInitializations(View view) {
         categoryCard = view.findViewById(R.id.home_category);
-        addNewCard = view.findViewById(R.id.home_add_new_shayari);
         gmShayariCard = view.findViewById(R.id.home_gm_shayari);
         gnShayariCard = view.findViewById(R.id.home_gn_shayari);
         mAuth = FirebaseAuth.getInstance();

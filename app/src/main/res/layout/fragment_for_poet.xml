@@ -5,52 +5,72 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <TextView
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="4dp"
+        android:drawablePadding="8dp"
+        android:onClick="openPoetList"
+        android:drawableRight="@drawable/ic_baseline_arrow_forward_24"
         android:background="@android:color/transparent"
-        android:textStyle="bold"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:fontFamily="@font/sen_bold"
+        android:fontFamily="@font/sans_regular"
         android:textColor="@android:color/black"
-        android:layout_margin="10dp"
-        android:text="Famous Poets"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textAlignment="viewStart"
+        android:text="@string/famous_poet"
+        android:gravity="start" />
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="none">
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="-5dp"
+            android:layout_marginEnd="10dp">
             <androidx.cardview.widget.CardView
                 android:id="@+id/poet_gulzar"
                 android:layout_width="160dp"
                 app:cardUseCompatPadding="true"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:onClick="showShayari"
+                android:tag="@string/gulzar_tag"
+                android:layout_marginEnd="-2dp"
+                app:cardCornerRadius="10dp"
+                android:layout_marginRight="-2dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
                     <ImageView
                         android:id="@+id/poet_gulzar_image"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorRed"
-                        android:fontFamily="@font/sen_bold"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
                         android:textAlignment="center"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Gulzar"
+                        android:text="@string/gulzar"
+                        android:tag="@string/gulzar"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -59,30 +79,40 @@
                 android:layout_width="160dp"
                 app:cardUseCompatPadding="true"
                 android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:onClick="showShayari"
+                android:tag="@string/ghalib_tag"
+                android:layout_marginStart="-2dp"
+                android:layout_marginEnd="-2dp"
+                app:cardCornerRadius="10dp"
                 android:layout_weight="1">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
                     <ImageView
                         android:id="@+id/poet_ghalib_image"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorRed"
-                        android:fontFamily="@font/sen_bold"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
                         android:textAlignment="center"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Mirza Ghalib"
+                        android:text="@string/ghalib"
+                        android:tag="@string/ghalib_tag"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -91,30 +121,40 @@
                 android:layout_width="160dp"
                 app:cardUseCompatPadding="true"
                 android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:onClick="showShayari"
+                android:tag="@string/indori_tag"
+                android:layout_marginStart="-2dp"
+                android:layout_marginEnd="-2dp"
+                app:cardCornerRadius="10dp"
                 android:layout_weight="1">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
                     <ImageView
                         android:id="@+id/poet_rahat_indori_image"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorRed"
-                        android:fontFamily="@font/sen_bold"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
                         android:textAlignment="center"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Rahat Indori"
+                        android:text="@string/indori"
+                        android:tag="@string/indori_tag"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -123,30 +163,40 @@
                 android:layout_width="160dp"
                 app:cardUseCompatPadding="true"
                 android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:onClick="showShayari"
+                android:tag="@string/kumar_tag"
+                android:layout_marginStart="-2dp"
+                android:layout_marginEnd="-2dp"
+                app:cardCornerRadius="10dp"
                 android:layout_weight="1">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
                     <ImageView
                         android:id="@+id/poet_kumar_vishwas_image"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorRed"
-                        android:fontFamily="@font/sen_bold"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
                         android:textAlignment="center"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Kumar Vishwas"
+                        android:text="@string/kumar"
+                        android:tag="@string/kumar_tag"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -155,30 +205,40 @@
                 android:layout_width="160dp"
                 app:cardUseCompatPadding="true"
                 android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:onClick="showShayari"
+                android:tag="@string/faiz_ahmad_tag"
+                android:layout_marginStart="-2dp"
+                android:layout_marginEnd="-2dp"
+                app:cardCornerRadius="10dp"
                 android:layout_weight="1">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
                     <ImageView
                         android:id="@+id/poet_faiz_ahmad_faiz_image"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorRed"
-                        android:fontFamily="@font/sen_bold"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
                         android:textAlignment="center"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Faiz Ahmad Faiz"
+                        android:text="@string/faiz_ahmad"
+                        android:tag="@string/faiz_ahmad_tag"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -187,30 +247,40 @@
                 android:layout_width="160dp"
                 app:cardUseCompatPadding="true"
                 android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:onClick="showShayari"
+                android:tag="@string/bashir_tag"
+                android:layout_marginStart="-2dp"
+                android:layout_marginEnd="-2dp"
+                app:cardCornerRadius="10dp"
                 android:layout_weight="1">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
                     <ImageView
                         android:id="@+id/poet_bashir_badr_image"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorRed"
-                        android:fontFamily="@font/sen_bold"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
                         android:textAlignment="center"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Bashir Badr"
+                        android:text="@string/bashir"
+                        android:tag="@string/bashir_tag"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -219,30 +289,249 @@
                 android:layout_width="160dp"
                 app:cardUseCompatPadding="true"
                 android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:onClick="showShayari"
+                android:tag="@string/anamika_tag"
+                android:layout_marginStart="-2dp"
+                android:layout_marginEnd="-2dp"
+                app:cardCornerRadius="10dp"
                 android:layout_weight="1">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
                     <ImageView
                         android:id="@+id/poet_anamika_jain_image"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorRed"
-                        android:fontFamily="@font/sen_bold"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
                         android:textAlignment="center"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Anamika Jain"
+                        android:text="@string/anamika"
+                        android:tag="@string/anamika_tag"
+                        android:gravity="center_horizontal" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/poet_baksh_nasikh"
+                android:layout_width="160dp"
+                app:cardUseCompatPadding="true"
+                android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:onClick="showShayari"
+                android:tag="@string/baksh_tag"
+                android:layout_marginStart="-2dp"
+                android:layout_marginEnd="-2dp"
+                app:cardCornerRadius="10dp"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/poet_baksh_nasikh_image"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="6dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
+                        android:textAlignment="center"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:layout_marginTop="10dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:text="@string/baksh"
+                        android:tag="@string/baksh_tag"
+                        android:gravity="center_horizontal" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/poet_mir_taqi_mir"
+                android:layout_width="160dp"
+                app:cardUseCompatPadding="true"
+                android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:onClick="showShayari"
+                android:tag="@string/mir_taqi_tag"
+                android:layout_marginStart="-2dp"
+                android:layout_marginEnd="-2dp"
+                app:cardCornerRadius="10dp"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/poet_mir_taqi_mir_image"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="6dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
+                        android:textAlignment="center"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:layout_marginTop="10dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:text="@string/mir_taqi"
+                        android:tag="@string/mir_taqi_tag"
+                        android:gravity="center_horizontal" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/poet_allama_iqbal"
+                android:layout_width="160dp"
+                app:cardUseCompatPadding="true"
+                android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:onClick="showShayari"
+                android:tag="@string/iqbal_tag"
+                android:layout_marginStart="-2dp"
+                app:cardCornerRadius="10dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="-2dp"
+                android:layout_marginRight="-2dp"
+                android:layout_marginLeft="-2dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/poet_allama_iqbal_image"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="6dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
+                        android:textAlignment="center"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:layout_marginTop="10dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:text="@string/iqbal"
+                        android:tag="@string/iqbal_tag"
+                        android:gravity="center_horizontal" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="160dp"
+                app:cardUseCompatPadding="true"
+                android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:layout_marginStart="-2dp"
+                app:cardCornerRadius="10dp"
+                android:tag="@string/allahabadi_tag"
+                android:onClick="showShayari"
+                android:layout_weight="1"
+                android:layout_marginLeft="-2dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/poet_akbar_allahabadi_image"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="6dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
+                        android:textAlignment="center"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:layout_marginTop="10dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:text="@string/allahabadi"
+                        android:tag="@string/allahabadi_tag"
+                        android:gravity="center_horizontal" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="160dp"
+                app:cardUseCompatPadding="true"
+                android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:layout_marginStart="-2dp"
+                app:cardCornerRadius="10dp"
+                android:tag="@string/parveen_tag"
+                android:onClick="showShayari"
+                android:layout_weight="1"
+                android:layout_marginLeft="-2dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/poet_parveen_shakir_image"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="6dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
+                        android:textAlignment="center"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:layout_marginTop="10dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:text="@string/parveen"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

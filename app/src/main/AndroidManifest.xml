@@ -8,46 +8,14 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme">
+        <activity android:name=".ShayariImageActivity"
+            android:theme="@style/CustomAppTheme"/>
         <activity
-            android:name=".PostPageActivity"
-            android:theme="@style/CustomAppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data
-                    android:host="i3developer.com"
-                    android:path="/sb/p"
-                    android:scheme="https" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".HelpActivity"
-            android:theme="@style/CustomAppTheme" />
-        <activity
-            android:name=".ViewPostsActivity"
-            android:theme="@style/CustomAppTheme" />
-        <activity
-            android:name=".CreatePostActivity"
-            android:theme="@style/CustomAppTheme" />
-        <activity
-            android:name=".EditProfileActivity"
-            android:theme="@style/CustomAppTheme" />
-        <activity
-            android:name=".SignupActivity"
-            android:theme="@style/CustomAppTheme" />
-        <activity
-            android:name=".ShayariActivity"
-            android:theme="@style/CustomAppTheme" />
-        <activity
-            android:name=".CategoryActivity"
-            android:theme="@style/CustomAppTheme" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".IMGCategoryActivity"
             android:theme="@style/CustomAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,6 +23,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AppLangActivity"
+            android:theme="@style/CustomAppTheme" />
+        <activity android:name=".LauncherActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".PoetListActivity"
+            android:theme="@style/CustomAppTheme" />
+        <activity
+            android:name=".WishesCatActivity"
+            android:theme="@style/CustomAppTheme" />
+        <activity
+            android:name=".HelpActivity"
+            android:theme="@style/CustomAppTheme" />
+        <activity android:name=".SignupActivity" />
+        <activity android:name=".ShayariActivity" />
+        <activity
+            android:name=".CategoryActivity"
+            android:theme="@style/CustomAppTheme" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/CustomAppTheme" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

@@ -6,8 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".ShayariActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/shayari_toolbar"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="10dp"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/shayari_app_bar_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="back"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/ic_baseline_arrow_back_24"
+                app:tint="@android:color/white" />
+            <TextView
+                android:id="@+id/shayari_app_bar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:layout_toRightOf="@+id/shayari_app_bar_left"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_marginLeft="10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:fontFamily="@font/sans_bold"
+                android:textStyle="bold"
+                android:text="Shayari Book"/>
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/shayari_recycler"
+        android:layout_below="@id/shayari_toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     <ProgressBar

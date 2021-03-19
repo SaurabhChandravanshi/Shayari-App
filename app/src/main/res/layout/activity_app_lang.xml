@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AppLangActivity">
+
+    <RadioGroup
+        android:id="@+id/app_lang_radios"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:weightSum="2">
+        <RadioButton
+            android:id="@+id/app_lang_en"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:button="@null"
+            android:layout_marginRight="3dp"
+            android:drawableTop="@drawable/ic_lang_40"
+            android:text="English Language"
+            android:drawablePadding="8dp"
+            android:padding="8dp"
+            android:textAlignment="center"
+            android:fontFamily="@font/sans_regular"
+            android:background="@drawable/radio_btn_state"
+            android:checked="true"
+            android:layout_weight="1"
+            android:gravity="center_horizontal" />
+        <RadioButton
+            android:id="@+id/app_lang_hi"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:button="@null"
+            android:drawablePadding="8dp"
+            android:padding="8dp"
+            android:fontFamily="@font/sans_regular"
+            android:textAlignment="center"
+            android:text="हिंदी भाषा"
+            android:drawableTop="@drawable/ic_lang_40"
+            android:layout_marginLeft="3dp"
+            android:background="@drawable/radio_btn_state"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:layout_marginStart="3dp" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/app_lang_continue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sans_bold"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:text="@string/lang_continue"/>
+</RelativeLayout>

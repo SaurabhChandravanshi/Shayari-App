@@ -37,9 +37,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         Map<String, String> mapData = remoteMessage.getData();
-        HashMap<String, String> hashMap = new HashMap();
-        hashMap.put("title",mapData.get("title"));
-        hashMap.put("message",mapData.get("message"));
         Log.d(TAG,"TITLE "+mapData.get("title"));
         Log.d(TAG,"MSG "+mapData.get("message"));
 
@@ -71,11 +68,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     channelId,
                     "NOTIFICATION CHANNEL SHAYARI APP",
                     NotificationManager.IMPORTANCE_HIGH);
-            AudioAttributes attributes = new AudioAttributes.Builder()
-                    .setUsage(AudioAttributes.USAGE_NOTIFICATION)
-                    .build();
             channel.enableVibration(true);
-            channel.setVibrationPattern(new long[]{0,500,100,500,1000,500,1000,500,1000});
             channel.enableLights(true);
             mNotifyMgr.createNotificationChannel(channel);
             builder.setChannelId(channelId);
