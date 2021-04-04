@@ -6,6 +6,7 @@ public class User {
     private String dob;
     private String picUrl;
     private String fcmToken;
+    private String referralUid;
 
     public User(){
 
@@ -20,6 +21,15 @@ public class User {
         this.email = email;
         this.dob = dob;
         this.picUrl = picUrl;
+    }
+
+    public User(String name, String email, String dob, String picUrl, String fcmToken, String referralUid) {
+        this.name = name;
+        this.email = email;
+        this.dob = dob;
+        this.picUrl = picUrl;
+        this.fcmToken = fcmToken;
+        this.referralUid = referralUid;
     }
 
     public User(String name, String email, String dob, String picUrl, String fcmToken) {
@@ -79,5 +89,13 @@ public class User {
 
     public String getPicUrl() {
         return picUrl;
+    }
+
+    public String getReferralUid() {
+        return referralUid;
+    }
+
+    public void setReferralUid(String referralUid) {
+        this.referralUid = referralUid;
     }
 }

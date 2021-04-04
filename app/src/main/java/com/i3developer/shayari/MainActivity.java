@@ -2,10 +2,9 @@ package com.i3developer.shayari;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.browser.customtabs.CustomTabsIntent;
-import androidx.cardview.widget.CardView;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -13,6 +12,8 @@ import androidx.fragment.app.FragmentManager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,30 +26,36 @@ import android.view.SubMenu;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.facebook.ads.AudienceNetworkAds;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.AdapterStatus;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
 
 
-    private FrameLayout frameLayout;
+    private FrameLayout appUpdateFrame;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    private BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        loadBannerAds();
         allInitialization();
+        getAppUpdate();
+        bottomNavigationView.setOnNavigationItemSelectedListener(bottomNavListener);
         displayHomeFragment();
         setupNavigationMenuFont();
         navigationView.setNavigationItemSelectedListener(this);
@@ -83,6 +90,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    private void getAppUpdate() {
+        FirebaseFirestore firestore  = FirebaseFirestore.getInstance();
+        try {
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(),0);
+            String versionName = packageInfo.versionName;
+            firestore.collection("appUpdate").whereNotEqualTo("appVersion",versionName).get()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            if(queryDocumentSnapshots.size()>0) {
+                                appUpdateFrame.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    });
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -90,7 +116,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             drawerLayout.closeDrawer(GravityCompat.START);
         }
         else {
-            super.onBackPressed();
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setTitle("Confirmation");
+            builder.setMessage("Do you want to exit from app?");
+            builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    MainActivity.super.onBackPressed();
+                }
+            });
+            builder.setNegativeButton("NO", null);
+            builder.setNeutralButton("RATE US", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    launchChromeTab("https://play.google.com/store/apps/details?id=com.i3developer.shayari");
+                }
+            });
+            builder.create().show();
+
         }
     }
 
@@ -118,9 +161,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void allInitialization() {
-        frameLayout = findViewById(R.id.main_frame);
+        appUpdateFrame = findViewById(R.id.main_app_update_frame);
         drawerLayout = findViewById(R.id.main_drawer_layout);
         navigationView = findViewById(R.id.main_nav);
+        bottomNavigationView = findViewById(R.id.main_bottom_navigation);
     }
 
     private void displayHomeFragment() {
@@ -128,6 +172,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.main_frame, fragment).commit();
     }
+    private void displayStatusFragment() {
+        StatusFragment fragment = new StatusFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.main_frame, fragment).commit();
+    }
+
+
+    private BottomNavigationView.OnNavigationItemSelectedListener bottomNavListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.main_bottom_home:
+                    displayHomeFragment();
+                    break;
+                case R.id.main_bottom_status:
+                    displayStatusFragment();
+            }
+            return true;
+        }
+    };
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -153,8 +217,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.main_nav_help:
                 startActivity(new Intent(MainActivity.this,HelpActivity.class));
                 break;
-            case R.id.main_nav_app_lang:
-                startActivity(new Intent(MainActivity.this,AppLangActivity.class));
+            case R.id.main_nav_app_update:
+                launchChromeTab("https://play.google.com/store/apps/details?id=com.i3developer.shayari");
+
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
@@ -182,5 +247,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
     public void openPoetList(View view) {
         startActivity(new Intent(MainActivity.this,PoetListActivity.class));
+    }
+    public void openBestWishesCat(View view) {
+        startActivity(new Intent(MainActivity.this,WishesCatActivity.class));
+    }
+    public void openCategory(View view) {
+        startActivity(new Intent(MainActivity.this,CategoryActivity.class));
+    }
+    public void openReferral(View view) {
+        startActivity(new Intent(MainActivity.this,ReferralActivity.class));
+    }
+
+    public void imageShayari(View view) {
+        startActivity(new Intent(MainActivity.this,IMGCategoryActivity.class));
+    }
+
+    private void loadBannerAds() {
+        AdView adView1  = findViewById(R.id.main_banner_ad1);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView1.loadAd(adRequest);
+    }
+
+    public void updateApp(View view) {
+        Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse("https://play.google.com/store/apps/details?id=com.i3developer.shayari"));
+        startActivity(intent);
+    }
+
+    public void updateLater(View view) {
+        appUpdateFrame.setVisibility(View.GONE);
     }
 }

@@ -3,8 +3,10 @@ package com.i3developer.shayari;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -14,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -36,6 +40,7 @@ public class ShayariImageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shayari_image);
+        loadBannerAds();
         // To Display custom Action Bar
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
@@ -62,7 +67,7 @@ public class ShayariImageActivity extends AppCompatActivity {
 
     private void init() {
         recyclerView = findViewById(R.id.shayari_img_recycler);
-        layoutManager = new LinearLayoutManager(this);
+        layoutManager = new GridLayoutManager(this,2);
         adapter = new ShayariImageAdapter(dataList);
         progressBar = findViewById(R.id.shayari_img_pBar);
         CATEGORY = getIntent().getStringExtra("category");
@@ -95,5 +100,10 @@ public class ShayariImageActivity extends AppCompatActivity {
     private void loadRecycler() {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
+    }
+    private void loadBannerAds() {
+        AdView adView1  = findViewById(R.id.shayari_image_banner_ad1);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView1.loadAd(adRequest);
     }
 }

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,15 +12,12 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeFragment extends Fragment {
     private CardView categoryCard;
-    private CardView gmShayariCard,gnShayariCard;
+    private CardView gmShayariCard,positiveQuote;
     private FirebaseAuth mAuth;
-    private AdView adView1,adView2,adView3,adView4;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,7 +31,6 @@ public class HomeFragment extends Fragment {
         loadPoetFragment();
         loadPopularCatFragment();
         loadWishesCatFragment();
-        loadBannerAds();
 
         categoryCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,13 +47,10 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        gnShayariCard.setOnClickListener(new View.OnClickListener() {
+        positiveQuote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),ShayariActivity.class);
-                intent.putExtra("category","good_night_shayari");
-                intent.putExtra("name","Good Night Shayari in Hindi");
-                startActivity(intent);
+                startActivity(new Intent(getActivity(),PositiveQCatActivity.class));
             }
         });
     }
@@ -82,25 +74,10 @@ public class HomeFragment extends Fragment {
         fragmentManager.beginTransaction().replace(R.id.main_wishes_categories_frame,fragment).commit();
     }
 
-    private void loadBannerAds() {
-        AdRequest adRequest1 = new AdRequest.Builder().build();
-        adView1.loadAd(adRequest1);
-        AdRequest adRequest2 = new AdRequest.Builder().build();
-        adView2.loadAd(adRequest2);
-        AdRequest adRequest3 = new AdRequest.Builder().build();
-        adView3.loadAd(adRequest3);
-        AdRequest adRequest4 = new AdRequest.Builder().build();
-        adView4.loadAd(adRequest4);
-    }
-
     private void allInitializations(View view) {
         categoryCard = view.findViewById(R.id.home_category);
         gmShayariCard = view.findViewById(R.id.home_gm_shayari);
-        gnShayariCard = view.findViewById(R.id.home_gn_shayari);
+        positiveQuote = view.findViewById(R.id.home_positive_quote);
         mAuth = FirebaseAuth.getInstance();
-        adView1 = view.findViewById(R.id.home_banner_ad1);
-        adView2 = view.findViewById(R.id.home_banner_ad2);
-        adView3 = view.findViewById(R.id.home_banner_ad3);
-        adView4 = view.findViewById(R.id.home_banner_ad4);
     }
 }

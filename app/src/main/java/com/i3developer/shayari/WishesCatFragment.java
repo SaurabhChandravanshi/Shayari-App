@@ -13,7 +13,6 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 public class WishesCatFragment extends Fragment {
-    private Button allWishesCatBtn;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -24,15 +23,10 @@ public class WishesCatFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         allInitialization(view);
-        allWishesCatBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(),WishesCatActivity.class));
-            }
-        });
+
     }
 
     private void allInitialization(View view) {
-        allWishesCatBtn = view.findViewById(R.id.wishes_header_btn);
+
     }
 }

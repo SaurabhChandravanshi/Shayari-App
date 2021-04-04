@@ -12,17 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShayariImageActivity"
-            android:theme="@style/CustomAppTheme"/>
+        <activity android:name=".QuoteActivity"/>
+        <activity
+            android:name=".PositiveQCatActivity"
+            android:theme="@style/CustomAppTheme" />
+        <activity android:name=".ImageViewerActivity" />
+        <activity android:name=".ReferralActivity" />
+        <activity
+            android:name=".ShayariImageActivity"
+            android:theme="@style/CustomAppTheme" />
         <activity
             android:name=".IMGCategoryActivity"
-            android:theme="@style/CustomAppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/CustomAppTheme" />
         <activity
             android:name=".AppLangActivity"
             android:theme="@style/CustomAppTheme" />
@@ -31,6 +32,13 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <data
+                    android:host="shayariapp.page.link"
+                    android:scheme="https" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
         <activity
@@ -42,7 +50,9 @@
         <activity
             android:name=".HelpActivity"
             android:theme="@style/CustomAppTheme" />
-        <activity android:name=".SignupActivity" />
+        <activity
+            android:name=".SignupActivity"
+            android:theme="@style/CustomAppTheme" />
         <activity android:name=".ShayariActivity" />
         <activity
             android:name=".CategoryActivity"
@@ -53,7 +63,7 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-9546107720770258~2464233814" />
+            android:value="ca-app-pub-5585717909119280~1908242140" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

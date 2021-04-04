@@ -5,7 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,16 +17,12 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.FileProvider;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 public class ShayariImageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -50,30 +49,18 @@ public class ShayariImageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         // Load image into ImageView
         GlideApp.with(myViewHolder.itemView.getContext()).load(reference).into(myViewHolder.imageView);
 
-        myViewHolder.shareBtn.setOnClickListener(new View.OnClickListener() {
+
+
+        myViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveImageToCache(myViewHolder.itemView.getContext(),viewToBitmap(myViewHolder.imageView));
-                //Share Image
-                shareImage(myViewHolder.itemView.getContext());
+                Intent intent = new Intent(myViewHolder.itemView.getContext(),ImageViewerActivity.class);
+                intent.putExtra("imagePath", data.getImagePath());
+                myViewHolder.itemView.getContext().startActivity(intent);
             }
         });
-        myViewHolder.waBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveImageToCache(myViewHolder.itemView.getContext(),viewToBitmap(myViewHolder.imageView));
-                //Share Image
-                shareImageViaWA(myViewHolder.itemView.getContext());
-            }
-        });
-        myViewHolder.fbBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveImageToCache(myViewHolder.itemView.getContext(),viewToBitmap(myViewHolder.imageView));
-                //Share Image
-                shareImageViaFB(myViewHolder.itemView.getContext());
-            }
-        });
+
+        myViewHolder.cardView.setCardBackgroundColor(myViewHolder.itemView.getContext().getResources().getColor(android.R.color.black));
     }
 
     @Override
@@ -82,88 +69,13 @@ public class ShayariImageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView imageView;
-        private Button shareBtn,waBtn,fbBtn;
+        private final ImageView imageView;
+        private final CardView cardView;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.shayai_img_list_image);
-            waBtn = itemView.findViewById(R.id.shayari_img_list_wa_btn);
-            shareBtn = itemView.findViewById(R.id.shayari_img_list_share_btn);
-            fbBtn = itemView.findViewById(R.id.shayari_img_list_fb_btn);
+            cardView = itemView.findViewById(R.id.shayari_image_list_container);
         }
     }
-    public Bitmap viewToBitmap(View view) {
-        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        view.draw(canvas);
-        return bitmap;
-    }
-    private void saveImageToCache(Context context, Bitmap bitmap) {
-        try {
-            File cacheFile = new File(context.getCacheDir(),"images");
-            cacheFile.mkdir();
-            FileOutputStream output = new FileOutputStream(cacheFile+"/image.png");
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, output);
-            output.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    private void shareImage(Context context) {
-        File imagePath = new File(context.getCacheDir(), "images");
-        File newFile = new File(imagePath, "image.png");
-        Uri contentUri = FileProvider.getUriForFile(context, "com.i3developer.shayari.fileprovider", newFile);
 
-        if (contentUri != null) {
-            Intent shareIntent = new Intent();
-            shareIntent.setAction(Intent.ACTION_SEND);
-            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); // temp permission for receiving app to read this file
-            shareIntent.setDataAndType(contentUri, context.getContentResolver().getType(contentUri));
-            shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
-            shareIntent.putExtra(Intent.EXTRA_TEXT,"Download Shayari Book app for more\nhttps://shayariapp.page.link/install");
-            context.startActivity(Intent.createChooser(shareIntent, "Choose an app"));
-        }
-    }
-    private void shareImageViaWA(Context context) {
-        File imagePath = new File(context.getCacheDir(), "images");
-        File newFile = new File(imagePath, "image.png");
-        Uri contentUri = FileProvider.getUriForFile(context, "com.i3developer.shayari.fileprovider", newFile);
-
-        if (contentUri != null) {
-            Intent shareIntent = new Intent();
-            shareIntent.setAction(Intent.ACTION_SEND);
-            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); // temp permission for receiving app to read this file
-            shareIntent.setDataAndType(contentUri, context.getContentResolver().getType(contentUri));
-            shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
-            shareIntent.putExtra(Intent.EXTRA_TEXT,"Download Shayari Book app for more\nhttps://shayariapp.page.link/install");
-            shareIntent.setPackage("com.whatsapp");
-            try {
-                context.startActivity(Intent.createChooser(shareIntent, "Choose an app"));
-            } catch (ActivityNotFoundException e) {
-                Toast.makeText(context, "WhatsApp not installed.", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-    private void shareImageViaFB(Context context) {
-        File imagePath = new File(context.getCacheDir(), "images");
-        File newFile = new File(imagePath, "image.png");
-        Uri contentUri = FileProvider.getUriForFile(context, "com.i3developer.shayari.fileprovider", newFile);
-
-        if (contentUri != null) {
-            Intent shareIntent = new Intent();
-            shareIntent.setAction(Intent.ACTION_SEND);
-            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); // temp permission for receiving app to read this file
-            shareIntent.setDataAndType(contentUri, context.getContentResolver().getType(contentUri));
-            shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
-            shareIntent.putExtra(Intent.EXTRA_TEXT,"Download Shayari Book app for more\nhttps://shayariapp.page.link/install");
-            shareIntent.setPackage("com.facebook.katana");
-            try {
-                context.startActivity(Intent.createChooser(shareIntent, "Choose an app"));
-            } catch (ActivityNotFoundException e) {
-                Toast.makeText(context, "WhatsApp not installed.", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
 }

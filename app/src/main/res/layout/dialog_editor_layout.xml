@@ -39,7 +39,6 @@
     android:layout_height="wrap_content"
     android:weightSum="3"
     android:layout_marginTop="15dp"
-    android:layout_marginBottom="6dp"
     android:orientation="horizontal">
     <Button
         android:id="@+id/editor_close_btn"

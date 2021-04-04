@@ -13,6 +13,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.view.Gravity;
@@ -28,6 +29,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.FileProvider;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -37,6 +39,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.List;
 
 public class ShayariAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -45,7 +48,7 @@ public class ShayariAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final int AD_VIEW = 0;
     private static final int RECYCLER_VIEW = 1;
     private static int CURRENT_BACKGROUND = 0;
-    private static final int MAX_COLOR = 10;
+    private static final int MAX_COLOR = 11;
     public ShayariAdapter(List<Object> dataList) {
         this.dataList = dataList;
     }
@@ -85,6 +88,8 @@ public class ShayariAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             Shader shader = new LinearGradient(0f, 0f, 0f, viewHolder.shayariTtv.getTextSize(),
                     Color.RED, Color.BLUE, Shader.TileMode.CLAMP);
             viewHolder.shayariTtv.getPaint().setShader(shader);
+            Typeface typeface = ResourcesCompat.getFont(viewHolder.itemView.getContext(),R.font.palanquin_dark_regular);
+            viewHolder.shayariTtv.setTypeface(typeface);
 
             viewHolder.copyBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -126,6 +131,8 @@ public class ShayariAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         View dialogView = inflater.inflate(R.layout.dialog_editor_layout,null);
                         Button closeBtn = dialogView.findViewById(R.id.editor_close_btn);
                         EditText content = dialogView.findViewById(R.id.editor_content);
+                        Typeface typeface = ResourcesCompat.getFont(viewHolder.itemView.getContext(),R.font.palanquin_dark_regular);
+                        content.setTypeface(typeface);
                         content.setText(data.getQ());
                         CardView cardView = dialogView.findViewById(R.id.editor_card);
                         changeBackground(viewHolder.itemView.getContext(),cardView);
@@ -271,6 +278,9 @@ public class ShayariAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 break;
             case 10:
                 view.setCardBackgroundColor(context.getResources().getColor(R.color.color10));
+                break;
+            case 11:
+                view.setCardBackgroundColor(context.getResources().getColor(R.color.colorBlack));
                 break;
             default:
                 view.setCardBackgroundColor(context.getResources().getColor(R.color.colorRed));

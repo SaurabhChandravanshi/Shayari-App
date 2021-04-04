@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
 
@@ -65,7 +64,7 @@
                     android:clickable="true"
                     android:layout_marginLeft="-2dp"
                     app:cardCornerRadius="10dp"
-                    android:onClick="shareApp"
+                    android:onClick="imageShayari"
                     android:layout_weight="1"
                     android:layout_marginStart="-2dp">
                     <LinearLayout
@@ -81,7 +80,7 @@
                             android:layout_height="40dp"
                             android:layout_gravity="center"
                             android:layout_margin="6dp"
-                            android:background="@drawable/ic_invitation_30"/>
+                            android:background="@drawable/ic_image_30"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -92,7 +91,7 @@
                             android:ellipsize="end"
                             android:layout_marginTop="10dp"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:text="@string/invite_friends"
+                            android:text="@string/image_shayari"
                             android:gravity="center_horizontal" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -145,7 +144,7 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/home_gn_shayari"
+                    android:id="@+id/home_positive_quote"
                     android:layout_width="0dp"
                     app:cardUseCompatPadding="true"
                     android:clickable="true"
@@ -168,7 +167,7 @@
                             android:layout_height="40dp"
                             android:layout_gravity="center"
                             android:layout_margin="6dp"
-                            android:background="@drawable/ic_sleeping_60"/>
+                            android:background="@drawable/ic_positive_quote_40"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -179,7 +178,7 @@
                             android:ellipsize="end"
                             android:layout_marginTop="10dp"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:text="@string/good_night_shayari"
+                            android:text="@string/positive_quote"
                             android:gravity="center_horizontal" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -197,31 +196,5 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"/>
-
-            <com.google.android.gms.ads.AdView
-                android:id="@+id/home_banner_ad1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                ads:adSize="BANNER"
-                ads:adUnitId="@string/home_banner_ad1"/>
-            <com.google.android.gms.ads.AdView
-                android:id="@+id/home_banner_ad2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                ads:adSize="BANNER"
-                ads:adUnitId="@string/home_banner_ad2"/>
-            <com.google.android.gms.ads.AdView
-                android:id="@+id/home_banner_ad3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                ads:adSize="BANNER"
-                ads:adUnitId="@string/home_banner_ad3"/>
-            <com.google.android.gms.ads.AdView
-                android:id="@+id/home_banner_ad4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                ads:adSize="BANNER"
-                ads:adUnitId="@string/home_banner_ad4"/>
         </LinearLayout>
 </androidx.core.widget.NestedScrollView>

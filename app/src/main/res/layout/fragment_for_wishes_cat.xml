@@ -5,23 +5,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/wishes_header_btn"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="4dp"
-        android:drawableRight="@drawable/ic_baseline_arrow_forward_24"
-        android:drawablePadding="8dp"
-        android:background="@android:color/transparent"
-        android:fontFamily="@font/sans_regular"
-        android:textColor="@android:color/black"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textAlignment="viewStart"
-        android:text="@string/wishes_cat"
-        android:gravity="start" />
+        android:weightSum="2"
+        android:onClick="openBestWishesCat"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="4dp"
+            android:drawablePadding="8dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/sans_regular"
+            android:textColor="@android:color/black"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAlignment="viewStart"
+            android:text="@string/wishes_cat"
+            android:gravity="start" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:layout_marginRight="15dp"
+            android:textAlignment="viewEnd"
+            android:text="@string/see_more"/>
+    </LinearLayout>
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,6 +47,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="-5dp"
             android:layout_marginEnd="10dp">
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/wishes_birthday"
                 android:layout_width="160dp"
@@ -70,6 +86,47 @@
                         android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:text="@string/birthday_wishes"
+                        android:gravity="center_horizontal" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/wishes_birthday_thanks"
+                android:layout_width="160dp"
+                app:cardUseCompatPadding="true"
+                android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:tag="@string/hbd_thanks_tag"
+                android:onClick="showShayari"
+                android:layout_marginStart="-2dp"
+                android:layout_marginEnd="-2dp"
+                app:cardCornerRadius="10dp"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="6dp"
+                        android:src="@drawable/ic_thank_you_40"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
+                        android:textAlignment="center"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:layout_marginTop="10dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:text="@string/thank_you_for_hbd"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

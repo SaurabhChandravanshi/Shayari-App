@@ -11,8 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class WishesCatActivity extends AppCompatActivity {
-
-    private CardView birthdayWishes,holiWishes;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,28 +33,17 @@ public class WishesCatActivity extends AppCompatActivity {
                 finish();
             }
         });
-        birthdayWishes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(WishesCatActivity.this,ShayariActivity.class);
-                intent.putExtra("category","birthday_wishes_shayari");
-                intent.putExtra("name","Birthday Wishes in Hindi");
-                startActivity(intent);
-            }
-        });
-        holiWishes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(WishesCatActivity.this,ShayariActivity.class);
-                intent.putExtra("category","holi_wishes");
-                intent.putExtra("name","Holi Wishes in Hindi");
-                startActivity(intent);
-            }
-        });
     }
 
     private void allInitializations() {
-        birthdayWishes = findViewById(R.id.category_birthday_wishes);
-        holiWishes = findViewById(R.id.category_holi_wishes);
+
+    }
+
+    public void showShayari(View view) {
+        String[] tags = view.getTag().toString().split(",");
+        Intent intent = new Intent(getApplicationContext(),ShayariActivity.class);
+        intent.putExtra("category",tags[0]);
+        intent.putExtra("name",tags[1]);
+        startActivity(intent);
     }
 }

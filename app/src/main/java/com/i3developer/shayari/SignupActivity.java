@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,12 +45,17 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthCredential;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.auth.FirebaseAuthCredentialsProvider;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.concurrent.TimeUnit;
@@ -78,6 +84,22 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        // To Display custom Action Bar
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.app_bar_layout);
+        //Change the Title of Action Bar
+        TextView appBarTitle = getSupportActionBar().getCustomView()
+                .findViewById(R.id.app_bar_title);
+        ImageView appBarLeft = getSupportActionBar().getCustomView()
+                .findViewById(R.id.app_bar_left);
+        appBarTitle.setText(R.string.sign_in);
+        appBarLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         allInitializations(); // All Initialization should be placed inside this method
         loadInterstitialAd();
 
@@ -122,7 +144,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private void loadInterstitialAd() {
         AdRequest adRequest = new AdRequest.Builder().build();
-        InterstitialAd.load(this,getResources().getString(R.string.signup_interstitial_ad),adRequest,new InterstitialAdLoadCallback(){
+        InterstitialAd.load(this,getResources().getString(R.string.shayari_interstitial_ad),adRequest,new InterstitialAdLoadCallback(){
             @Override
             public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                 mInterstitialAd = interstitialAd;
@@ -154,7 +176,12 @@ public class SignupActivity extends AppCompatActivity {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 Log.d("Google SignIn ", "firebaseAuthWithGoogle:" + account.getId());
-                firebaseAuthWithGoogle(account.getIdToken(), task);
+                if(mAuth.getCurrentUser() != null && mAuth.getCurrentUser().isAnonymous()) {
+                    AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(),null);
+                    anonymousToPermanent(credential);
+                } else {
+                    firebaseAuthWithGoogle(account.getIdToken(), task);
+                }
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w("Google SignIn Failed", "Google sign in failed", e);
@@ -203,7 +230,7 @@ public class SignupActivity extends AppCompatActivity {
             referenceDb.child(UId).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    showToast(getApplicationContext(), "साइन इन सफल रहा");
+                    showToast(getApplicationContext(), "SignIn Successful");
                     Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
@@ -230,7 +257,7 @@ public class SignupActivity extends AppCompatActivity {
         otpSubmitBtn = findViewById(R.id.signup_submit_otp);
         otpEdt = findViewById(R.id.signup_otp_field);
         progressDialog = new BSFProgressDialog();
-        referenceDb = FirebaseDatabase.getInstance().getReference("Users");
+        referenceDb = FirebaseDatabase.getInstance().getReference("users");
         otpMessage = findViewById(R.id.signup_otp_msg);
         googleSignInBtn = findViewById(R.id.signup_google_sign_in_button);
         privacyTtv = findViewById(R.id.signup_privacy);
@@ -276,7 +303,11 @@ public class SignupActivity extends AppCompatActivity {
     private void verifyCode(String otp) {
         progressDialog.show(getSupportFragmentManager(), progressDialog.getTag());
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, otp);
-        signInWithPhoneCredential(credential);
+        if(mAuth.getCurrentUser() !=null && mAuth.getCurrentUser().isAnonymous()) {
+            anonymousToPermanent(credential);
+        } else {
+            signInWithPhoneCredential(credential);
+        }
     }
 
     private void signInWithPhoneCredential(PhoneAuthCredential credential) {
@@ -311,7 +342,6 @@ public class SignupActivity extends AppCompatActivity {
                 otpEdt.setText(code);
             }
             progressDialog.dismiss();
-
         }
 
         @Override
@@ -359,5 +389,31 @@ public class SignupActivity extends AppCompatActivity {
         toast.setText(text);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
+    }
+
+    private void anonymousToPermanent(AuthCredential credential) {
+        mAuth.getCurrentUser()
+                .linkWithCredential(credential)
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        // Complete any post sign-up tasks here.
+                        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
+                        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                        if (firebaseUser != null) {
+                            databaseReference.child(firebaseUser.getUid()).get()
+                                    .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                                        @Override
+                                        public void onSuccess(DataSnapshot dataSnapshot) {
+                                            User userData = dataSnapshot.getValue(User.class);
+                                            if (userData != null) {
+                                                firestore.collection("referralList").document(userData.getReferralUid()).update("referrals", FieldValue.arrayUnion(userData.getName()));
+                                            }
+                                        }
+                                    });
+                        }
+                    }
+                });
     }
 }

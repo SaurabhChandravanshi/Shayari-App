@@ -2,13 +2,12 @@
 <resources>
     <string name="app_name_nav">शायरी बुक</string>
     <string name="shayari_coll">शायरी संग्रह</string>
-    <string name="invite_friends">दोस्तों के साथ साझा करें</string>
     <string name="famous_poet">प्रसिद्ध कवि और शायर</string>
     <string name="app_lang">ऐप भाषा</string>
     <string name="lang_continue">हिंदी भाषा में जारी रखें</string>
     <string name="poet_coll">कवि संग्रह</string>
     <string name="shayari_image">शायरी इमेज</string>
-    <string name="dl_app">शायरी बुक का उपयोग करके भेजा गया, शायरी बुक ऐप डाउनलोड करें https://shayariapp.page.link/install</string>
+    <string name="see_more">See More</string>
 
 
     <!-- Navigation View Texts -->
@@ -85,6 +84,18 @@
     <string name="birthday_wishes">जन्मदिन की शुभकामनाएं</string>
     <string name="holi_wishes">होली की शुभकामनाएं</string>
 
-    <string name="birthday_wishes_tag">birthday_wishes,जन्मदिन की शुभकामनाएं</string>
+    <string name="birthday_wishes_tag">birthday_wishes_shayari,जन्मदिन की शुभकामनाएं</string>
     <string name="holi_wishes_tag">holi_wishes,होली की शुभकामनाएं</string>
+    <string name="sign_in">SignIn with App</string>
+    <string name="image_shayari">इमेज शायरी</string>
+    <string name="hbd_thanks_tag">birthday_thanks,Thanks Message for Birthday</string>
+    <string name="thank_you_for_hbd">Birthday Thanks</string>
+    <string name="positive_quote">Positive Quotes</string>
+    <string name="mot_pos_quote_tag">motivational_pos_quote,Motivational Quotes</string>
+    <string name="life_pos_quote_tag">life_pos_quote,Life Positive Quotes</string>
+    <string name="app_update">Update App</string>
+    <string name="positive_attitude">Positive Attitude</string>
+    <string name="positive_attitude_quote_tag">positive_attitude,Positive Attitude</string>
+    <string name="success_quotes">Success Quotes</string>
+    <string name="success_quote_tag">success_quote,Success Quotes</string>
 </resources>

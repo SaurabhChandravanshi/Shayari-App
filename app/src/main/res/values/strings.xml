@@ -5,20 +5,14 @@
     <string name="channel_description" translatable="false">Shayari Book Local Notification</string>
     <string name="default_notification_channel_id" translatable="false">NOTIFICATION_CHANNEL_SHAYARI_APP</string>
     <string name="shayari_image">Shayari Image</string>
-    <string name="dl_app">Sent using Shayari Book app Download the app https://shayariapp.page.link/install</string>
+    <string name="see_more">See More</string>
 
 
-    <string name="shayari_recycler_banner" translatable="false">ca-app-pub-9546107720770258/6537906851</string>
-    <string name="home_banner_ad1" translatable="false">ca-app-pub-9546107720770258/9002619795</string>
-    <string name="home_banner_ad2" translatable="false">ca-app-pub-9546107720770258/9902436791</string>
-    <string name="home_banner_ad3" translatable="false">ca-app-pub-9546107720770258/7276273454</string>
-    <string name="home_banner_ad4" translatable="false">ca-app-pub-9546107720770258/2271999412</string>
-
-    <string name="signup_interstitial_ad" translatable="false">ca-app-pub-9546107720770258/7084701764</string>
-    <string name="shayari_interstitial_ad" translatable="false">ca-app-pub-9546107720770258/5580048406</string>
+    <string name="shayari_recycler_banner" translatable="false">ca-app-pub-5585717909119280/2179704884</string>
+    <string name="banner_ad" translatable="false">ca-app-pub-5585717909119280/2179704884</string>
+    <string name="shayari_interstitial_ad" translatable="false">ca-app-pub-5585717909119280/8368696956</string>
 
     <string name="shayari_coll">Shayari Collection</string>
-    <string name="invite_friends">Invite Friends</string>
     <string name="famous_poet">Famous Poets</string>
     <string name="app_lang">App Language</string>
     <string name="lang_continue">Continue in English Language</string>
@@ -100,6 +94,18 @@
     <string name="birthday_wishes">Birthday Wishes</string>
     <string name="holi_wishes">Holi Wishes</string>
 
-    <string name="birthday_wishes_tag">birthday_wishes,Birthday Wishes in Hindi</string>
+    <string name="birthday_wishes_tag">birthday_wishes_shayari,Birthday Wishes in Hindi</string>
     <string name="holi_wishes_tag">holi_wishes,Holi Wishes in Hindi</string>
+    <string name="sign_in">SignIn with App</string>
+    <string name="image_shayari">Image Shayari</string>
+    <string name="hbd_thanks_tag">birthday_thanks,Thanks Message for Birthday</string>
+    <string name="thank_you_for_hbd">Birthday Thanks</string>
+    <string name="positive_quote">Positive Quotes</string>
+    <string name="mot_pos_quote_tag">motivational_pos_quote,Motivational Quotes</string>
+    <string name="life_pos_quote_tag">life_pos_quote,Life Positive Quotes</string>
+    <string name="app_update">Update App</string>
+    <string name="positive_attitude">Positive Attitude</string>
+    <string name="positive_attitude_quote_tag">positive_attitude,Positive Attitude</string>
+    <string name="success_quotes">Success Quotes</string>
+    <string name="success_quote_tag">success_quote,Success Quotes</string>
 </resources>

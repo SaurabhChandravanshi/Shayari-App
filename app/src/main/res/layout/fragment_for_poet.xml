@@ -5,23 +5,39 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="4dp"
-        android:drawablePadding="8dp"
+        android:weightSum="2"
         android:onClick="openPoetList"
-        android:drawableRight="@drawable/ic_baseline_arrow_forward_24"
-        android:background="@android:color/transparent"
-        android:fontFamily="@font/sans_regular"
-        android:textColor="@android:color/black"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textAlignment="viewStart"
-        android:text="@string/famous_poet"
-        android:gravity="start" />
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="4dp"
+            android:drawablePadding="8dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/sans_regular"
+            android:textColor="@android:color/black"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAlignment="viewStart"
+            android:text="@string/famous_poet"
+            android:gravity="start" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:layout_marginRight="15dp"
+            android:textAlignment="viewEnd"
+            android:text="@string/see_more"/>
+    </LinearLayout>
+
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

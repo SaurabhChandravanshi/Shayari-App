@@ -6,13 +6,15 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="256dp"
         app:cardUseCompatPadding="true"
-        android:layout_marginBottom="-5dp"
         android:foreground="?android:attr/selectableItemBackground"
         android:clickable="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginRight="-1dp"
+        android:layout_marginLeft="-1dp"
+        android:layout_marginBottom="-2dp"
+        android:layout_marginTop="-2dp"
+        android:id="@+id/shayari_image_list_container"
         app:cardCornerRadius="10dp">
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,47 +23,8 @@
             <ImageView
                 android:id="@+id/shayai_img_list_image"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp"
-                android:layout_marginBottom="4dp"
-                android:weightSum="3">
-                <Button
-                    android:id="@+id/shayari_img_list_wa_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawableTop="@drawable/ic_whatsapp_24"
-                    android:background="@android:color/transparent"
-                    android:text="WHATSAPP"
-                    android:fontFamily="@font/sans_regular"
-                    android:textSize="10sp"/>
-                <Button
-                    android:id="@+id/shayari_img_list_fb_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawableTop="@drawable/ic_facebook_logo_24"
-                    android:background="@android:color/transparent"
-                    android:text="FACEBOOK"
-                    android:fontFamily="@font/sans_regular"
-                    android:textSize="10sp"/>
-                <Button
-                    android:id="@+id/shayari_img_list_share_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawableTop="@drawable/ic_share_24"
-                    android:background="@android:color/transparent"
-                    android:text="SHARE"
-                    android:fontFamily="@font/sans_regular"
-                    android:textSize="10sp"/>
-            </LinearLayout>
+                android:layout_height="256dp"/>
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

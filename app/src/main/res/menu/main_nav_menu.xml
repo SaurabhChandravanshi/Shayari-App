@@ -11,9 +11,9 @@
         android:title="@string/help_centre"
         android:icon="@drawable/ic_baseline_help_outline_24"/>
     <item
-        android:id="@+id/main_nav_app_lang"
-        android:title="@string/app_lang"
-        android:icon="@drawable/ic_baseline_language_24"/>
+        android:id="@+id/main_nav_app_update"
+        android:title="@string/app_update"
+        android:icon="@drawable/ic_baseline_update_24"/>
     <item android:title="@string/support_us">
         <menu>
             <item
