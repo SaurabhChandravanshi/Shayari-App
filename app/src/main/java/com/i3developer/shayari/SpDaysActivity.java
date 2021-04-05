@@ -9,12 +9,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class PositiveQCatActivity extends AppCompatActivity {
+public class SpDaysActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_positive_q_cat);
+        setContentView(R.layout.activity_sp_days);
 
         // To Display custom Action Bar
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -25,7 +25,7 @@ public class PositiveQCatActivity extends AppCompatActivity {
                 .findViewById(R.id.app_bar_title);
         ImageView appBarLeft = getSupportActionBar().getCustomView()
                 .findViewById(R.id.app_bar_left);
-        appBarTitle.setText(R.string.positive_quote);
+        appBarTitle.setText(R.string.special_days);
         appBarLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

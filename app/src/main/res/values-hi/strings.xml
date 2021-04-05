@@ -98,4 +98,20 @@
     <string name="positive_attitude_quote_tag">positive_attitude,Positive Attitude</string>
     <string name="success_quotes">Success Quotes</string>
     <string name="success_quote_tag">success_quote,Success Quotes</string>
+    <string name="special_days">Special Days</string>
+    <string name="world_health_day_tag">world_health_day,World Health Day</string>
+    <string name="world_health_day">World Health Day</string>
+    <string name="world_earth_day">World Earth Day</string>
+    <string name="world_earth_day_tag">world_earth_day,World Health Day</string>
+    <string name="international_labour_day">International Labour Day</string>
+    <string name="int_labour_day_tag">inter_labour_day,International Labour Day</string>
+    <string name="mothers_day">Mothers\' Day</string>
+    <string name="mothers_day_tag">mothers_day,Mothers\' Day</string>
+    <string name="dard_bhari_shayari_tag">dard_bhari_shayari,Dard Bhari Shayari</string>
+    <string name="dard_bhari_shayari">Dard Bhari Shayari</string>
+    <string name="dua_shayari_tag">dua_shayari,Dua Shayari</string>
+    <string name="dua_shayari">Dua Shayari</string>
+    <string name="true_love_shayari_tag">true_love,True Love</string>
+    <string name="true_love">True Love</string>
+    <string name="desh_bhakti">Desh Bhakti</string>
 </resources>

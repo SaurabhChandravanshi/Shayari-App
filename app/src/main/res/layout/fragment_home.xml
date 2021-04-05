@@ -105,7 +105,7 @@
                 android:layout_marginStart="10dp"
                 android:weightSum="2">
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/home_gm_shayari"
+                    android:id="@+id/home_special_days"
                     android:layout_width="0dp"
                     app:cardUseCompatPadding="true"
                     android:clickable="true"
@@ -128,7 +128,7 @@
                             android:layout_height="40dp"
                             android:layout_gravity="center"
                             android:layout_margin="6dp"
-                            android:background="@drawable/ic_morning_60"/>
+                            android:background="@drawable/ic_special_days_40"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -139,7 +139,7 @@
                             android:ellipsize="end"
                             android:layout_marginTop="10dp"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:text="@string/good_morning_shayari"
+                            android:text="@string/special_days"
                             android:gravity="center_horizontal" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeFragment extends Fragment {
     private CardView categoryCard;
-    private CardView gmShayariCard,positiveQuote;
+    private CardView spDaysCard,positiveQuote;
     private FirebaseAuth mAuth;
     @Nullable
     @Override
@@ -38,13 +38,10 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent(getActivity(),CategoryActivity.class));
             }
         });
-        gmShayariCard.setOnClickListener(new View.OnClickListener() {
+        spDaysCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),ShayariActivity.class);
-                intent.putExtra("category","good_morning_shayari");
-                intent.putExtra("name","Good Morning Shayari in Hindi");
-                startActivity(intent);
+                startActivity(new Intent(getActivity(),SpDaysActivity.class));
             }
         });
         positiveQuote.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +73,7 @@ public class HomeFragment extends Fragment {
 
     private void allInitializations(View view) {
         categoryCard = view.findViewById(R.id.home_category);
-        gmShayariCard = view.findViewById(R.id.home_gm_shayari);
+        spDaysCard = view.findViewById(R.id.home_special_days);
         positiveQuote = view.findViewById(R.id.home_positive_quote);
         mAuth = FirebaseAuth.getInstance();
     }

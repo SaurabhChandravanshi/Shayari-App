@@ -3,13 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PositiveQCatActivity">
+    tools:context=".SpDaysActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textColor="@android:color/black"
+            android:text="Special Days in April"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -25,7 +34,7 @@
                 android:clickable="true"
                 android:onClick="showQuotes"
                 app:cardCornerRadius="10dp"
-                android:tag="@string/mot_pos_quote_tag"
+                android:tag="@string/world_health_day_tag"
                 android:layout_marginRight="-2dp"
                 android:layout_marginEnd="-2dp"
                 android:layout_weight="1">
@@ -35,47 +44,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="35dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="6dp"
-                        android:background="@drawable/ic_motivational_60" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:fontFamily="@font/sans_regular"
-                        android:textAlignment="center"
-                        android:maxLines="1"
-                        android:ellipsize="end"
-                        android:layout_marginTop="10dp"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Motivational Quotes"
-                        android:gravity="center_horizontal" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                app:cardUseCompatPadding="true"
-                android:layout_height="wrap_content"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:onClick="showQuotes"
-                app:cardCornerRadius="10dp"
-                android:tag="@string/life_pos_quote_tag"
-                android:layout_marginStart="-2dp"
-                android:layout_weight="1">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="10dp"
                     android:orientation="vertical">
 
                     <ImageView
@@ -94,18 +63,105 @@
                         android:ellipsize="end"
                         android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="Life Quotes"
+                        android:text="@string/world_health_day"
+                        android:gravity="center_horizontal" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@android:color/darker_gray"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
+                        android:textAlignment="center"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:layout_marginTop="10dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:text="7th April"
+                        android:gravity="center_horizontal" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                app:cardUseCompatPadding="true"
+                android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:onClick="showQuotes"
+                app:cardCornerRadius="10dp"
+                android:tag="@string/world_earth_day_tag"
+                android:layout_marginStart="-2dp"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="6dp"
+                        android:background="@drawable/ic_earth_day_40" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
+                        android:textAlignment="center"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:layout_marginTop="10dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:text="@string/world_earth_day"
+                        android:gravity="center_horizontal" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@android:color/darker_gray"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
+                        android:textAlignment="center"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:layout_marginTop="10dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:text="22nd April"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textColor="@android:color/black"
+            android:text="Special Days in May"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginTop="-8dp"
             android:weightSum="2">
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
@@ -115,7 +171,7 @@
                 android:clickable="true"
                 android:onClick="showQuotes"
                 app:cardCornerRadius="10dp"
-                android:tag="@string/positive_attitude_quote_tag"
+                android:tag="@string/int_labour_day_tag"
                 android:layout_marginRight="-2dp"
                 android:layout_marginEnd="-2dp"
                 android:layout_weight="1">
@@ -125,7 +181,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="10dp"
                     android:orientation="vertical">
 
                     <ImageView
@@ -133,7 +189,7 @@
                         android:layout_height="35dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"
-                        android:background="@drawable/ic_positive_attitude_40" />
+                        android:background="@drawable/ic_labour_day_40" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -144,7 +200,25 @@
                         android:ellipsize="end"
                         android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="@string/positive_attitude"
+                        android:text="@string/international_labour_day"
+                        android:gravity="center_horizontal" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@android:color/darker_gray"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
+                        android:textAlignment="center"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:layout_marginTop="10dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:text="1st May"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -156,7 +230,7 @@
                 android:clickable="true"
                 android:onClick="showQuotes"
                 app:cardCornerRadius="10dp"
-                android:tag="@string/success_quote_tag"
+                android:tag="@string/mothers_day_tag"
                 android:layout_marginStart="-2dp"
                 android:layout_weight="1">
                 <LinearLayout
@@ -165,7 +239,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="10dp"
                     android:orientation="vertical">
 
                     <ImageView
@@ -173,7 +247,7 @@
                         android:layout_height="35dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"
-                        android:background="@drawable/ic_success_40" />
+                        android:background="@drawable/ic_mothers_day_40" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -184,102 +258,29 @@
                         android:ellipsize="end"
                         android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="@string/success_quotes"
+                        android:text="@string/mothers_day"
+                        android:gravity="center_horizontal" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@android:color/darker_gray"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
+                        android:textAlignment="center"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:layout_marginTop="10dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:text="10th May"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="-8dp"
-            android:weightSum="2">
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                app:cardUseCompatPadding="true"
-                android:layout_height="wrap_content"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:onClick="showQuotes"
-                app:cardCornerRadius="10dp"
-                android:tag="@string/true_love_shayari_tag"
-                android:layout_marginRight="-2dp"
-                android:layout_marginEnd="-2dp"
-                android:layout_weight="1">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="35dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="6dp"
-                        android:background="@drawable/ic_love_shayari_60" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:fontFamily="@font/sans_regular"
-                        android:textAlignment="center"
-                        android:maxLines="1"
-                        android:ellipsize="end"
-                        android:layout_marginTop="10dp"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="@string/true_love"
-                        android:gravity="center_horizontal" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                app:cardUseCompatPadding="true"
-                android:layout_height="wrap_content"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:onClick="showQuotes"
-                app:cardCornerRadius="10dp"
-                android:tag="@string/desh_bhakti_tag"
-                android:layout_marginStart="-2dp"
-                android:layout_weight="1">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="35dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="6dp"
-                        android:background="@drawable/ic_army_40" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:fontFamily="@font/sans_regular"
-                        android:textAlignment="center"
-                        android:maxLines="1"
-                        android:ellipsize="end"
-                        android:layout_marginTop="10dp"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="@string/desh_bhakti"
-                        android:gravity="center_horizontal" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
-
 
         <TextView
             android:layout_width="match_parent"

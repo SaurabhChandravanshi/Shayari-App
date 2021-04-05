@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".QuoteActivity"/>
+        <activity android:name=".SpDaysActivity"
+            android:theme="@style/CustomAppTheme"/>
+        <activity android:name=".QuoteActivity" />
         <activity
             android:name=".PositiveQCatActivity"
             android:theme="@style/CustomAppTheme" />
