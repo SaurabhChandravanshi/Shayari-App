@@ -279,22 +279,110 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
             android:layout_marginStart="10dp"
-            android:textColor="@android:color/black"
-            android:text="More Coming soon in this Section"/>
-        <TextView
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="-8dp"
+            android:weightSum="2">
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                app:cardUseCompatPadding="true"
+                android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:onClick="showQuotes"
+                app:cardCornerRadius="10dp"
+                android:tag="@string/heart_touching_quote_tag"
+                android:layout_marginRight="-2dp"
+                android:layout_marginEnd="-2dp"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="6dp"
+                        android:background="@drawable/ic_heart_touching_40" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
+                        android:textAlignment="center"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:layout_marginTop="10dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:text="@string/heart_touching_quotes"
+                        android:gravity="center_horizontal" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                app:cardUseCompatPadding="true"
+                android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:onClick="showQuotes"
+                app:cardCornerRadius="10dp"
+                android:tag="@string/mahakal_quotes_tag"
+                android:layout_marginStart="-2dp"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="6dp"
+                        android:background="@drawable/ic_shiva_40" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/sans_regular"
+                        android:textAlignment="center"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:layout_marginTop="10dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:text="@string/mahakal_quotes"
+                        android:gravity="center_horizontal" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/adCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="20dp"
-            android:layout_marginEnd="10dp"
-            android:text="We are working hard to ensure our users get much more categorized contents, We are continuously working toward making our database much content richer each day, please always make sure that you are using this app's latest version."/>
+            app:cardUseCompatPadding="true"
+            android:layout_marginEnd="15dp"
+            android:visibility="gone"
+            app:cardCornerRadius="10dp"
+            android:layout_marginStart="15dp"
+            app:contentPadding="15dp">
+            <FrameLayout
+                android:id="@+id/adFrame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

@@ -6,26 +6,25 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowActionBar">false</item>
-        <item name="fontFamily">@font/sans_regular</item>
+        <item name="fontFamily">@font/metropolis_medium</item>
     </style>
     <!-- Custom application theme. -->
-    <style name="CustomAppTheme" parent="Theme.MaterialComponents.Light">
+    <style name="CustomAppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="fontFamily">@font/sans_regular</item>
+        <item name="fontFamily">@font/metropolis_medium</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
     <style name="CustomAlertTheme" parent="android:Theme.Holo.Light.Dialog.NoActionBar">
-        <item name="android:fontFamily">@font/sans_regular</item>
+        <item name="android:fontFamily">@font/metropolis_medium</item>
+        <item name="android:lineSpacingExtra">4dp</item>
     </style>
 
-    <style name="BottomNavigationView"
-        parent="Widget.Design.BottomNavigationView">
-        <item name="fontFamily">@font/sans_regular</item>
-    </style>
 
-    <!-- Style For BottomNavigation View -->
+    <style name="Theme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,6 +21,9 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.firebase.database.DataSnapshot;
@@ -63,9 +67,13 @@ public class ShayariActivity extends AppCompatActivity {
         super.onBackPressed();
     }
     public void back(View view) {
-        finish();
+        super.onBackPressed();
     }
     private void loadInterstitialAd() {
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {}
+        });
         AdRequest adRequest = new AdRequest.Builder().build();
         InterstitialAd.load(this,getResources().getString(R.string.shayari_interstitial_ad),adRequest,new InterstitialAdLoadCallback(){
             @Override
@@ -117,7 +125,7 @@ public class ShayariActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
     }
     private void addBannersToRecycler() {
-        for(int i=3;i<dataList.size();i=i+3) {
+        for(int i=6;i<dataList.size();i=i+6) {
             AdView adView = new AdView(getApplicationContext());
             dataList.add(i,adView);
         }

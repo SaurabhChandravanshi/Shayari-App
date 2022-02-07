@@ -64,7 +64,7 @@
                     android:clickable="true"
                     android:layout_marginLeft="-2dp"
                     app:cardCornerRadius="10dp"
-                    android:onClick="imageShayari"
+                    android:onClick="openBestWishesCat"
                     android:layout_weight="1"
                     android:layout_marginStart="-2dp">
                     <LinearLayout
@@ -80,7 +80,7 @@
                             android:layout_height="40dp"
                             android:layout_gravity="center"
                             android:layout_margin="6dp"
-                            android:background="@drawable/ic_image_30"/>
+                            android:background="@drawable/ic_kumbh_kalash_40"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
                             android:ellipsize="end"
                             android:layout_marginTop="10dp"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:text="@string/image_shayari"
+                            android:text="@string/wishes_cat"
                             android:gravity="center_horizontal" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -193,6 +193,11 @@
                 android:layout_height="wrap_content" />
             <FrameLayout
                 android:id="@+id/main_wishes_categories_frame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"/>
+            <FrameLayout
+                android:id="@+id/main_leaders_frame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"/>

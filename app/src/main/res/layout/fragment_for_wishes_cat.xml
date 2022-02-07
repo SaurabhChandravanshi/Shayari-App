@@ -90,17 +90,16 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
-                android:id="@+id/wishes_birthday_thanks"
                 android:layout_width="160dp"
                 app:cardUseCompatPadding="true"
                 android:layout_height="wrap_content"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
-                android:tag="@string/hbd_thanks_tag"
                 android:onClick="showShayari"
+                android:tag="@string/navratri_wishes_tag"
+                app:cardCornerRadius="10dp"
                 android:layout_marginStart="-2dp"
                 android:layout_marginEnd="-2dp"
-                app:cardCornerRadius="10dp"
                 android:layout_weight="1">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -115,7 +114,7 @@
                         android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"
-                        android:src="@drawable/ic_thank_you_40"/>
+                        android:background="@drawable/ic_kumbh_kalash_40"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -126,7 +125,7 @@
                         android:ellipsize="end"
                         android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="@string/thank_you_for_hbd"
+                        android:text="@string/navratri_wishes"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

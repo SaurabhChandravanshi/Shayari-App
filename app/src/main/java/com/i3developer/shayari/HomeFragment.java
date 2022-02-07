@@ -31,6 +31,7 @@ public class HomeFragment extends Fragment {
         loadPoetFragment();
         loadPopularCatFragment();
         loadWishesCatFragment();
+        loadLeadersFrame();
 
         categoryCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,21 +55,27 @@ public class HomeFragment extends Fragment {
 
     private void loadPoetFragment() {
         PoetFragment fragment = new PoetFragment();
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         assert fragmentManager != null;
         fragmentManager.beginTransaction().replace(R.id.main_poet_frame,fragment).commit();
     }
     private void loadPopularCatFragment() {
         PopularCatFragment fragment = new PopularCatFragment();
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         assert fragmentManager != null;
         fragmentManager.beginTransaction().replace(R.id.main_popular_categories_frame,fragment).commit();
     }
     private void loadWishesCatFragment() {
         WishesCatFragment fragment = new WishesCatFragment();
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         assert fragmentManager != null;
         fragmentManager.beginTransaction().replace(R.id.main_wishes_categories_frame,fragment).commit();
+    }
+    private void loadLeadersFrame() {
+        LeadersFragment fragment = new LeadersFragment();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        assert fragmentManager != null;
+        fragmentManager.beginTransaction().replace(R.id.main_leaders_frame,fragment).commit();
     }
 
     private void allInitializations(View view) {

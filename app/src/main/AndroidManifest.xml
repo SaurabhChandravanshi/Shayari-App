@@ -11,36 +11,23 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:hardwareAccelerated="true"
+        android:name=".MyApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".SpDaysActivity"
-            android:theme="@style/CustomAppTheme"/>
-        <activity android:name=".QuoteActivity" />
+        <activity
+            android:name=".LeadersActivity"
+            android:theme="@style/CustomAppTheme" />
+        <activity
+            android:name=".SpDaysActivity"
+            android:theme="@style/CustomAppTheme" />
         <activity
             android:name=".PositiveQCatActivity"
-            android:theme="@style/CustomAppTheme" />
-        <activity android:name=".ImageViewerActivity" />
-        <activity android:name=".ReferralActivity" />
-        <activity
-            android:name=".ShayariImageActivity"
-            android:theme="@style/CustomAppTheme" />
-        <activity
-            android:name=".IMGCategoryActivity"
-            android:theme="@style/CustomAppTheme" />
-        <activity
-            android:name=".AppLangActivity"
             android:theme="@style/CustomAppTheme" />
         <activity android:name=".LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <intent-filter>
-                <data
-                    android:host="shayariapp.page.link"
-                    android:scheme="https" />
-
-                <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
         <activity
@@ -49,23 +36,17 @@
         <activity
             android:name=".WishesCatActivity"
             android:theme="@style/CustomAppTheme" />
-        <activity
-            android:name=".HelpActivity"
-            android:theme="@style/CustomAppTheme" />
-        <activity
-            android:name=".SignupActivity"
-            android:theme="@style/CustomAppTheme" />
         <activity android:name=".ShayariActivity" />
         <activity
             android:name=".CategoryActivity"
             android:theme="@style/CustomAppTheme" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/CustomAppTheme" />
+            android:label="Shayari App"/>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-5585717909119280~1908242140" />
+            android:value="@string/admob_app_id" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -76,7 +57,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
-
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">

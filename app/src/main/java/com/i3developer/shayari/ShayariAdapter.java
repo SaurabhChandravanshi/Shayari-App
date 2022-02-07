@@ -22,6 +22,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,8 +35,13 @@ import androidx.core.content.FileProvider;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.nativead.NativeAd;
+import com.google.android.gms.ads.nativead.NativeAdOptions;
+import com.google.android.gms.ads.nativead.NativeAdView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -56,7 +64,7 @@ public class ShayariAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
         if(viewType==AD_VIEW) {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_ad_shayari_list,parent,false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_native_layout,parent,false);
             return new MyAdViewHolder(view);
         }
         else {
@@ -67,30 +75,29 @@ public class ShayariAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemViewType(int pos) {
-        if(pos!=0) {
-            if(pos%3==0) {
+        if (pos == 0)
+            return RECYCLER_VIEW;
+        else {
+            if (pos % 6 == 0)
                 return AD_VIEW;
-            }
             return RECYCLER_VIEW;
         }
-        return RECYCLER_VIEW;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(dataList.get(position) instanceof AdView) {
             MyAdViewHolder myAdViewHolder = (MyAdViewHolder)holder;
-            myAdViewHolder.adView.loadAd(new AdRequest.Builder().build());
+            myAdViewHolder.refreshAd(myAdViewHolder.itemView);
         } else {
             Shayari data = (Shayari)dataList.get(position);
             MyViewHolder viewHolder = (MyViewHolder)holder;
-            viewHolder.shayariTtv.setText(data.getQ());
+            viewHolder.shayariTtv.setText(data.getQ().trim().replaceFirst(" {2}","\n"));
             Shader shader = new LinearGradient(0f, 0f, 0f, viewHolder.shayariTtv.getTextSize(),
-                    Color.RED, Color.BLUE, Shader.TileMode.CLAMP);
+                    Color.RED, viewHolder.itemView.getContext().getResources().getColor(R.color.darkBlue), Shader.TileMode.CLAMP);
             viewHolder.shayariTtv.getPaint().setShader(shader);
-            Typeface typeface = ResourcesCompat.getFont(viewHolder.itemView.getContext(),R.font.palanquin_dark_regular);
+            Typeface typeface = ResourcesCompat.getFont(viewHolder.itemView.getContext(),R.font.mukta_bold);
             viewHolder.shayariTtv.setTypeface(typeface);
-
             viewHolder.copyBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -131,7 +138,7 @@ public class ShayariAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         View dialogView = inflater.inflate(R.layout.dialog_editor_layout,null);
                         Button closeBtn = dialogView.findViewById(R.id.editor_close_btn);
                         EditText content = dialogView.findViewById(R.id.editor_content);
-                        Typeface typeface = ResourcesCompat.getFont(viewHolder.itemView.getContext(),R.font.palanquin_dark_regular);
+                        Typeface typeface = ResourcesCompat.getFont(viewHolder.itemView.getContext(),R.font.mukta_bold);
                         content.setTypeface(typeface);
                         content.setText(data.getQ());
                         CardView cardView = dialogView.findViewById(R.id.editor_card);
@@ -186,11 +193,101 @@ public class ShayariAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
     class MyAdViewHolder extends RecyclerView.ViewHolder {
+        private NativeAd mNativeAd;
 
-        private AdView adView;
         public MyAdViewHolder(@NonNull View itemView) {
             super(itemView);
-            adView = itemView.findViewById(R.id.recycler_ad_shayari_list_adView);
+        }
+
+        private void refreshAd(View view) {
+            AdLoader.Builder builder = new AdLoader.Builder(view.getContext(), view.getContext().getString(R.string.native_ad_unit));
+            builder.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
+                @Override
+                public void onNativeAdLoaded(@NonNull NativeAd nativeAd) {
+                    if (mNativeAd != null) {
+                        mNativeAd.destroy();
+                    }
+                    mNativeAd = nativeAd;
+                    FrameLayout frameLayout = view.findViewById(R.id.recycler_banner_frame);
+                    NativeAdView adView = (NativeAdView) LayoutInflater.from(view.getContext()).inflate(R.layout.native_ad, null);
+                    populateNativeAdView(nativeAd, adView);
+                    frameLayout.removeAllViews();
+                    frameLayout.addView(adView);
+                }
+            });
+            NativeAdOptions adOptions = new NativeAdOptions.Builder().build();
+            builder.withNativeAdOptions(adOptions);
+            AdLoader adLoader = builder.withAdListener(new AdListener() {
+                @Override
+                public void onAdClosed() {
+                    super.onAdClosed();
+                }
+
+                @Override
+                public void onAdLoaded() {
+                    super.onAdLoaded();
+                    CardView cardView = view.findViewById(R.id.recycler_banner_card);
+                    cardView.setVisibility(View.VISIBLE);
+                }
+            }).build();
+            adLoader.loadAd(new AdRequest.Builder().build());
+        }
+        private void populateNativeAdView(NativeAd nativeAd, NativeAdView adView) {
+            adView.setMediaView(adView.findViewById(R.id.ad_media));
+            adView.setHeadlineView(adView.findViewById(R.id.ad_headline));
+            adView.setBodyView(adView.findViewById(R.id.ad_body));
+            adView.setCallToActionView(adView.findViewById(R.id.ad_call_to_action));
+            adView.setIconView(adView.findViewById(R.id.ad_app_icon));
+            adView.setPriceView(adView.findViewById(R.id.ad_price));
+            adView.setAdvertiserView(adView.findViewById(R.id.ad_advertiser));
+            adView.setStoreView(adView.findViewById(R.id.ad_store));
+            adView.setStarRatingView(adView.findViewById(R.id.ad_stars));
+            ((TextView)adView.getHeadlineView()).setText(nativeAd.getHeadline());
+            adView.getMediaView().setMediaContent(nativeAd.getMediaContent());
+            if (nativeAd.getBody() == null) {
+                adView.getBodyView().setVisibility(View.INVISIBLE);
+            } else {
+                adView.getBodyView().setVisibility(View.VISIBLE);
+                ((TextView) adView.getBodyView()).setText(nativeAd.getBody());
+            }
+            if (nativeAd.getCallToAction() == null) {
+                adView.getCallToActionView().setVisibility(View.INVISIBLE);
+            } else {
+                adView.getCallToActionView().setVisibility(View.VISIBLE);
+                ((Button) adView.getCallToActionView()).setText(nativeAd.getCallToAction());
+            }
+            if (nativeAd.getIcon() == null) {
+                adView.getIconView().setVisibility(View.GONE);
+            } else {
+                ((ImageView) adView.getIconView()).setImageDrawable(nativeAd.getIcon().getDrawable());
+                adView.getIconView().setVisibility(View.VISIBLE);
+            }
+            if (nativeAd.getPrice() == null) {
+                adView.getPriceView().setVisibility(View.INVISIBLE);
+            } else {
+                adView.getPriceView().setVisibility(View.VISIBLE);
+                ((TextView) adView.getPriceView()).setText(nativeAd.getPrice());
+            }
+            if (nativeAd.getStore() == null) {
+                adView.getStoreView().setVisibility(View.INVISIBLE);
+            } else {
+                adView.getStoreView().setVisibility(View.VISIBLE);
+                ((TextView) adView.getStoreView()).setText(nativeAd.getStore());
+            }
+            if (nativeAd.getStarRating() == null) {
+                adView.getStarRatingView().setVisibility(View.INVISIBLE);
+            } else {
+
+                ((RatingBar) adView.getStarRatingView()).setRating(nativeAd.getStarRating().floatValue());
+                adView.getStarRatingView().setVisibility(View.VISIBLE);
+            }
+            if (nativeAd.getAdvertiser() == null) {
+                adView.getAdvertiserView().setVisibility(View.INVISIBLE);
+            } else {
+                ((TextView) adView.getAdvertiserView()).setText(nativeAd.getAdvertiser());
+                adView.getAdvertiserView().setVisibility(View.VISIBLE);
+            }
+            adView.setNativeAd(nativeAd);
         }
     }
     private void showToast(Context context, String text) {
@@ -236,7 +333,7 @@ public class ShayariAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); // temp permission for receiving app to read this file
             shareIntent.setDataAndType(contentUri, context.getContentResolver().getType(contentUri));
             shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
-            shareIntent.putExtra(Intent.EXTRA_TEXT,"Download Shayari Book app for more\nhttps://shayariapp.page.link/install");
+            shareIntent.putExtra(Intent.EXTRA_TEXT,"Get the Shayari App\n"+context.getResources().getString(R.string.app_store_link));
             context.startActivity(Intent.createChooser(shareIntent, "Choose an app"));
         }
     }

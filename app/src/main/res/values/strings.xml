@@ -1,21 +1,22 @@
 <resources>
-    <string name="app_name" translatable="false">Shayari Book</string>
-    <string name="app_name_nav">Shayari Book</string>
+    <string name="app_name" translatable="false">Shayari App</string>
     <string name="channel_name" translatable="false">Shayari Book Notification</string>
     <string name="channel_description" translatable="false">Shayari Book Local Notification</string>
     <string name="default_notification_channel_id" translatable="false">NOTIFICATION_CHANNEL_SHAYARI_APP</string>
-    <string name="shayari_image">Shayari Image</string>
     <string name="see_more">See More</string>
 
 
-    <string name="shayari_recycler_banner" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="banner_ad" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="shayari_interstitial_ad" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
+
+    <string name="admob_app_id" translatable="false">ca-app-pub-5585717909119280~1908242140</string>
+    <string name="shayari_interstitial_ad" translatable="false">ca-app-pub-5585717909119280/8368696956</string>
+    <string name="native_ad_unit" translatable="false">ca-app-pub-5585717909119280/7141206074</string>
+
+    <string name="app_store_link" translatable="false">https://shayariapp.page.link/get</string>
+
+    <string name="crisp_website_id" translatable="false">702af313-4783-4262-9e80-349272e0c3f0</string>
 
     <string name="shayari_coll">Shayari Collection</string>
     <string name="famous_poet">Famous Poets</string>
-    <string name="app_lang">App Language</string>
-    <string name="lang_continue">Continue in English Language</string>
     <string name="poet_coll">Poet Collection</string>
 
 
@@ -31,30 +32,30 @@
     <string name="support_us">Support us</string>
 
     <!-- Strings for Poet -->
-    <string name="gulzar">Gulzar Shayari</string>
-    <string name="gulzar_tag">gulzar,Gulzar Shayari in Hindi</string>
-    <string name="ghalib">Ghalib</string>
-    <string name="ghalib_tag">ghalib_shayari,Ghalib Shayari in Hindi</string>
+    <string name="gulzar">Gulzar</string>
+    <string name="gulzar_tag">gulzar,Gulzar</string>
+    <string name="ghalib">Mirza Ghalib</string>
+    <string name="ghalib_tag">ghalib_shayari,Mirza Ghalib</string>
     <string name="indori">Rahat Indori</string>
-    <string name="indori_tag">rahat_indori,Rahat Indori Shayari in Hindi</string>
-    <string name="kumar">Kumar Vishwas Shayari</string>
-    <string name="kumar_tag">kumar_vishwas_shayari,Kumar Vishwas Shayari in Hindi</string>
+    <string name="indori_tag">rahat_indori,Rahat Indori</string>
+    <string name="kumar">Kumar Vishwas</string>
+    <string name="kumar_tag">kumar_vishwas_shayari,Kumar Vishwas</string>
     <string name="faiz_ahmad">Faiz Ahmad Faiz</string>
-    <string name="faiz_ahmad_tag">faiz_ahmad_faiz,Faiz Ahmad Faiz Shayari in Hindi</string>
+    <string name="faiz_ahmad_tag">faiz_ahmad_faiz,Faiz Ahmad Faiz</string>
     <string name="bashir">Bashir Badr</string>
-    <string name="bashir_tag">bashir_badr,Bashir Badr Shayari in Hindi</string>
+    <string name="bashir_tag">bashir_badr,Bashir Badr</string>
     <string name="anamika">Anamika Jain</string>
     <string name="anamika_tag">anamika_jain,Anamika Jain</string>
     <string name="baksh">Baksh Nasikh</string>
     <string name="baksh_tag">baksh_nasikh,Baksh Nasikh</string>
-    <string name="mir_taqi">Mir Taqi Mi</string>
-    <string name="mir_taqi_tag">mir_taqi_mir,Mir Taqi Mir Shayari in Hindi</string>
+    <string name="mir_taqi">Mir Taqi Mir</string>
+    <string name="mir_taqi_tag">mir_taqi_mir,Mir Taqi Mir</string>
     <string name="iqbal">Allama Iqbal</string>
-    <string name="iqbal_tag">allama_iqbal,Allama Iqbal Shayari in Hindi</string>
+    <string name="iqbal_tag">allama_iqbal,Allama Iqbal</string>
     <string name="allahabadi">Akbar Allahabadi</string>
-    <string name="allahabadi_tag">akbar_allahabadi,Akbar Allabadi Shayari in Hindi</string>
+    <string name="allahabadi_tag">akbar_allahabadi,Akbar Allahabadi</string>
     <string name="parveen">Parveen Shakir</string>
-    <string name="parveen_tag">parveen_shakir,Parveen Shakir Shayari in Hindi</string>
+    <string name="parveen_tag">parveen_shakir,Parveen Shakir</string>
 
 
     <!-- Strings for Categories -->
@@ -74,31 +75,29 @@
     <string name="good_morning_shayari">Good Morning Shayari</string>
     <string name="good_night_shayari">Good Night Shayari</string>
 
-    <string name="two_line_shayari_tag">two_line_shayari,Two Line Shayari in Hindi</string>
-    <string name="love_shayari_tag">love_shayari,Love Shayari in Hindi</string>
-    <string name="sad_shayari_tag">sad_shayari,Sad Shayari in Hindi</string>
-    <string name="bewafa_shayari_tag">bewafa_shayari,Bewafa Shayari in Hindi</string>
-    <string name="friendship_shayari_tag">friendship_shayari,Friendship Shayari in Hindi</string>
-    <string name="motivational_shayari_tag">motivational_shayari,Motivational Shayari in Hindi</string>
-    <string name="attitude_shayari_tag">attitude_shayari,Attitude Shayari in Hindi</string>
-    <string name="romantic_shayari_tag">romantic_shayari,Romantic Shayari in Hindi</string>
-    <string name="boy_att_shayari_tag">boys_attitude_shayari,Boy\'s Attitude Shayari in Hindi</string>
-    <string name="sher_o_shayari_tag">sher_o_shayari,Sher-o-Shayari in Hindi</string>
-    <string name="funny_shayari_tag">funny_shayari,Funny Shayari in Hindi</string>
-    <string name="alfaaz_shayari_tag">alfaaz_shayari,Alfaaz Shayari in Hindi</string>
-    <string name="good_morning_shayari_tag">good_morning_shayari,Good Morning Shayari in Hindi</string>
-    <string name="good_night_shayari_tag">good_night_shayari,Good Night Shayari in Hindi</string>
+    <string name="two_line_shayari_tag">two_line_shayari,Two Line Shayari</string>
+    <string name="love_shayari_tag">love_shayari,Love Shayari</string>
+    <string name="sad_shayari_tag">sad_shayari,Sad Shayari</string>
+    <string name="bewafa_shayari_tag">bewafa_shayari,Bewafa Shayari</string>
+    <string name="friendship_shayari_tag">friendship_shayari,Friendship Shayari</string>
+    <string name="motivational_shayari_tag">motivational_shayari,Motivational Shayari</string>
+    <string name="attitude_shayari_tag">attitude_shayari,Attitude Shayari</string>
+    <string name="romantic_shayari_tag">romantic_shayari,Romantic Shayari</string>
+    <string name="boy_att_shayari_tag">boys_attitude_shayari,Boy\'s Attitude Shayari</string>
+    <string name="sher_o_shayari_tag">sher_o_shayari,Sher-o-Shayari</string>
+    <string name="funny_shayari_tag">funny_shayari,Funny Shayari</string>
+    <string name="alfaaz_shayari_tag">alfaaz_shayari,Alfaaz Shayari</string>
+    <string name="good_morning_shayari_tag">good_morning_shayari,Good Morning Shayari</string>
+    <string name="good_night_shayari_tag">good_night_shayari,Good Night Shayari</string>
 
     <!-- String for Wishes Category-->
     <string name="wishes_cat">Best Wishes Categories</string>
     <string name="birthday_wishes">Birthday Wishes</string>
     <string name="holi_wishes">Holi Wishes</string>
 
-    <string name="birthday_wishes_tag">birthday_wishes_shayari,Birthday Wishes in Hindi</string>
-    <string name="holi_wishes_tag">holi_wishes,Holi Wishes in Hindi</string>
-    <string name="sign_in">SignIn with App</string>
-    <string name="image_shayari">Image Shayari</string>
-    <string name="hbd_thanks_tag">birthday_thanks,Thanks Message for Birthday</string>
+    <string name="birthday_wishes_tag">birthday_wishes_shayari,Birthday Wishes</string>
+    <string name="holi_wishes_tag">holi_wishes,Holi Wishes</string>
+    <string name="hbd_thanks_tag">birthday_thanks,Birthday Thanks</string>
     <string name="thank_you_for_hbd">Birthday Thanks</string>
     <string name="positive_quote">Positive Quotes</string>
     <string name="mot_pos_quote_tag">motivational_pos_quote,Motivational Quotes</string>
@@ -125,4 +124,79 @@
     <string name="true_love">True Love</string>
     <string name="desh_bhakti">Desh Bhakti</string>
     <string name="desh_bhakti_tag">desh_bhakti,Desh Bhakti</string>
+    <string name="ankhein_shayari_tag">ankhein_shayari,Aankhein Shayari</string>
+    <string name="ankhein_shayari">Aankhein Shayari</string>
+    <string name="dooriyan_shayari">Dooriyan Shayari</string>
+    <string name="dooriyan_shayari_tag">dooriyan_shayari,Dooriyan Shayari</string>
+    <string name="heart_touching_quote_tag">heart_touching_quotes,Heart Touching Quotes</string>
+    <string name="heart_touching_quotes">Heart Touching Quotes</string>
+    <string name="mahakal_quotes_tag">mahakal_quotes,Mahakal Quotes</string>
+    <string name="mahakal_quotes">Mahakal Quotes</string>
+    <string name="nida_fazli_tag">nida_fazli,Nida Fazli</string>
+    <string name="nida_fazli">Nida Fazli</string>
+    <string name="javed_akhter">Javed Akhter</string>
+    <string name="javed_akhter_tag">javed_akhter,Javed Akhter</string>
+    <string name="ada_jafri_tag">ada_jafri,Ada Jafri</string>
+    <string name="majrooh_sultanpuri">Majrooh Sultanpuri</string>
+    <string name="majrooh_sultan_tag">majrooh_sultanpuri,Majrooh Sultanpuri</string>
+    <string name="dhokha_shayari_tag">dhokha_shayari,Dhokha Shayari</string>
+    <string name="dhokha_shayari">Dhokha Shayari</string>
+    <string name="aansoo_shayari_tag">aansoo_shayari,Aansoo Shayari</string>
+    <string name="aansoo_shayari">Aansoo Shayari</string>
+    <string name="chaand_shayari_tag">chaand_shayari,Chaand Shayari</string>
+    <string name="chaand_shayari">Chaand Shayari</string>
+    <string name="insult_shayari_tag">insult_shayari,Insult Shayari</string>
+    <string name="insult_shayari">Insult Shayari</string>
+    <string name="hurt_shayari_tag">hurt_shayari,Hurt Shayari</string>
+    <string name="hurt_shayari">Hurt Shayari</string>
+    <string name="sharab_shayari_tag">sharab_shayari,Sharab Shayari</string>
+    <string name="sharab_shayari">Sharab Shayari</string>
+    <string name="aarzoo_shayari_tag">aarzoo_shayari,Aarzoo Shayari</string>
+    <string name="aarzoo_shayari">Aarzoo Shayari</string>
+    <string name="aawargi_shayari_tag">aawargi_shayari,Aawargi Shayari</string>
+    <string name="aawargi_shayari">Aawargi Shayari</string>
+    <string name="navratri_wishes_tag">navratri_wishes,Navratri Wishes</string>
+    <string name="navratri_wishes">Navratri Wishes</string>
+    <string name="ameeri_shayari_tag">ameeri_shayari,Ameeri Shayari</string>
+    <string name="ameeri_shayari">Ameeri Shayari</string>
+    <string name="gareebi_shayari_tag">gareebi_shayari,Gareebi Shayari</string>
+    <string name="gareebi_shayari">Gareebi Shayari</string>
+    <string name="intezaar_shayari_tag">intezaar_shayari,Intezaar Shayari</string>
+    <string name="intezaar_shayari">Intezaar Shayari</string>
+    <string name="barish_shayari_tag">barish_shayari,Barish Shayari</string>
+    <string name="barish_shayari">Barish Shayari</string>
+    <string name="yaad_shayari_tag">yaad_shayari,Yaad Shayari</string>
+    <string name="yaad_shayari">Yaad Shayari</string>
+    <string name="zindagi_shayari_tag">zindagi_shayari,Zindagi Shayari</string>
+    <string name="zindagi_shayari">Zindagi Shayari</string>
+    <string name="jaun_elia_tag">jaun_elia,Jaun Elia</string>
+    <string name="jaun_elia">Jaun Elia</string>
+    <string name="ahmad_faraz_tag">ahmad_faraz,Ahmad Faraz</string>
+    <string name="ahmad_faraz">Ahmad Faraz</string>
+    <string name="thoughts_of_famous_legends">Thoughts of Indian Leaders</string>
+    <string name="swami_vivekanand">Swami Vivekanand</string>
+    <string name="leader_vivekanand_tag">leader_vivekanand,Swami Vivekanand</string>
+    <string name="mahatama_gandhi_tag">leader_mahatama_gandhi,Mahatama Gandhi</string>
+    <string name="mahatama_gandhi">Mahatama Gandhi</string>
+    <string name="leaders">Famous Leaders</string>
+    <string name="patel_tag">leader_patel,Sardar Vallabhbhai Patel</string>
+    <string name="sardar_vallabhbhai_patel">Sardar Vallabhbhai Patel</string>
+    <string name="bhagat_singh_tag">leader_bhagat_singh,Bhagat Singh</string>
+    <string name="bhagat_singh">Bhagat Singh</string>
+    <string name="tagore_tag">leader_tagore,Rabindranath Tagore</string>
+    <string name="rabindranath_tagore">Rabindranath Tagore</string>
+    <string name="azad_tag">leader_azad,Chandrasekhar Azad</string>
+    <string name="chandrasekhar_azad">Chandrasekhar Azad</string>
+    <string name="subhash_chandra_bose_tag">leader_shubhash,Subhash Chandra Bose</string>
+    <string name="subhash_chandra_bose">Subhash Chandra Bose</string>
+    <string name="nehru_tag">leader_nehru,Pandit Jawaharlal Nehru</string>
+    <string name="pt_jawaharlal_nehru">Pt. Jawaharlal Nehru</string>
+    <string name="abdul_kalam_tag">leader_abdul_kalam,A.P.J. Abdul Kalam</string>
+    <string name="indira_gandhi_tag">leader_indira_gandhi,Indira Gandhi</string>
+    <string name="indira_gandhi">Indira Gandhi</string>
+    <string name="a_p_j_abdul_kalam">A.P.J. Abdul Kalam</string>
+    <string name="ramnavmi_wishes_tag">ramnavmi_wihses,Ramnavmi Wishes</string>
+    <string name="mahavir_jayanti_wishes_tag">mahavir_jayanti_wishes,Mahavir Jayanti</string>
+
+
 </resources>

@@ -276,27 +276,26 @@
                         android:ellipsize="end"
                         android:layout_marginTop="10dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:text="10th May"
+                        android:text="8th May"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
 
-        <TextView
+        <androidx.cardview.widget.CardView
+            android:id="@+id/adCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:textColor="@android:color/black"
-            android:text="More Coming soon in this Section"/>
-        <TextView
+            app:cardUseCompatPadding="true"
+            android:layout_marginEnd="15dp"
+            android:visibility="gone"
+            app:cardCornerRadius="10dp"
+            android:layout_marginStart="15dp"
+            app:contentPadding="15dp">
+        <FrameLayout
+            android:id="@+id/adFrame"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="20dp"
-            android:layout_marginEnd="10dp"
-            android:text="We are working hard to ensure our users get much more categorized contents, We are continuously working toward making our database much content richer each day, please always make sure that you are using this app's latest version."/>
+            android:layout_height="wrap_content" />
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

@@ -517,12 +517,11 @@
                 android:layout_height="wrap_content"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
-                android:layout_marginStart="-2dp"
+                android:layout_marginStart="-4dp"
                 app:cardCornerRadius="10dp"
                 android:tag="@string/parveen_tag"
                 android:onClick="showShayari"
-                android:layout_weight="1"
-                android:layout_marginLeft="-2dp">
+                android:layout_weight="1">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
